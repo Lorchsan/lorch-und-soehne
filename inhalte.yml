@@ -15,7 +15,7 @@ danziger:
       titel: Kaffee
       eintraege:
         - name: Americano
-          einfach: 3,90
+          einfach: 2,90
           doppelt: 3,90
         - name: Espresso
           einfach: 2,40
@@ -77,8 +77,6 @@ danziger:
           zutaten: Gurke, Apfel, Sellerie, Ingwer
         - name: Orange pur
           preis: 5,80
-        - name: Unicorn
-          preis: 7,80
     fruehstueck:
       titel: Frühstück
       eintraege:
