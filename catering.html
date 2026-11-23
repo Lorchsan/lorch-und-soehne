@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kaffee-Catering für Tagung, Empfang und Seminar an der Humboldt-Universität: Kaffee, Wasser und kleine Snacks für 20 bis 500 Gäste. Jetzt bei Lorch &amp; Söhne anfragen.">
+  <meta name="theme-color" content="#35271e">
+  <title>Lorch &amp; Söhne – Catering an der Humboldt-Universität in Berlin</title>
+  <!-- Hauptadresse dieser Seite: so weiß Google, dass Testkopien nicht das Original sind -->
+  <link rel="canonical" href="https://lorchundsoehne.de/catering.html">
+  <!-- Startbild vorladen: Handy bekommt die kleine Hochformat-Version (-mobil), Desktop die große -->
+  <link rel="preload" href="assets/bilder/catering/buffet-catering-lorch-und-soehne-salate-und-snacks-mobil.webp" as="image" fetchpriority="high" media="(max-width: 800px)">
+  <link rel="preload" href="assets/bilder/catering/buffet-catering-lorch-und-soehne-salate-und-snacks.webp" as="image" fetchpriority="high" media="(min-width: 801px)">
+  <link rel="preload" href="assets/fonts/ebgaramond-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Favicon: braune Tasse (assets/logos, 64 px); fürs iPhone weiterhin die Logo-Tasse -->
+  <link rel="icon" type="image/webp" href="assets/bilder/lorch-und-soehne-favicon-whole-cup.webp">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css?v=76">
+  <script src="script.js?v=70" defer></script>
+</head>
+<body>
+  <!--
+    LORCH & SÖHNE – UNTERSEITE CATERING
+    Bewusst kurz und pragmatisch: Catering an der Humboldt-Universität
+    (Hauptgebäude, Dorotheenstraße, Bebelplatz) – Filterkaffee und
+    kleine Snacks. Aufbau: Startbild (Foyer Alte Bibliothek) →
+    Einleitung mit dem Pott Kaffee → Karte (Orte | Auf dem Tisch) →
+    Foto Bebelplatz mit Anfrage per E-Mail → Fußbereich.
+    Nutzt fast nur vorhandene Bausteine; eigene Regeln in style.css
+    im Block „UNTERSEITE CATERING“.
+    Die E-Mail-Adresse ist wie auf kontakt.html geschützt
+    (rückwärts in data-Attributen, script.js setzt sie zusammen).
+  -->
+
+  <a class="sprunglink" href="#inhalt">Zum Inhalt</a>
+
+  <!-- ===== STARTBILD & NAVIGATION =====
+       Foyer der Alten Bibliothek am Bebelplatz (Kommode) -->
+  <header class="startbild" id="anfang">
+    <!-- Bis 800 px Breite lädt der Browser den hochformatigen Ausschnitt (-mobil, viel kleiner) -->
+    <picture>
+      <source media="(max-width: 800px)" srcset="assets/bilder/catering/buffet-catering-lorch-und-soehne-salate-und-snacks-mobil.webp">
+      <img class="startbild-foto" src="assets/bilder/catering/buffet-catering-lorch-und-soehne-salate-und-snacks.webp" width="1227" height="877" alt="Buffet mit Salaten im Glas, belegten Brötchen, Obst und Blumen" fetchpriority="high">
+    </picture>
+    <div class="startbild-abdunklung"></div>
+    <div class="kopfleiste">
+      <div class="standorte-links">
+        <a class="home-tasse" href="index.html" aria-label="Lorch & Söhne – Startseite"><img class="logo-hell" src="assets/bilder/lorch-und-soehne-logo-tasse.webp" width="360" height="420" alt=""></a>
+      </div>
+      <button class="navigation-button" type="button" popovertarget="navigation">
+        <span class="sr-only">Menü</span><span class="navigation-icon" aria-hidden="true"></span>
+      </button>
+      <nav id="navigation" popover aria-label="Hauptnavigation">
+        <a class="nav-home" href="index.html">Home</a>
+        <div class="ausklappmenue">
+          <a href="index.html#espressobars">Cafés <span class="ausklapp-pfeil" aria-hidden="true">▾</span></a>
+          <div class="ausklappmenue-liste">
+            <a href="cafe-danziger-strasse.html">Danziger Straße</a>
+            <a href="cafe-kommode.html">Kommode</a>
+            <!-- zusätzlich zum eigenen Menüpunkt: das Rad als „drittes Café“ -->
+            <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+          </div>
+        </div>
+        <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+        <a href="catering.html" aria-current="page">Catering</a>
+        <a href="index.html#danziger">Anfahrt</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+    <!-- Das Logo ist die Hauptüberschrift, darunter „Catering“ -->
+    <h1 class="startbild-logo startbild-thema">
+      <img src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" class="logo-hell">
+      <span class="startbild-standort"><span class="standort-strasse">Catering<span class="sr-only"> an der Humboldt-Universität in Berlin</span></span></span>
+    </h1>
+    <a class="startbild-weiter startbild-knopf" href="#anfrage">
+      <span>Catering anfragen</span><span aria-hidden="true">↓</span>
+    </a>
+  </header>
+
+  <main id="inhalt">
+
+    <!-- ===== EINLEITUNG (editorial, wie Danziger Straße) =====
+         Links Überschrift mit dem gezeichneten Pott Kaffee,
+         rechts der Text. -->
+    <section class="danziger-einleitung catering-einleitung inhaltsbreite" aria-labelledby="einleitung-titel">
+      <div class="einleitung-kopf">
+        <h2 id="einleitung-titel">Gut gelaunt bis zum Schluss.</h2>
+        <img class="fahrrad-figur" src="assets/bilder/kommode/lorch-und-soehne-kommode-pott-kaffee-illustration.webp" width="600" height="600" alt="Gezeichneter Pott Kaffee" loading="lazy">
+      </div>
+      <div class="einleitung-spalte">
+        <p class="einleitung-vorspann">Tagung, Empfang oder Seminar an der Humboldt-Universität? Ob 20 oder 500 Leute – wir versorgen Sie mit Kaffee, Wasser und kleinen Snacks.</p>
+        <p>Viel guter Kaffee und kleine Leckereien – damit alle mit Freude bis zum Schluss dabei sind.</p>
+        <a class="textlink" href="#anfrage">Catering anfragen <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <!-- ===== BILDKACHELN CATERING =====
+         Zwei Eindrücke vom Buffet nebeneinander (Handy: untereinander).
+         Das dritte und vierte Catering-Foto stehen im Kopfbereich
+         und hinter „Catering anfragen“ – so kommt keins doppelt vor. -->
+    <section class="bildkacheln bildkacheln-catering" aria-label="Eindrücke von unserem Catering">
+      <figure class="kachel"><img src="assets/bilder/catering/buffet-aufbau-tische-catering-lorch-und-soehne.webp" width="1238" height="900" alt="Buffet und Stehtische im lichtdurchfluteten Saal" loading="lazy"></figure>
+      <figure class="kachel"><img src="assets/bilder/catering/buffet-snacks-wasser-lorch-und-soehne.webp" width="1482" height="900" alt="Kaffee, Wasser, Säfte, Obst und herzhafte Snacks auf dem Buffet" loading="lazy"></figure>
+    </section>
+
+    <!-- ===== ANFRAGE (Foto-Bereich) =====
+         Text und geschützte E-Mail-Adresse auf dem Foto der Kommode
+         am Bebelplatz. -->
+    <section class="foto-section" id="anfrage" aria-labelledby="anfrage-titel">
+      <img class="section-foto" src="assets/bilder/catering/buffet-catering-aufbau-lorch-und-soehne.webp" width="1331" height="855" alt="Ein langes Catering-Buffet mit Snacks, Blumen und Getränken in einem hellen Saal" loading="lazy">
+      <div class="foto-abdunklung"></div>
+      <div class="inhaltsbreite foto-inhalt">
+        <div class="foto-text">
+          <h2 id="anfrage-titel">Catering anfragen</h2>
+          <p>Schreiben Sie uns, wann und wo Ihre Veranstaltung stattfindet und mit wie vielen Gästen Sie ungefähr rechnen. Wir melden uns bei Ihnen.</p>
+          <!-- script.js ersetzt den Link durch den mailto-Link mit der Adresse.
+               Ohne JavaScript bleibt er stehen und führt zur Kontaktseite. -->
+          <p class="kontakt-adresse catering-adresse email-geschuetzt" data-name="hcrol.hpotsirhc" data-domain="ed.oetsop"><a href="kontakt.html">E-Mail schreiben</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FUSSBEREICH (wie auf der Startseite) ===== -->
+  <footer class="fussbereich">
+    <div class="inhaltsbreite fussbereich-oben">
+      <a href="index.html" aria-label="Lorch & Söhne – zur Startseite"><img class="logo-hell fussbereich-logo" src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" loading="lazy"></a>
+      <div>
+        <p class="handschrift">Bis zum nächsten Kaffee.</p>
+        <!-- Keine E-Mail-Adresse im Footer (steht nur auf der Kontaktseite) -->
+        <a class="email-link" href="kontakt.html">Kontakt</a>
+        <!-- Instagram-Profil, öffnet in neuem Tab -->
+        <a class="instagram-link" href="https://www.instagram.com/lorch_und_soehne/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="inhaltsbreite fussbereich-unten">
+      <!-- Dank an die Partner (Kaffeebohnen und Bagels), Links öffnen in neuem Tab -->
+      <p class="fussbereich-partner">Ohne unsere Partner <a href="https://www.passenger-coffee.de/" target="_blank" rel="noopener">PASSENGER Coffee</a> und <a href="https://www.salomon-bagels.de/" target="_blank" rel="noopener">Salomon Bagels</a> wären wir nur halb so wach und halb so satt. Danke, dass wir mit euch unseren Gästen jeden Tag so viel Gutes tun können!</p>
+      <!-- Pflichtseiten -->
+      <nav class="fussbereich-rechtliches" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a class="fussbereich-credit" href="https://cococrema.de/" target="_blank" rel="noopener">Website: Cococrema</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

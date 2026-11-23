@@ -1,0 +1,280 @@
+# =====================================================================
+#  LORCH & SÖHNE – INHALTE DER WEBSITE
+# =====================================================================
+#
+#  Hier stehen alle Angaben, die sich öfter ändern: Kontakt, Adressen,
+#  Öffnungszeiten und die Speisekarte der Danziger Straße.
+#
+#  ALLES AKTIV: Jede Angabe hier wird auf die Website übernommen
+#  (python3 aktualisieren.py – später automatisch über GitHub).
+#
+#  ---------------------------------------------------------------------
+#  SO ÄNDERST DU ETWAS
+#  ---------------------------------------------------------------------
+#  • Nur den Text HINTER dem Doppelpunkt ändern.
+#  • Die Einrückung (Leerzeichen am Zeilenanfang) genau so lassen.
+#    Immer Leerzeichen, nie Tab.
+#  • Preise ohne „€“ schreiben, mit Komma: 3,70
+#    (3,7 oder 3.70 wird automatisch zu 3,70 korrigiert)
+#  • „–“ bei einem Preis heißt: gibt es nicht (z. B. Flat White einfach).
+#  • Neue Zeile auf der Karte: eine vorhandene Zeile (beginnt mit „- name“)
+#    samt ihrer Zeilen darunter kopieren und anpassen.
+#  • Zeile löschen: die Zeile mit „- name“ und die dazugehörigen Zeilen
+#    darunter löschen.
+#  • Alles hinter einem # ist eine Erklärung und erscheint nicht auf der Seite.
+#
+#  ---------------------------------------------------------------------
+#  BEISPIEL: EINE ZEILE AUF DER KARTE HINZUFÜGEN ODER LÖSCHEN
+#  ---------------------------------------------------------------------
+#  Jeder Eintrag auf der Karte besteht aus zwei oder drei Zeilen:
+#
+#        - name: Süßer Lorch                       ← Name, beginnt mit „- “
+#          preis: 4,30                             ← Preis ohne €
+#          zutaten: Croissant, Marmelade, Butter   ← freiwillig
+#
+#  HINZUFÜGEN (z. B. ein Croissant beim Frühstück):
+#    1. Einen vorhandenen Eintrag markieren und kopieren.
+#    2. An der Stelle einfügen, an der er auf der Karte stehen soll
+#       (die Reihenfolge hier = die Reihenfolge auf der Website).
+#    3. Name, Preis und Zutaten ändern. Keine Zutaten? Zeile weglassen.
+#
+#        - name: Croissant
+#          preis: 2,80
+#
+#  LÖSCHEN (z. B. „Bircher Müsli klein“):
+#    Die Zeile „- name: Bircher Müsli klein“ und die Zeilen direkt
+#    darunter („preis“, „zutaten“) löschen – bis zum nächsten „- name“.
+#
+#  WICHTIG – die Einrückung:
+#    • „- name“ steht genau so weit eingerückt wie die anderen Einträge.
+#    • „preis“ und „zutaten“ stehen zwei Leerzeichen weiter rechts,
+#      genau unter dem „n“ von „name“.
+#    • Am einfachsten: immer einen vorhandenen Eintrag kopieren,
+#      dann stimmt die Einrückung von selbst.
+#
+#  Passiert doch ein Fehler, wird die Website NICHT kaputt: Die
+#  Automatik prüft die Datei und lädt dann einfach nichts hoch.
+#  Die alte Seite bleibt online.
+#
+#  Wo eine Angabe auf der Website überall auftaucht, steht jeweils
+#  darüber (★ = erscheint an MEHREREN Stellen). Du änderst sie nur
+#  hier einmal – die Automatik ändert alle Stellen gemeinsam.
+# =====================================================================
+
+
+# ---------------------------------------------------------------------
+#  KONTAKT
+# ---------------------------------------------------------------------
+kontakt:
+  # Erscheint auf: Kontakt, Catering, Impressum, Datenschutz.
+  # Wird automatisch vor Spam geschützt (rückwärts gespeichert).
+  email: christoph.lorch@posteo.de
+
+
+# ---------------------------------------------------------------------
+#  CAFÉ DANZIGER STRASSE
+# ---------------------------------------------------------------------
+danziger:
+
+  # Erscheint auf: Startseite (Anfahrt), Danziger-Seite („Komm vorbei!“),
+  # Impressum, Datenschutz und unsichtbar für Google.
+  adresse:
+    strasse: Danziger Straße 25
+    plz_ort: 10435 Berlin
+    stadtteil: Prenzlauer Berg
+
+  # Erscheint auf: Startseite (Anfahrt), Danziger-Seite und für Google.
+  # Zeiten immer so schreiben: 08:00–17:00 Uhr  – oder: geschlossen
+  oeffnungszeiten:
+    - tage: Montag–Freitag
+      zeit: 08:00–17:00 Uhr
+    - tage: Samstag–Sonntag
+      zeit: 09:00–17:00 Uhr
+
+  # =================================================================
+  #  SPEISEKARTE
+  #  Erscheint auf: Danziger-Seite („Unsere Karte“).
+  #  Reihenfolge hier = Reihenfolge auf der Website.
+  #  „titel“ = Überschrift der Rubrik auf der Karte.
+  # =================================================================
+  karte:
+
+    # ----- KAFFEE (linke Spalte, oben) -----
+    # ★ Erscheint ZWEIMAL: auf der Danziger-Karte UND auf der
+    #   Startseite in der Preistabelle „Unsere Kaffeespezialitäten“.
+    #   Neue Kaffees landen also auch auf der Startseite.
+    # Zwei Preise: einfach / doppelt.  „–“ = gibt es so nicht.
+    kaffee:
+      titel: Kaffee
+      eintraege:
+        - name: Americano
+          einfach: 2,90
+          doppelt: 3,90
+        - name: Espresso
+          einfach: 2,40
+          doppelt: 3,40
+        - name: Espresso Macchiato
+          einfach: 3,10
+          doppelt: 4,10
+        - name: Latte Macchiato
+          einfach: 4,10
+          doppelt: 5,10
+        - name: Milchkaffee
+          einfach: 4,10
+          doppelt: 5,10
+        - name: Cappuccino
+          einfach: 3,70
+          doppelt: 5,10
+        - name: Flat White
+          einfach: –
+          doppelt: 4,70
+        - name: Cortado
+          einfach: 3,30
+          doppelt: –
+
+    # ----- ANDERE GETRÄNKE (linke Spalte) -----
+    # „hinweis“ = kleiner Satz unter der Liste.
+    andere_getraenke:
+      titel: Andere Getränke
+      eintraege:
+        - name: Matcha Latte
+          preis: 4,10
+        - name: Chai Latte
+          preis: 4,10
+        - name: Golden Milk
+          preis: 4,10
+        - name: Heiße Schokolade
+          preis: 4,10
+        - name: Heiße Ingwer-Zitrone
+          preis: 4,20
+        - name: Tee
+          preis: 3,10
+          zutaten: Grün, Minze, Früchte u. a.
+        - name: Iced Latte
+          preis: 4,50
+        - name: Extra Shot
+          preis: 1,00
+      hinweis: "Entkoffeiniert oder mit Hafer-, Soja- oder laktosefreier Milch: + 0,30 €."
+
+    # ----- FRISCHE SÄFTE (linke Spalte, unten) -----
+    saefte:
+      titel: Frische Säfte
+      eintraege:
+        - name: Kate
+          preis: 6,10
+          zutaten: Orange, Karotte, Ingwer
+        - name: Lilo
+          preis: 6,10
+          zutaten: Apfel, Orange, Kurkuma
+        - name: Tilda
+          preis: 6,10
+          zutaten: Karotte, Apfel, Ingwer
+        - name: Conny
+          preis: 6,10
+          zutaten: Gurke, Apfel, Sellerie, Ingwer
+        - name: Orange pur
+          preis: 5,80
+
+    # ----- FRÜHSTÜCK (rechte Spalte, oben) -----
+    fruehstueck:
+      titel: Frühstück
+      eintraege:
+        - name: Kleiner Lorch
+          preis: 8,80
+          zutaten: Schinken (1), Käse (2), Paste (1), Butter, Brot und Brötchen
+        - name: Großer Lorch
+          preis: 11,80
+          zutaten: Schinken (1), Käse (3), Paste (3), Butter, Brot und Brötchen
+        - name: Süßer Lorch
+          preis: 4,30
+          zutaten: Croissant, Marmelade, Butter
+        - name: Eier im Glas
+          preis: 7,50
+          zutaten: zwei Bio-Eier, Senf, Butter, Schnittlauch, Brot
+        - name: Bircher Müsli groß
+          preis: 6,80
+          zutaten: Joghurt, frische Beeren, Nüsse
+        - name: Bircher Müsli klein
+          preis: 4,80
+          zutaten: Joghurt, frische Beeren, Nüsse
+
+    # ----- BAGELS (rechte Spalte) -----
+    # „einleitung“ = Satz unter der Überschrift.
+    bagels:
+      titel: Bagels
+      einleitung: Handgemachte Bagels von Salomon Bagels aus Berlin, bei uns frisch belegt und getoastet.
+      eintraege:
+        - name: Serrano
+          preis: 6,80
+          zutaten: Frischkäse, Rucola, Gurke, Tomate
+        - name: Lachs
+          preis: 6,80
+          zutaten: Frischkäse, Rucola, Schnittlauch
+        - name: Käse
+          preis: 6,40
+          zutaten: Frischkäse, Rucola, Gurke, Tomate
+        - name: Vegi
+          preis: 6,40
+          zutaten: Rucola, Gurke, Tomate, Rote Beete, Avocado, mit Hummus oder Frischkäse
+        - name: Italiano
+          preis: 6,40
+          zutaten: Mozzarella, Frischkäse, Rucola, Tomate, Pesto
+        - name: Süß
+          preis: 4,80
+          zutaten: Frischkäse, Marmelade
+        - name: Nur Frischkäse
+          preis: 4,00
+
+    # ----- KUCHEN (rechte Spalte, unten links) -----
+    # Keine Preise, nur ein Satz.
+    kuchen:
+      titel: Selbstgebackener Kuchen
+      einleitung: Was es gibt, wechselt. Frag einfach nach dem heutigen Kuchen.
+
+    # ----- SUPPEN (rechte Spalte, unten rechts) -----
+    suppen:
+      titel: Hausgemachte Suppen
+      eintraege:
+        - name: Daal
+          preis: 8,80
+        - name: Kartoffel
+          preis: 8,80
+        - name: Huhn
+          preis: 9,50
+        - name: Kleine Portion
+          preis: 6,00
+        - name: + Wiener
+          preis: 1,00
+      hinweis: Allergene? Sprecht uns an!
+
+
+# ---------------------------------------------------------------------
+#  CAFÉ KOMMODE (Alte Bibliothek, Bebelplatz)
+# ---------------------------------------------------------------------
+kommode:
+
+  # Erscheint auf: Startseite (Anfahrt), Kommode-Seite und für Google.
+  adresse:
+    gebaeude: Alte Bibliothek der Humboldt-Universität
+    strasse: Bebelplatz 2
+    plz_ort: 10117 Berlin
+    stadtteil: Mitte
+
+  # Erscheint auf: Startseite (Anfahrt), Kommode-Seite und für Google.
+  oeffnungszeiten:
+    - tage: Montag–Freitag
+      zeit: 08:00–18:00 Uhr
+    - tage: Samstag–Sonntag
+      zeit: geschlossen
+
+  # Pott Kaffee für HU-Studierende (ohne €).
+  # ★ Erscheint an DREI Stellen: Kommode-Seite im Text („… für einen
+  #   Pott Kaffee für 1,50“), als Überschrift („Ein Pott Kaffee. 1,50 €.“)
+  #   und unsichtbar in der Google-Beschreibung der Kommode-Seite.
+  pott_kaffee_preis: 1,50
+
+  # Schloss für die Bibliothek (Kommode-Seite, „Noch ein Schloss für die Bib?“)
+  schloss:
+    rueckgabe_bis: 18 Uhr          # im Satz „… am selben Tag bis 18 Uhr …“
+    leihgebuehr: 1,00 € pro Tag    # genau so, wie es dasteht (mit €)
+    pfand: 10,00                   # ohne €

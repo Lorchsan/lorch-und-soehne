@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Café &amp; Espressobar in der Alten Bibliothek der Humboldt-Uni am Bebelplatz: Espresso, Cappuccino, Latte Macchiato, belegte Bagels und Kuchen. Pott Kaffee für 1,50 € für HU-Studierende.">
+  <meta name="theme-color" content="#35271e">
+  <title>Lorch &amp; Söhne – Café in der Juristischen Fakultät der Humboldt-Uni in Mitte</title>
+  <!-- Hauptadresse dieser Seite: so weiß Google, dass Testkopien nicht das Original sind -->
+  <link rel="canonical" href="https://lorchundsoehne.de/cafe-kommode.html">
+  <!-- Startbild vorladen: Handy bekommt die kleine Hochformat-Version (-mobil), Desktop die große -->
+  <link rel="preload" href="assets/bilder/kommode/lorch-und-soehne-kommode-hinter-der-theke-mobil.webp" as="image" fetchpriority="high" media="(max-width: 800px)">
+  <link rel="preload" href="assets/bilder/kommode/lorch-und-soehne-kommode-hinter-der-theke.webp" as="image" fetchpriority="high" media="(min-width: 801px)">
+  <link rel="preload" href="assets/fonts/ebgaramond-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Favicon: braune Tasse (assets/logos, 64 px); fürs iPhone weiterhin die Logo-Tasse -->
+  <link rel="icon" type="image/webp" href="assets/bilder/lorch-und-soehne-favicon-whole-cup.webp">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css?v=76">
+  <script src="script.js?v=70" defer></script>
+</head>
+<body>
+  <!--
+    LORCH & SÖHNE – UNTERSEITE KOMMODE
+    Aufbau (von oben nach unten):
+    Startbild → Einleitung → Bildkacheln → Kaffeekarte (#karte) →
+    Unser Café in der Kommode (Foto) → Schloss für die Bib →
+    Auf einen Kaffee (#besuch, mit Schwein) → Fußbereich.
+    Gebaut aus denselben Bausteinen wie cafe-danziger-strasse.html.
+    Was nur hier vorkommt, steht in style.css im Block
+    „UNTERSEITE KOMMODE“. Alle Fotos liegen in assets/bilder/kommode/.
+  -->
+
+  <a class="sprunglink" href="#inhalt">Zum Inhalt</a>
+
+  <!-- ===== STARTBILD & NAVIGATION =====
+       Blick über die Holztheke in den Gastraum. -->
+  <header class="startbild" id="anfang">
+    <!-- Bis 800 px Breite lädt der Browser den hochformatigen Ausschnitt (-mobil, viel kleiner) -->
+    <picture>
+      <source media="(max-width: 800px)" srcset="assets/bilder/kommode/lorch-und-soehne-kommode-hinter-der-theke-mobil.webp">
+      <img class="startbild-foto" src="assets/bilder/kommode/lorch-und-soehne-kommode-hinter-der-theke.webp" width="1920" height="1080" alt="Blick von hinter der Theke: Siebträgermaschine, Kaffeemühle und Becherstapel, dahinter der Gastraum mit Hängelampen" fetchpriority="high">
+    </picture>
+    <div class="startbild-abdunklung"></div>
+    <div class="kopfleiste">
+      <div class="standorte-links">
+        <a class="home-tasse" href="index.html" aria-label="Lorch & Söhne – Startseite"><img class="logo-hell" src="assets/bilder/lorch-und-soehne-logo-tasse.webp" width="360" height="420" alt=""></a>
+      </div>
+      <button class="navigation-button" type="button" popovertarget="navigation">
+        <span class="sr-only">Menü</span><span class="navigation-icon" aria-hidden="true"></span>
+      </button>
+      <nav id="navigation" popover aria-label="Hauptnavigation">
+        <a class="nav-home" href="index.html">Home</a>
+        <div class="ausklappmenue">
+          <a href="index.html#espressobars">Cafés <span class="ausklapp-pfeil" aria-hidden="true">▾</span></a>
+          <div class="ausklappmenue-liste">
+            <a href="cafe-danziger-strasse.html">Danziger Straße</a>
+            <a href="cafe-kommode.html" aria-current="page">Kommode</a>
+            <!-- zusätzlich zum eigenen Menüpunkt: das Rad als „drittes Café“ -->
+            <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+          </div>
+        </div>
+        <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+        <a href="catering.html">Catering</a>
+        <!-- „Anfahrt“ springt hier zu „Auf einen Kaffee in die Kommode?“ -->
+        <a href="#besuch">Anfahrt</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+    <!-- Das Logo ist hier die Hauptüberschrift der Seite.
+         Aufbau des Standorts wie auf der Danziger-Seite: am Handy
+         „Kommode“ oben, „– Bebelplatz –“ kursiv darunter. -->
+    <h1 class="startbild-logo">
+      <img src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" class="logo-hell">
+      <span class="startbild-standort"><span class="standort-strasse"><span class="sr-only">Café &amp; Espressobar </span>Kommode</span><span class="standort-trenner"> · </span><span class="standort-viertel">Bebelplatz</span></span>
+    </h1>
+    <a class="startbild-weiter" href="#karte">
+      <span>Angebot ansehen</span><span aria-hidden="true">↓</span>
+    </a>
+  </header>
+
+  <main id="inhalt">
+
+    <!-- ===== EINLEITUNG (editorial, wie Danziger Straße) =====
+         Links Überschrift mit dem Ritter, rechts der Text. -->
+    <section class="danziger-einleitung inhaltsbreite" aria-labelledby="einleitung-titel">
+      <div class="einleitung-kopf">
+        <p class="dachzeile">Das Lorch & Söhne Kommode</p>
+        <h2 id="einleitung-titel">Endlich guter Kaffee an der Uni.</h2>
+        <!-- Der Ritter reitet beim Scrollen nach links (script.js) -->
+        <img class="einleitung-ritter" src="assets/bilder/lorch-und-soehne-ritter-illustration.webp" width="600" height="600" alt="Gezeichneter Ritter mit Kaffeefahne auf seinem Pferd" loading="lazy">
+      </div>
+      <div class="einleitung-spalte">
+        <p class="einleitung-vorspann">Seit Januar 2024 gibt es Lorch & Söhne auch in der Kommode (der Juristischen Fakultät der Humboldt-Universität) am Bebelplatz.</p>
+        <p>Für einen richtig guten Cappuccino zwischendurch oder einen belegten Bagel, ein Stück frisch gebackenen Kuchen. Oder, wenn du an der HU studierst, für einen Pott Kaffee für <!--i:kommode.pott_kaffee_preis-->1,50<!--/i-->.</p>
+        <a class="textlink" href="#karte">Zum Angebot <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <!-- ===== BILDKACHELN: oben Theke, Latte Art und Hochformat in einer Reihe, darunter drei Quadrate ===== -->
+    <section class="bildkacheln bildkacheln-kommode" aria-label="Eindrücke aus dem Café in der Kommode">
+      <figure class="kachel kachel-1"><img src="assets/bilder/kommode/kommode-eingang-lorch-und-soehne.webp" width="1378" height="900" alt="Der Eingang der Kommode von Lorch & Söhne" loading="lazy"></figure>
+      <figure class="kachel kachel-2"><img src="assets/bilder/kommode/lorch-und-soehne-kommode-latte-art.webp" width="1200" height="900" alt="Ein Barista gießt ein Herz in den Cappuccino" loading="lazy"></figure>
+      <!-- Hochformat oben rechts neben Theke und Latte Art -->
+      <figure class="kachel kachel-hochkant"><img src="assets/bilder/kommode/kommode-espressobar-lorch-un-soehne.webp" width="480" height="640" alt="Das Café in der Kommode: Theke mit Tulpen und Obstschale, dahinter der Barista vor der Kreidetafel" loading="lazy"></figure>
+      <!-- Untere Reihe: zwei Quadrate (.kachel-quadrat) und rechts das
+           Querformat der HU (.kachel-quer), siehe style.css
+           „Bildkacheln Kommode“ -->
+      <figure class="kachel kachel-quadrat"><img src="assets/bilder/kommode/bagel-juice-coffee-kommode-lorch-und-soehne.webp" width="900" height="900" alt="Cappuccino, frischer Saft und ein belegter Bagel auf der Holztheke am Fenster" loading="lazy"></figure>
+      <figure class="kachel kachel-quadrat"><img src="assets/bilder/kommode/vitrine-bagels-croissants-lorch-und-soehne.webp" width="900" height="928" alt="Die Vitrine mit Kuchen, Croissants und belegten Bagels" loading="lazy"></figure>
+      <figure class="kachel kachel-quer"><img src="assets/bilder/kommode/humbodt-uni-kommode-lorch-und-soehne.webp" width="1431" height="900" alt="Die Alte Bibliothek der Humboldt-Universität am Bebelplatz, Sitz der Juristischen Fakultät und der Kommode" loading="lazy"></figure>
+    </section>
+
+    <!-- ===== UNSER ANGEBOT =====
+         In der Kommode gibt es keine eigene Karte. Deshalb wie auf der
+         Startseite („Noch was dazu?“): Illustration, Überschrift,
+         kurzer Text – hier vier Spalten. Der Pott Kaffee steht als
+         kleines Extra der Kommode vorne. Texte zu Bagels, Kuchen und
+         Suppen sind dieselben wie auf der Startseite. -->
+    <section class="speisen-section kommode-angebot inhaltsbreite" id="karte" aria-labelledby="karte-titel">
+      <p class="dachzeile">Lorch & Söhne · Kommode</p>
+      <h2 id="karte-titel">Kaffee, Bagels &amp; mehr</h2>
+      <p class="kommode-karten-text">Espresso, Americano, Cappuccino, Flat White, Latte Macchiato und andere Kaffeespezialitäten. Auch hier verwenden wir den Passenger Blend aus der Berliner Rösterei PASSENGER.</p>
+      <div class="speisen-raster">
+        <article class="speise">
+          <img src="assets/bilder/kommode/lorch-und-soehne-kommode-pott-kaffee-illustration.webp" width="600" height="600" alt="Gezeichneter Pott Kaffee" loading="lazy">
+          <h3>Ein Pott Kaffee. <span class="ohne-umbruch"><!--i:kommode.pott_kaffee_preis-->1,50<!--/i--> €.</span></h3>
+          <p>Guter, alter Filterkaffee für zwischendurch – für Studierende der HU.</p>
+        </article>
+        <article class="speise">
+          <img src="assets/bilder/lorch-und-soehne-bagel-illustration.webp" width="600" height="600" alt="Gezeichneter belegter Bagel" loading="lazy">
+          <h3>Bagels</h3>
+          <p>Ob Lachs, Serrano, Italiano oder vegetarisch mit Hummus – unsere Bagels kommen von Salomon Bagels aus Berlin.</p>
+        </article>
+        <article class="speise">
+          <img src="assets/bilder/lorch-und-soehne-kuchen-illustration.webp" width="600" height="600" alt="Gezeichnetes Stück Kuchen" loading="lazy">
+          <h3>Kuchen</h3>
+          <p>Banana Bread, Carrot Cake oder Käsekuchen? In unserer Vitrine findest du selbst gebackenen Kuchen und immer wieder etwas Neues.</p>
+        </article>
+        <article class="speise">
+          <img src="assets/bilder/lorch-und-soehne-suppe-illustration.webp" width="600" height="600" alt="Gezeichnete Schale Suppe" loading="lazy">
+          <h3>Suppen</h3>
+          <p>Lust auf etwas Warmes? Dann gibt’s frisch gekochte Suppen – mal Daal, mal Kartoffel- oder Hühnersuppe.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== EIN CAFÉ IN DER KOMMODE (Foto-Bereich) =====
+         Text auf dem Foto vom Foyer der Alten Bibliothek,
+         Aufbau wie „Komm vorbei.“ auf der Danziger Seite. -->
+    <section class="foto-section kommode-foyer-section" aria-labelledby="kommode-titel">
+      <img class="section-foto" src="assets/bilder/kommode/lorch-und-soehne-kommode-foyer-alte-bibliothek.webp" width="1600" height="1200" alt="Das Foyer der Alten Bibliothek mit Stehtischen und Bogenfenstern, rechts die Glasfront des Cafés" loading="lazy">
+      <div class="foto-abdunklung"></div>
+      <div class="inhaltsbreite foto-inhalt">
+        <div class="foto-text">
+          <p class="dachzeile">Alte Bibliothek · Bebelplatz</p>
+          <h2 id="kommode-titel">Unser Café in der Kommode.</h2>
+          <p>Die Alte Bibliothek am Bebelplatz wird wegen ihrer besonderen Form auch „Kommode“ genannt. Das Gebäude aus dem 18. Jahrhundert beherbergt heute die Juristische Fakultät der Humboldt-Universität und die juristische Zweigbibliothek.</p>
+          <p>Mitten im Universitätsalltag findet ihr hier seit 2024 Lorch & Söhne – für guten Kaffee, lecker belegte Bagels und eine kleine Pause zwischendurch.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SCHLOSS FÜR DIE BIB =====
+         Wieder editorial in zwei Spalten: links Überschrift mit dem
+         gezeichnetes Garderobenschloss (wackelt beim Reinscrollen), rechts Text und die
+         Leihbedingungen als kleine Liste mit Punktlinie. -->
+    <section class="danziger-einleitung kommode-schloss inhaltsbreite" aria-labelledby="schloss-titel">
+      <div class="einleitung-kopf">
+        <h2 id="schloss-titel">Noch ein Schloss für die Bib?</h2>
+        <img class="schloss-figur" src="assets/bilder/kommode/lorch-und-soehne-kommode-garderobenschloss-illustration.webp" width="600" height="600" alt="Gezeichnetes Garderobenschloss aus der Alten Bibliothek" loading="lazy">
+      </div>
+      <div class="einleitung-spalte">
+        <p class="einleitung-vorspann">Wer in der juristischen Bibliothek lernen möchte, muss Jacken und größere Taschen im Garderobenschrank lassen.</p>
+        <p>Falls ihr kein eigenes Vorhängeschloss dabei habt, könnt ihr euch einfach eines bei uns im Café ausleihen.</p>
+        <h3>So funktioniert's:</h3>
+        <p>Schloss bei uns abholen, Sachen einschließen und nach dem Bibliotheksbesuch am selben Tag bis <!--i:kommode.schloss.rueckgabe_bis-->18 Uhr<!--/i--> wieder zurückbringen.</p>
+        <ul class="karten-liste schloss-preise">
+          <li><span class="gericht">Leihgebühr</span><span class="preis"><!--i:kommode.schloss.leihgebuehr-->1,00 € pro Tag<!--/i--></span></li>
+          <li><span class="gericht">Pfand</span><span class="preis"><!--i:kommode.schloss.pfand-->10,00<!--/i--> €</span><span class="zutaten">bekommt ihr bei Rückgabe zurück.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===== AUF EINEN KAFFEE (Foto-Bereich, wie „Komm vorbei.“) =====
+         Adresse, Öffnungszeiten und Anreise auf dem Foto vom Eingang.
+         Unten rechts liegt die Tasse Cappuccino (Foto von oben) halb auf
+         dem Foto, halb im Fußbereich und dreht sich beim Scrollen an
+         ihren Platz – wie frisch serviert (script.js). -->
+    <section class="foto-section besuch-foto-section" id="besuch" aria-labelledby="besuch-titel">
+      <img class="section-foto" src="assets/bilder/kommode/kommode-eingang-lorch-und-soehne.webp" width="1378" height="900" alt="Der verglaste Eingang des Cafés im Foyer, davor Stehtische und Barhocker" loading="lazy">
+      <div class="foto-abdunklung"></div>
+      <img class="figur-tasse-oben" src="assets/bilder/kommode/lorch-und-soehne-kaffeerasse-mit-milchschaum.webp" width="1000" height="1000" alt="Gezeichnete Kaffeetasse mit Milchschaum, von oben gesehen" loading="lazy">
+      <div class="inhaltsbreite foto-inhalt">
+        <div class="foto-text">
+          <p class="dachzeile">Lorch & Söhne · Kommode</p>
+          <h2 id="besuch-titel">Auf einen Kaffee in die Kommode?</h2>
+          <address><!--i:kommode.adresse.gebaeude-->Alte Bibliothek der Humboldt-Universität<!--/i--><br><!--i:kommode.adresse.strasse-->Bebelplatz 2<!--/i--> · <!--i:kommode.adresse.plz_ort-->10117 Berlin<!--/i-->-<!--i:kommode.adresse.stadtteil-->Mitte<!--/i--></address>
+          <h3>Öffnungszeiten</h3>
+          <dl class="oeffnungszeiten">
+            <!-- INHALT kommode.oeffnungszeiten lang ANFANG -->
+            <div>
+              <dt>Montag–Freitag</dt>
+              <dd>08:00–18:00 Uhr</dd>
+            </div>
+            <div>
+              <dt>Samstag–Sonntag</dt>
+              <dd>geschlossen</dd>
+            </div>
+            <!-- INHALT ENDE -->
+          </dl>
+          <h3>Anreise</h3>
+          <p>Mit der U5 oder U6 bis Unter den Linden. Von dort ist die Kommode am Bebelplatz gut zu Fuß erreichbar.</p>
+          <a class="textlink" data-route="kommode" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lorch+%26+S%C3%B6hne+Kommode%2C+Bebelplatz+2%2C+10117+Berlin" target="_blank" rel="noopener noreferrer">Route planen <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FUSSBEREICH (wie auf der Startseite) ===== -->
+  <footer class="fussbereich">
+    <div class="inhaltsbreite fussbereich-oben">
+      <a href="index.html" aria-label="Lorch & Söhne – zur Startseite"><img class="logo-hell fussbereich-logo" src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" loading="lazy"></a>
+      <div>
+        <p class="handschrift">Komm vorbei!</p>
+        <!-- Keine E-Mail-Adresse im Footer (steht nur auf der Kontaktseite) -->
+        <a class="email-link" href="kontakt.html">Kontakt</a>
+        <!-- Instagram-Profil, öffnet in neuem Tab -->
+        <a class="instagram-link" href="https://www.instagram.com/lorch_und_soehne/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="inhaltsbreite fussbereich-unten">
+      <!-- Dank an die Partner (Kaffeebohnen und Bagels), Links öffnen in neuem Tab -->
+      <p class="fussbereich-partner">Ohne unsere Partner <a href="https://www.passenger-coffee.de/" target="_blank" rel="noopener">PASSENGER Coffee</a> und <a href="https://www.salomon-bagels.de/" target="_blank" rel="noopener">Salomon Bagels</a> wären wir nur halb so wach und halb so satt. Danke, dass wir mit euch unseren Gästen jeden Tag so viel Gutes tun können!</p>
+      <!-- Pflichtseiten -->
+      <nav class="fussbereich-rechtliches" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a class="fussbereich-credit" href="https://cococrema.de/" target="_blank" rel="noopener">Website: Cococrema</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

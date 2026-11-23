@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Lorch &amp; Söhne: Cafés und Espressobars in Berlin – Danziger Straße (Prenzlauer Berg) und am Bebelplatz (Mitte). Espresso, Bagels, Kuchen &amp; Kaffeefahrrad.">
+  <meta name="theme-color" content="#35271e">
+  <title>Lorch &amp; Söhne – Cafés in Berlin Prenzlauer Berg und Mitte</title>
+  <!-- Hauptadresse dieser Seite: so weiß Google, dass Testkopien nicht das Original sind -->
+  <link rel="canonical" href="https://lorchundsoehne.de/">
+  <!-- Startbild vorladen: Handy bekommt die kleine Hochformat-Version (-mobil), Desktop die große -->
+  <link rel="preload" href="assets/bilder/lorch-und-soehne-cafe-terrasse-mobil.webp" as="image" fetchpriority="high" media="(max-width: 800px)">
+  <link rel="preload" href="assets/bilder/lorch-und-soehne-cafe-terrasse.webp" as="image" fetchpriority="high" media="(min-width: 801px)">
+  <link rel="preload" href="assets/fonts/ebgaramond-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Favicon: braune Tasse (assets/logos, 64 px); fürs iPhone weiterhin die Logo-Tasse -->
+  <link rel="icon" type="image/webp" href="assets/bilder/lorch-und-soehne-favicon-whole-cup.webp">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css?v=76">
+  <script src="script.js?v=70" defer></script>
+  <!-- Strukturierte Daten (schema.org, JSON-LD): verraten Google und KI-Agenten,
+       wer Lorch & Söhne ist – Firma plus beide Cafés mit Adresse und Öffnungszeiten.
+       Unsichtbar auf der Seite. Bei geänderten Zeiten bitte hier mit anpassen!
+       Prüfen: https://search.google.com/test/rich-results
+       Die E-Mail steht absichtlich NICHT hier (Schutz vor Adress-Sammlern; sie ist optional). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://lorchundsoehne.de/#organisation",
+        "name": "Lorch & Söhne",
+        "url": "https://lorchundsoehne.de/",
+        "logo": "https://lorchundsoehne.de/assets/bilder/lorch-und-soehne-logo.webp",
+        "sameAs": ["https://www.instagram.com/lorch_und_soehne/"],
+        "description": "Cafés und Espressobars in Berlin (Prenzlauer Berg und Mitte), Kaffeefahrrad mit Barista zum Mieten und Catering."
+      },
+      {
+        "@type": "CafeOrCoffeeShop",
+        "name": "Lorch & Söhne – Danziger Straße",
+        "url": "https://lorchundsoehne.de/cafe-danziger-strasse.html",
+        "image": "https://lorchundsoehne.de/assets/bilder/lorch-und-soehne-danziger-strasse-theke-kreidetafel.webp",
+        "parentOrganization": { "@id": "https://lorchundsoehne.de/#organisation" },
+        "servesCuisine": ["Kaffee", "Bagels", "Kuchen", "Suppen"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Danziger Straße 25",
+          "postalCode": "10435",
+          "addressLocality": "Berlin",
+          "addressCountry": "DE"
+        },
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" },
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "09:00", "closes": "17:00" }
+        ]
+      },
+      {
+        "@type": "CafeOrCoffeeShop",
+        "name": "Lorch & Söhne – Kommode",
+        "url": "https://lorchundsoehne.de/cafe-kommode.html",
+        "image": "https://lorchundsoehne.de/assets/bilder/kommode/lorch-und-soehne-kommode-hinter-der-theke.webp",
+        "parentOrganization": { "@id": "https://lorchundsoehne.de/#organisation" },
+        "servesCuisine": ["Kaffee", "Kuchen"],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Bebelplatz 2, Alte Bibliothek der Humboldt-Universität",
+          "postalCode": "10117",
+          "addressLocality": "Berlin",
+          "addressCountry": "DE"
+        },
+        "openingHoursSpecification": [
+          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <!--
+    LORCH & SÖHNE – STARTSEITE
+    Die Seite besteht aus diesen Bereichen (von oben nach unten):
+    Startbild → Kaffeekarte → Speisen → Unser Kaffee → Espressobars →
+    Kaffeefahrrad → Geschichte → Besuch → Fußbereich.
+    Das Aussehen steht in style.css, dort in derselben Reihenfolge.
+    Bilder liegen in assets/bilder/, Schriften in assets/fonts/.
+  -->
+
+  <!-- Unsichtbarer Link für Tastatur- und Screenreader-Nutzer:
+       springt direkt zum Inhalt -->
+  <a class="sprunglink" href="#inhalt">Zum Inhalt</a>
+
+  <!-- ===== STARTBILD & NAVIGATION =====
+       Terrassenfoto, Logo und Menü. Die Menüpunkte springen zu den
+       Bereichen mit der passenden id (z. B. href="#karte" → id="karte").
+       Die beiden Standorte oben links führen später auf die Unterseiten
+       der Danziger Straße und der Kommode – dann nur das href ändern. -->
+  <header class="startbild" id="anfang">
+    <!-- Bis 800 px Breite lädt der Browser den hochformatigen Ausschnitt (-mobil, viel kleiner) -->
+    <picture>
+      <source media="(max-width: 800px)" srcset="assets/bilder/lorch-und-soehne-cafe-terrasse-mobil.webp">
+      <img class="startbild-foto" src="assets/bilder/lorch-und-soehne-cafe-terrasse.webp" width="1920" height="1280" alt="Die sonnige Terrasse von Lorch & Söhne unter der rosé gestreiften Markise" fetchpriority="high">
+    </picture>
+    <div class="startbild-abdunklung"></div>
+    <div class="kopfleiste">
+      <div class="standorte-links">
+        <!-- Home: die Kaffeetasse mit den drei Lorchs, führt zur Startseite -->
+        <a class="home-tasse" href="index.html" aria-label="Lorch & Söhne – Startseite"><img class="logo-hell" src="assets/bilder/lorch-und-soehne-logo-tasse.webp" width="360" height="420" alt=""></a>
+      </div>
+      <button class="navigation-button" type="button" popovertarget="navigation">
+        <span class="sr-only">Menü</span><span class="navigation-icon" aria-hidden="true"></span>
+      </button>
+      <nav id="navigation" popover aria-label="Hauptnavigation">
+        <a class="nav-home" href="#anfang">Home</a>
+        <!-- Ausklappmenü: am Desktop klappt die Liste beim Drüberfahren
+             (oder per Tastatur) unter „Cafés“ auf.
+             Ein drittes Café einfach als weiteren <a> ergänzen. -->
+        <div class="ausklappmenue">
+          <a href="#espressobars">Cafés <span class="ausklapp-pfeil" aria-hidden="true">▾</span></a>
+          <div class="ausklappmenue-liste">
+            <a href="cafe-danziger-strasse.html">Danziger Straße</a>
+            <a href="cafe-kommode.html">Kommode</a>
+            <!-- zusätzlich zum eigenen Menüpunkt: das Rad als „drittes Café“ -->
+            <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+          </div>
+        </div>
+        <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+        <a href="catering.html">Catering</a>
+        <!-- „Anfahrt“ springt direkt zur ersten Adresse (Danziger Straße) -->
+        <a href="#danziger">Anfahrt</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+    <!-- H1 der Startseite: sichtbar ist nur das Logo (alt „Lorch & Söhne“),
+         der Zusatz ist nur für Google und Screenreader da (.sr-only) -->
+    <h1 class="startbild-logo">
+      <img src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" class="logo-hell">
+      <span class="sr-only"> – Cafés &amp; Espressobars in Berlin, Prenzlauer Berg und Mitte</span>
+    </h1>
+    <a class="startbild-weiter" href="#inhalt">
+      <span>Schön, dass du da bist.</span><span aria-hidden="true">↓</span>
+    </a>
+  </header>
+  <main id="inhalt">
+
+    <!-- ===== KAFFEEKARTE =====
+         Preise ändern: einfach die Zahlen in der Tabelle unten anpassen.
+         Ein neues Getränk = eine neue <tr>…</tr>-Zeile kopieren.
+         „—“ bedeutet: gibt es in dieser Größe nicht. -->
+
+    <section class="kaffeekarte-section inhaltsbreite" id="karte" aria-labelledby="kaffeekarte-titel">
+      <h2 id="kaffeekarte-titel">Unsere Kaffeespezialitäten</h2>
+      <div class="kaffeekarte">
+        <div class="espressomaschine-bild">
+          <img src="assets/bilder/lorch-und-soehne-espressomaschine-illustration.webp" width="800" height="800" alt="Gezeichnete Espressomaschine mit zwei Handhebeln und gestapelten Tassen" loading="lazy">
+          <p class="handschrift">Erst mal einen Kaffee.</p>
+        </div>
+        <div class="preisliste">
+          <!-- Stempel und Klebestreifen sind nur Deko -->
+          <div class="stempel" aria-hidden="true"><span>Seit</span>2015<span>Berlin</span></div>
+          <p class="preisliste-einleitung">In deine Tasse kommt bei uns der Passenger Blend aus Berlin.</p>
+          <table>
+            <caption class="sr-only">Unsere Kaffeespezialitäten, Preise in Euro</caption>
+            <thead>
+              <tr>
+                <th scope="col"><span class="sr-only">Kaffeespezialität</span></th>
+                <th scope="col">Einfach</th>
+                <th scope="col">Doppelt</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- INHALT danziger.karte.kaffee tabelle ANFANG -->
+              <tr>
+                <th scope="row">Americano</th>
+                <td>2,90 €</td>
+                <td>3,90 €</td>
+              </tr>
+              <tr>
+                <th scope="row">Espresso</th>
+                <td>2,40 €</td>
+                <td>3,40 €</td>
+              </tr>
+              <tr>
+                <th scope="row">Espresso Macchiato</th>
+                <td>3,10 €</td>
+                <td>4,10 €</td>
+              </tr>
+              <tr>
+                <th scope="row">Latte Macchiato</th>
+                <td>4,10 €</td>
+                <td>5,10 €</td>
+              </tr>
+              <tr>
+                <th scope="row">Milchkaffee</th>
+                <td>4,10 €</td>
+                <td>5,10 €</td>
+              </tr>
+              <tr>
+                <th scope="row">Cappuccino</th>
+                <td>3,70 €</td>
+                <td>5,10 €</td>
+              </tr>
+              <tr>
+                <th scope="row">Flat White</th>
+                <td>—</td>
+                <td>4,70 €</td>
+              </tr>
+              <tr>
+                <th scope="row">Cortado</th>
+                <td>3,30 €</td>
+                <td>—</td>
+              </tr>
+              <!-- INHALT ENDE -->
+            </tbody>
+          </table>
+          <p class="preisliste-hinweis">Außerdem auf der Karte, unter anderem: Matcha Latte, Chai Latte, Golden Milk, heiße Schokolade, Tee, Iced Latte und vieles mehr.</p>
+          <!-- Figur aus der Bar: der Buddha – der Einzige, der nie wackelt -->
+          <div class="figur figur-buddha" aria-hidden="true">
+            <img src="assets/bilder/lorch-und-soehne-buddha-illustration.webp" width="600" height="600" alt="Gezeichneter Buddha-Kopf, eine der Figuren aus der Bar von Lorch &amp; Söhne" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SPEISEN: BAGELS, KUCHEN, SUPPEN =====
+         Ein <article class="speise"> pro Gericht (Bild, Überschrift, Text). -->
+
+    <section class="speisen-section inhaltsbreite" aria-labelledby="speisen-titel">
+      <h2 id="speisen-titel">Noch was dazu?</h2>
+      <div class="speisen-raster">
+        <article class="speise">
+          <img src="assets/bilder/lorch-und-soehne-bagel-illustration.webp" width="600" height="600" alt="Gezeichneter belegter Bagel" loading="lazy">
+          <h3>Bagels</h3>
+          <p>Ob Lachs, Serrano, Italiano oder vegetarisch mit Avocado und Hummus – dein Bagel kommt von Salomon Bagels aus Berlin und wird frisch für dich getoastet und belegt.</p>
+        </article>
+        <article class="speise">
+          <img src="assets/bilder/lorch-und-soehne-kuchen-illustration.webp" width="600" height="600" alt="Gezeichnetes Stück Kuchen" loading="lazy">
+          <h3>Kuchen</h3>
+          <p>Banana Bread, Carrot Cake oder Käsekuchen? In unserer Vitrine findest du selbst gebackenen Kuchen und immer wieder etwas Neues – zum Beispiel Pflaumen-Crumble.</p>
+        </article>
+        <article class="speise">
+          <img src="assets/bilder/lorch-und-soehne-suppe-illustration.webp" width="600" height="600" alt="Gezeichnete Schale Suppe" loading="lazy">
+          <h3>Suppen</h3>
+          <p>Lust auf etwas Warmes? Dann gibt’s frisch gekochte Suppen – mal Daal, mal Kartoffel- oder Hühnersuppe.</p>
+        </article>
+      </div>
+      <div class="speisen-ausserdem">
+        <p><em>Und außerdem?</em> Zum Frühstück gibt’s zum Beispiel unsere Frühstücksklassiker Kleiner oder Großer Lorch, Eier im Glas und vieles mehr. Für zwischendurch Croissants, Cookies oder Franzbrötchen – dazu frisch gepresste Säfte und vegane Bio-Paletas aus Berlin.</p>
+        <!-- Führt direkt zur Karte auf der Danziger-Unterseite -->
+        <a class="textlink" href="cafe-danziger-strasse.html#karte">Einen Überblick über das Angebot in der Danziger Straße gibt es hier <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- ===== LAUFBAND =====
+         Schreibmaschinen-Band, das langsam durchläuft (nur Deko).
+         Der Text steht zweimal drin, damit das Band ohne Lücke läuft –
+         bei Änderungen bitte beide Hälften gleich anpassen. -->
+
+    <!-- Figur aus der Bar: der Ritter mit Kaffeefahne reitet beim Scrollen
+         über das Laufband (Bewegung steuert script.js) -->
+    <div class="ritter-bahn" aria-hidden="true">
+      <img class="figur-ritter" src="assets/bilder/lorch-und-soehne-ritter-illustration.webp" width="600" height="600" alt="Gezeichneter Ritter mit Kaffeefahne auf seinem Pferd" loading="lazy">
+    </div>
+    <div class="laufband" aria-hidden="true">
+      <div class="laufband-text">
+        <span>Espresso · Cappuccino · Flat White · Cortado · Bagels · Banana Bread · Carrot Cake · Suppe · Danziger Straße · Kommode · </span><span>Espresso · Cappuccino · Flat White · Cortado · Bagels · Banana Bread · Carrot Cake · Suppe · Danziger Straße · Kommode · </span>
+      </div>
+    </div>
+
+    <!-- ===== UNSER KAFFEE (Foto-Bereich) ===== -->
+
+    <section class="foto-section kaffee-section" id="kaffee" aria-labelledby="kaffee-titel">
+      <img class="section-foto" src="assets/bilder/lorch-und-soehne-espresso-maschine.webp" width="1920" height="1280" alt="Frischer Espresso läuft aus der glänzenden WEGA-Maschine in eine Tasse" loading="lazy">
+      <div class="foto-abdunklung"></div>
+      <div class="inhaltsbreite foto-inhalt">
+        <div class="foto-text">
+          <p class="dachzeile">Unser Kaffee</p>
+          <h2 id="kaffee-titel">Spezialitätenkaffee aus Berliner Röstkunst</h2>
+          <p>In deiner Tasse steckt der Passenger Blend der Berliner Rösterei PASSENGER: 100 % Arabica aus Brasilien, Indien, Indonesien, Guatemala und Äthiopien. Frisch geröstet, kräftig und aromatisch.</p>
+          <p>Dazu kommen Noten von dunkler Schokolade und Mandel, eine angenehme Süße und wenig Säure.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CAFÉS (Klassen heißen weiter „espressobar…“) =====
+         Zwei quadratische Kacheln mit Foto, Logo, Standort und Link.
+         Die Links führen später auf die Unterseiten – dann nur das href ändern. -->
+
+    <section class="espressobars-section inhaltsbreite" id="espressobars" aria-labelledby="espressobars-titel">
+      <!-- Figur aus der Bar: der Genießer im Stuhl -->
+      <div class="figur figur-geniesser" aria-hidden="true">
+        <img src="assets/bilder/lorch-und-soehne-geniesser-illustration.webp" width="600" height="600" alt="Gezeichneter Genießer mit einer Tasse Kaffee" loading="lazy">
+      </div>
+      <h2 id="espressobars-titel">Unsere Cafés</h2>
+      <!-- Bilder in den Kacheln mit leerem alt: Der Link heißt sonst
+           „Foto … Logo … Danziger Straße … Mehr über …“ – Überschrift
+           und Linktext reichen als Beschreibung. -->
+      <div class="espressobars-raster">
+        <a class="espressobar-kachel" href="cafe-danziger-strasse.html">
+          <img class="espressobar-foto" src="assets/bilder/lorch-und-soehne-cafe-danziger-strasse-innen.webp" width="1600" height="1066" alt="" loading="lazy">
+          <img class="logo-hell espressobar-logo" src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="" loading="lazy">
+          <h3 class="espressobar-standort">Danziger Straße</h3>
+          <span class="espressobar-link">Mehr über unser Café in der Danziger Straße <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="espressobar-kachel" href="cafe-kommode.html">
+          <img class="espressobar-foto" src="assets/bilder/lorch-und-soehne-cafe-kommode-bebelplatz.webp" width="1400" height="788" alt="" loading="lazy">
+          <img class="logo-hell espressobar-logo" src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="" loading="lazy">
+          <h3 class="espressobar-standort">Kommode</h3>
+          <span class="espressobar-link">Mehr über unser Café am Bebelplatz <span aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- ===== KAFFEEFAHRRAD ===== -->
+
+    <!-- Inhalt mittig in .inhaltsbreite -->
+    <section class="kaffeefahrrad-section" id="kaffeefahrrad" aria-labelledby="kaffeefahrrad-titel">
+      <div class="kaffeefahrrad-inhalt inhaltsbreite">
+        <img class="kaffeefahrrad-bild" src="assets/bilder/lorch-und-soehne-kaffeefahrrad-illustration.webp" width="800" height="800" alt="Gezeichnetes Kaffeefahrrad mit Sonnendach und Espressomaschine" loading="lazy">
+        <div class="kaffeefahrrad-text">
+          <p class="dachzeile">Schon gewusst?</p>
+          <h2 id="kaffeefahrrad-titel">Lorch & Söhne gibt’s auch auf dem Fahrrad.</h2>
+          <p>Mit frisch gemahlenen Bohnen von Passenger Coffee und einer professionellen Espressomaschine bereiten unsere Baristas die Kaffeespezialitäten direkt vor Ort zu.</p>
+          <p>Für Events und Messen in Berlin kannst du unser Kaffeefahrrad buchen.</p>
+          <a class="textlink" href="kaffeefahrrad-mieten.html#anfrage">Kaffeefahrrad anfragen <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GESCHICHTE „Wie alles anfing“ (Foto-Bereich) ===== -->
+
+    <section class="foto-section geschichte-section" id="geschichte" aria-labelledby="geschichte-titel">
+      <img class="section-foto" src="assets/bilder/lorch-und-soehne-cafe-fenster.webp" width="1600" height="1067" alt="Vom Café aus auf die sonnige Danziger Straße schauen" loading="lazy">
+      <div class="foto-abdunklung"></div>
+      <!-- Figur aus der Bar: das fliegende Schwein schwebt beim Scrollen
+           vom rechten Rand ins Bild (Bewegung steuert script.js) -->
+      <img class="figur-schwein" src="assets/bilder/lorch-und-soehne-schwein-illustration.webp" width="600" height="600" alt="Gezeichnetes fliegendes Schwein mit Flügeln" loading="lazy">
+      <div class="inhaltsbreite foto-inhalt">
+        <div class="foto-text">
+          <p class="dachzeile">Seit 2015</p>
+          <h2 id="geschichte-titel">Wie alles anfing.</h2>
+          <p>Nachdem Christoph 2014 sein Studium dann doch endlich beendet hatte – er nennt sich bis heute gern Langzeitstudent –, war klar: Ein Bürojob sollte es nicht werden. Also lieber etwas Eigenes machen.</p>
+          <p>Der passende Laden fand sich über Ebay Kleinanzeigen – auf der Danziger Straße, schräg gegenüber der Grundschule, auf die damals die beiden Söhne gingen. 2015 eröffnete dort das erste Lorch & Söhne. Den Namen hat Björn erfunden, ein Freund. Er erwähnt das bis heute gern ; )</p>
+          <p>Seit Januar 2024 gibt es Lorch & Söhne auch in der Kommode am Bebelplatz, mitten in der Humboldt-Universität. Zwei ganz unterschiedliche Orte, an denen es vor allem um eines geht: guten Kaffee.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BESUCH: ADRESSEN & ÖFFNUNGSZEITEN =====
+         Öffnungszeiten ändern: im jeweiligen <dl class="oeffnungszeiten">. -->
+
+    <section class="besuch-section inhaltsbreite" id="besuch" aria-labelledby="besuch-titel">
+      <div class="besuch-ueberschrift">
+        <img class="kaffeebohnen-zeichnung" src="assets/bilder/lorch-und-soehne-passenger-blend-tuete-illustration.webp" width="734" height="734" alt="Eine gezeichnete Tüte Passenger Blend" loading="lazy">
+        <h2 id="besuch-titel">Lust auf einen Kaffee?</h2>
+        <p>Wir freuen uns auf dich.</p>
+      </div>
+      <div class="adressen-raster">
+        <article class="adresse" id="danziger">
+          <h3 class="dachzeile">Danziger Straße · Prenzlauer Berg</h3>
+          <address><!--i:danziger.adresse.strasse-->Danziger Straße 25<!--/i--><br><!--i:danziger.adresse.plz_ort-->10435 Berlin<!--/i--></address>
+          <h4>Öffnungszeiten</h4>
+          <dl class="oeffnungszeiten">
+            <!-- INHALT danziger.oeffnungszeiten kurz ANFANG -->
+            <div>
+              <dt>Mo–Fr</dt>
+              <dd>08:00–17:00 Uhr</dd>
+            </div>
+            <div>
+              <dt>Sa–So</dt>
+              <dd>09:00–17:00 Uhr</dd>
+            </div>
+            <!-- INHALT ENDE -->
+          </dl>
+          <h4>Anreise</h4>
+          <p class="anfahrt">Tram M10, Haltestelle Husemannstraße. Alternativ U2 bis Eberswalder Straße, von dort ein kurzer Spaziergang.</p>
+          <a class="textlink" data-route="danziger" href="https://www.google.com/maps/dir/?api=1&amp;destination=Danziger+Stra%C3%9Fe+25%2C+10435+Berlin" target="_blank" rel="noopener noreferrer">Route planen <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="adresse" id="kommode">
+          <h3 class="dachzeile">Kommode · Bebelplatz</h3>
+          <address><!--i:kommode.adresse.gebaeude-->Alte Bibliothek der Humboldt-Universität<!--/i--><br><!--i:kommode.adresse.strasse-->Bebelplatz 2<!--/i-->, <!--i:kommode.adresse.plz_ort-->10117 Berlin<!--/i--></address>
+          <h4>Öffnungszeiten</h4>
+          <dl class="oeffnungszeiten">
+            <!-- INHALT kommode.oeffnungszeiten kurz ANFANG -->
+            <div>
+              <dt>Mo–Fr</dt>
+              <dd>08:00–18:00 Uhr</dd>
+            </div>
+            <div>
+              <dt>Sa–So</dt>
+              <dd>geschlossen</dd>
+            </div>
+            <!-- INHALT ENDE -->
+          </dl>
+          <h4>Anreise</h4>
+          <p class="anfahrt">U5 oder U6 bis Unter den Linden. Von dort zu Fuß zum Bebelplatz und zur Alten Bibliothek.</p>
+          <a class="textlink" data-route="kommode" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lorch+%26+S%C3%B6hne+Kommode%2C+Bebelplatz+2%2C+10117+Berlin" target="_blank" rel="noopener noreferrer">Route planen <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+      <!-- Figur aus der Bar: der Kiwi – such ihn vor Ort! -->
+      <!-- Bild ist Deko (alt leer), die Randnotiz darunter lesen Screenreader vor -->
+      <div class="figur figur-kiwi">
+        <img src="assets/bilder/lorch-und-soehne-kiwi-illustration.webp" width="600" height="600" alt="" loading="lazy">
+        <p class="randnotiz">Findest du mich im Café?</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FUSSBEREICH ===== -->
+  <footer class="fussbereich">
+    <div class="inhaltsbreite fussbereich-oben">
+      <a href="#anfang" aria-label="Lorch & Söhne – zurück zum Anfang"><img class="logo-hell fussbereich-logo" src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" loading="lazy"></a>
+      <div>
+        <p class="handschrift">Bis zum nächsten Kaffee.</p>
+        <!-- Keine E-Mail-Adresse im Footer (steht nur auf der Kontaktseite) -->
+        <a class="email-link" href="kontakt.html">Kontakt</a>
+        <!-- Instagram-Profil, öffnet in neuem Tab -->
+        <a class="instagram-link" href="https://www.instagram.com/lorch_und_soehne/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="inhaltsbreite fussbereich-unten">
+      <!-- Dank an die Partner (Kaffeebohnen und Bagels), Links öffnen in neuem Tab -->
+      <p class="fussbereich-partner">Ohne unsere Partner <a href="https://www.passenger-coffee.de/" target="_blank" rel="noopener">PASSENGER Coffee</a> und <a href="https://www.salomon-bagels.de/" target="_blank" rel="noopener">Salomon Bagels</a> wären wir nur halb so wach und halb so satt. Danke, dass wir mit euch unseren Gästen jeden Tag so viel Gutes tun können!</p>
+      <!-- Pflichtseiten -->
+      <nav class="fussbereich-rechtliches" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a class="fussbereich-credit" href="https://cococrema.de/" target="_blank" rel="noopener">Website: Cococrema</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

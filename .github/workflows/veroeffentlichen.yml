@@ -1,0 +1,96 @@
+# =====================================================================
+#  LORCH & SÖHNE – AUTOMATISCH VERÖFFENTLICHEN (GitHub Pages)
+# =====================================================================
+#  Läuft bei jedem Speichern (Commit) auf dem Branch „main“, egal ob
+#  Christoph die inhalte.yml (auf github.com oder über Pages CMS)
+#  ändert oder Magda Code pusht:
+#
+#   1. inhalte.yml prüfen und in die HTML-Seiten schreiben
+#      (aktualisieren.py). Bei einem Fehler stoppt alles hier –
+#      die Website bleibt unverändert online.
+#   2. Die aktualisierten HTML-Seiten zurück ins Repo speichern,
+#      damit Repo und Website immer gleich sind.
+#   3. Nur die Dateien, die auf die Website gehören, in einen Ordner
+#      „_site“ kopieren und über GitHub Pages veröffentlichen.
+#
+#  Einmalig einschalten: Settings → Pages → Source: „GitHub Actions“.
+#  Keine Zugangsdaten nötig – GitHub erledigt das selbst.
+# =====================================================================
+
+name: Website veröffentlichen
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:        # zusätzlich per Knopf unter „Actions“ startbar
+
+# Nie zwei Veröffentlichungen gleichzeitig
+concurrency:
+  group: veroeffentlichen
+  cancel-in-progress: false
+
+permissions:
+  contents: write           # Schritt 2 (zurückspeichern)
+  pages: write              # Schritt 3 (veröffentlichen)
+  id-token: write           # Schritt 3 (Nachweis gegenüber GitHub Pages)
+
+jobs:
+  veroeffentlichen:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Dateien holen
+        uses: actions/checkout@v4
+
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: PyYAML installieren
+        run: pip install pyyaml
+
+      - name: Inhalte prüfen und in die Seiten schreiben
+        run: python aktualisieren.py
+
+      - name: Aktualisierte Seiten zurück ins Repo speichern
+        # Ein Push mit dem GitHub-eigenen Schlüssel startet diese Action
+        # nicht erneut – keine Endlosschleife.
+        run: |
+          if ! git diff --quiet; then
+            git config user.name "Website-Automatik"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -am "Inhalte aus inhalte.yml übernommen"
+            git push
+          fi
+
+      - name: Website-Dateien zusammenstellen
+        # Alles außer den Arbeitsdateien kommt in den Ordner _site.
+        # Neue Arbeitsdateien, die nicht online sollen, hier ergänzen.
+        run: |
+          rsync -a ./ _site/ \
+            --exclude '.git*' \
+            --exclude '.github' \
+            --exclude '.vscode' \
+            --exclude '.claude' \
+            --exclude '.pages.yml' \
+            --exclude '_site' \
+            --exclude 'inhalte.yml' \
+            --exclude 'aktualisieren.py' \
+            --exclude 'CLAUDE.md' \
+            --exclude 'README.md' \
+            --exclude '.DS_Store'
+
+      - name: Pages vorbereiten
+        uses: actions/configure-pages@v5
+
+      - name: Website-Dateien an GitHub Pages übergeben
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,7 @@
+# robots.txt für die Lorch-&-Söhne-Website
+# Erlaubt allen Suchmaschinen, die ganze Seite zu crawlen.
+User-agent: *
+Allow: /
+
+# Wo die Liste aller Seiten liegt
+Sitemap: https://lorchundsoehne.de/sitemap.xml

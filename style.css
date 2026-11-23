@@ -1,0 +1,3169 @@
+@font-face {
+  font-family: 'Cutive Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/cutivemono-schreibmaschine.woff2) format('woff2');
+}
+
+/* ============================================================
+   LORCH & SÖHNE – STYLESHEET
+   ------------------------------------------------------------
+   Diese Datei bestimmt das Aussehen der ganzen Website.
+   Sie ist von oben nach unten so aufgebaut:
+
+     1. Schriften
+     2. Farben & Grundwerte  ← hier lassen sich Farben zentral ändern
+     3. Basis & wiederverwendbare Elemente (Links, Überschriften …)
+     4. Die Bereiche der Startseite, in derselben Reihenfolge wie im HTML:
+        Startbild → Kaffeekarte → Speisen → Unser Kaffee →
+        Espressobars → Kaffeefahrrad → Geschichte → Besuch → Fußbereich
+     5. Anpassungen der Startseite für Tablet und Handy
+     6. Reduzierte Bewegung (Barrierefreiheit) – gilt für alle Seiten
+     7. Verspielte Details: Zettel, Stempel, Laufband, Einblenden, Wackeln
+     8. Figuren aus der Bar (Buddha, Ritter, Genießer, Kiwi, Schwein)
+     9. Unterseiten, jeweils mit eigenen Tablet/Handy-Regeln:
+        Danziger Straße → Kommode → Kaffeefahrrad → Kontakt →
+        Catering → Rechtstexte (Impressum, Datenschutz)
+
+   Breakpoints (überall gleich):
+     bis 1100px = Tablet quer / kleine Laptops
+     bis  800px = Tablet hochkant und Handy – ab hier Handy-Menü
+     bis  600px = Handy
+   script.js nutzt dieselbe Grenze (801px = Desktop).
+
+   Tipp: Mit Strg/Cmd + F nach dem Klassennamen aus dem HTML
+   suchen, z. B. „kaffeefahrrad“, um alle Regeln dazu zu finden.
+
+   Grundidee der Gestaltung: einfach und luftig, wie eine gut
+   gesetzte Speisekarte – eine Serifenschrift, feine Linien,
+   handgezeichnete Illustrationen und ein handschriftlicher Gruß.
+   ============================================================ */
+
+/* ============================================================
+   1. SCHRIFTEN
+   ------------------------------------------------------------
+   Die Schriften liegen in assets/fonts/ (Format WOFF2, lateinische
+   Zeichen). Beide sind kostenlose Google Fonts.
+
+   EB Garamond          = alle Texte und Überschriften
+                          (eine Datei für normal und halbfett,
+                          eine für kursiv)
+   Covered By Your Grace = handschriftliche Notizen (.handschrift),
+                          wie mit Filzstift geschrieben
+   Cutive Mono          = feine, alte Schreibmaschine: Menü,
+                          Dachzeilen, Preise, Links, Überschriften
+   ============================================================ */
+
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url(assets/fonts/ebgaramond-normal.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/ebgaramond-kursiv.woff2) format('woff2');
+}
+
+/* Handschrift: „Covered By Your Grace“ – aufrecht und kantig wie ein
+   Filzstift. Ersetzt die schnörkelige „Mrs Saint Delafield“ (die Datei
+   liegt noch in assets/fonts/, falls man zurück möchte).
+   Lizenz: SIL Open Font License – darf frei selbst gehostet werden. */
+@font-face {
+  font-family: 'Covered By Your Grace';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/coveredbyyourgrace-handschrift.woff2) format('woff2');
+}
+
+/* ============================================================
+   2. FARBEN & GRUNDWERTE
+   ------------------------------------------------------------
+   Diese Werte werden überall auf der Seite verwendet, z. B. als
+   color: var(--ink). Wer hier eine Farbe ändert, ändert sie
+   auf der ganzen Website.
+   ============================================================ */
+
+:root {
+  /* Farben */
+  --paper: #fdfbf7;   /* Seitenhintergrund (leicht warmes Off-White) */
+  --ink: #38291f;     /* Haupttextfarbe (dunkles Kaffeebraun) */
+  --muted: #6f5f52;   /* gedämpfter Text, z. B. Beschreibungen */
+  --line: #b9aa9a;    /* feine Trennlinien */
+  --cream: #fff9ed;   /* heller Text auf Fotos und dunklem Grund */
+
+  /* Rosa wie die gestreifte Markise in der Danziger Straße.
+     --markise      = Originalton für Schmuck, Stempel, große Schrift
+                      (nur 4,0:1 Kontrast auf --paper – reicht nur für
+                      Text ab ca. 24px)
+     --markise-text = etwas dunkler für kleine Schrift und Flächen mit
+                      heller Schrift darauf (ca. 5:1, erfüllt WCAG AA) */
+  --markise: #c25b72;
+  --markise-text: #b04d64;
+
+  /* Schriftfamilien */
+  --serif: 'EB Garamond',Garamond,Georgia,serif;     /* alle Texte */
+  --hand: 'Covered By Your Grace',cursive;             /* Handschrift */
+  --schreibmaschine: 'Cutive Mono','Courier New',monospace; /* Schreibmaschine */
+
+  /* Abstand über und unter den hellen Bereichen */
+  --abstand: 130px;
+
+  color-scheme: light;
+  scroll-behavior: smooth;
+  /* Platz für die fest stehende Kopfleiste bei Sprunglinks (#karte …),
+     damit angesprungene Überschriften nicht darunter verschwinden */
+  scroll-padding-top: 100px;
+}
+
+/* ============================================================
+   3. BASIS & WIEDERVERWENDBARE ELEMENTE
+   ------------------------------------------------------------
+   Grundeinstellungen für Text, Links und Bilder sowie Bausteine,
+   die in mehreren Bereichen vorkommen:
+   .inhaltsbreite   = begrenzt die Breite des Inhalts und zentriert ihn
+   .dachzeile       = kleine Zeile in Großbuchstaben über einer Überschrift
+   .handschrift     = handgeschriebene Notiz
+   .textlink        = unterstrichener Link mit Pfeil →
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+/* Feine Papierstruktur über der ganzen Seite (ein Rauschen,
+   kaum sichtbar). Klicks gehen durch (pointer-events: none).
+   Das SVG-Rauschen wird nur einmal als kleine Kachel gezeichnet und
+   dann wiederholt – das ist günstig. „mix-blend-mode“ lässt den Browser
+   beim Scrollen etwas mehr rechnen; wenn die Seite auf alten Handys
+   ruckelt, ist das die erste Stellschraube. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  opacity: .07;
+  mix-blend-mode: multiply;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+/* Alle Überschriften: Garamond, normal (nicht fett) */
+h1, h2, h3, h4 {
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+/* Große Bereichsüberschriften, z. B. „Unsere Kaffeespezialitäten“ */
+h2 {
+  font-size: clamp(34px,4vw,56px);
+  letter-spacing: -.02em;
+}
+
+/* ---------- Schreibmaschinen-Look ----------
+   Überschriften, Menü, Dachzeilen, Preise und Links in einer
+   feinen Schreibmaschinenschrift.
+   Wer zurück zur Garamond will: diesen Block einfach löschen. */
+h2,
+.dachzeile,
+.kopfleiste nav a,
+.navigation-button,
+thead th,
+tbody td,
+.textlink {
+  font-family: var(--schreibmaschine);
+  font-weight: 400;
+}
+
+/* Kleinere Überschriften, z. B. „Bagels“ */
+h3 {
+  font-size: 30px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+p+p {
+  margin-top: 18px;
+}
+
+a, button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Fokusrahmen für Tastaturnutzer: in der Textfarbe, mit etwas Luft.
+   Wo der Rahmen außen auf gleichfarbigem Grund unsichtbar wäre
+   (z. B. helle Schrift auf Fotokacheln), liegt er innen – siehe
+   .espressobar-kachel. */
+a:focus-visible, button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 6px;
+}
+
+.inhaltsbreite {
+  width: min(1180px,calc(100% - 112px));
+  margin-inline: auto;
+}
+
+/* Die Dachzeile ist manchmal eine Überschrift (Standortname auf der
+   Startseite, h3) – sie sieht dann trotzdem genauso aus */
+.dachzeile {
+  font-size: 13px;
+  line-height: inherit;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.handschrift {
+  font-family: var(--hand);
+  font-size: 44px; /* Filzstift-Schrift wirkt größer als die alte Schreibschrift */
+  line-height: 1.2;
+}
+
+/* Macht das dunkle Logo hell (cremefarben) – für Fotos und Fußbereich */
+.logo-hell {
+  filter: brightness(0) invert(96%) sepia(10%) saturate(350%) hue-rotate(337deg);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sprunglink {
+  position: absolute;
+  top: -80px;
+  left: 20px;
+  z-index: 100;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 12px 20px;
+}
+
+.sprunglink:focus {
+  top: 16px;
+}
+
+.textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  border-bottom: 1px solid currentColor;
+  padding-block: 4px;
+  font-size: 19px;
+}
+
+.textlink span {
+  transition: transform .2s;
+}
+
+.textlink:hover span {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   4a. STARTBILD & NAVIGATION
+   ------------------------------------------------------------
+   Das große Terrassenfoto ganz oben mit Logo, den beiden
+   Standorten (oben links) und dem Menü (oben rechts).
+   Im HTML: <header class="startbild">
+   ============================================================ */
+
+.startbild {
+  height: min(900px,94svh);
+  min-height: 650px;
+  position: relative;
+  background: #493627;
+  color: var(--cream);
+  isolation: isolate;
+  z-index: 10; /* damit die mitlaufende Kopfleiste über allen Bereichen liegt */
+}
+
+.startbild-foto, .startbild-abdunklung {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.startbild-foto {
+  object-position: 50% 48%;
+}
+
+.startbild-abdunklung {
+  z-index: -1;
+  /* oberster Streifen: dunkelbrauner Verlauf nur hinter der Navigation, damit sie besser lesbar ist */
+  background: linear-gradient(180deg,rgba(40,24,13,.75),rgba(40,24,13,0) 160px),
+    linear-gradient(180deg,rgba(37,23,14,.6),rgba(39,24,12,.29) 40%,rgba(37,23,14,.5));
+}
+
+/* Kopfleiste läuft beim Scrollen mit (position: fixed).
+   Über dem Startbild ist sie durchsichtig mit heller Schrift.
+   Sobald man runterscrollt, setzt script.js die Klasse
+   „ist-gescrollt“: dann weißer Hintergrund, dunkle Schrift,
+   etwas schmaler – und die Kaffeetasse (Home) blendet ein. */
+.kopfleiste {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 32px 4.5%;
+  transition: background .3s, color .3s, padding .3s, box-shadow .3s;
+}
+
+.kopfleiste.ist-gescrollt {
+  background: var(--paper);
+  color: var(--ink);
+  padding-block: 14px;
+  box-shadow: 0 1px 0 #b9aa9a66;
+}
+
+/* Standorte oben links und Menüpunkte: gleiche Schrift */
+.standorte-links, .kopfleiste nav a {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.standorte-links {
+  display: flex;
+  align-items: center;
+}
+
+.standorte-links span {
+  padding: 0 10px;
+}
+
+/* Home-Link: Kaffeetasse mit den drei Lorchs ganz links */
+.standorte-links .home-tasse {
+  border: 0;
+  padding: 0;
+  margin-right: 28px;
+  transition: opacity .2s;
+}
+
+.home-tasse img {
+  width: 24px;
+}
+
+/* Die Tasse ist immer zu sehen, damit man „Home“ jederzeit findet:
+   über dem Startbild hell (.logo-hell), nach dem Runterscrollen
+   im Original-Dunkelbraun. */
+.home-tasse:hover {
+  opacity: .7;
+}
+
+.ist-gescrollt .home-tasse img {
+  filter: none;
+}
+
+.standorte-links a, .kopfleiste nav a {
+  border-bottom: 1px solid transparent;
+  padding-block: 4px;
+}
+
+.standorte-links a:hover, .kopfleiste nav a:hover {
+  border-color: currentColor;
+}
+
+/* Die Navigation ist ein Popover (Handy-Menü ohne JS).
+   Hier werden die Browser-Standardstyles für Popover zurückgesetzt. */
+.kopfleiste nav {
+  display: flex;
+  gap: 32px;
+  position: static;
+  inset: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  overflow: visible;
+}
+
+/* Ausklappmenü unter „Espressobars“ (nur Desktop; am Handy
+   stehen die Unterpunkte einfach eingerückt in der Liste).
+   Geöffnet wird es auf drei Wegen:
+     Maus      → :hover
+     Tastatur  → :focus-within
+     Touch     → Klasse „ist-offen“ (setzt script.js)
+   Escape klappt es zu → Klasse „ist-zu“ (setzt script.js) */
+.ausklappmenue {
+  position: relative;
+}
+
+.ausklapp-pfeil {
+  font-size: 1.4em; /* knapp doppelt so groß wie vorher (.8em), damit man das Dreieck erkennt */
+  line-height: 0; /* das größere Zeichen macht die Menüzeile nicht höher */
+  vertical-align: -.1em;
+  margin-left: 1px; /* dicht am Wort */
+}
+
+.ausklappmenue-liste {
+  position: absolute;
+  top: 100%;
+  left: -22px;
+  padding: 18px 22px 14px;
+  margin-top: 10px;
+  min-width: 230px;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 12px 24px #1f130d40;
+  /* versteckt, bis man drüberfährt */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .2s, transform .2s, visibility .2s;
+}
+
+/* Unsichtbare Brücke, damit das Menü beim Runterfahren offen bleibt */
+.ausklappmenue-liste::before {
+  content: '';
+  position: absolute;
+  inset: -14px 0 auto;
+  height: 14px;
+}
+
+.ausklappmenue:hover .ausklappmenue-liste,
+.ausklappmenue:focus-within .ausklappmenue-liste,
+.ausklappmenue.ist-offen .ausklappmenue-liste {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+@media (min-width:801px) {
+  /* Per Escape zugeklappt: bleibt zu, obwohl Fokus/Maus noch drin ist.
+     Muss NACH der Regel oben stehen (gleiche Spezifität). */
+  .ausklappmenue.ist-zu .ausklappmenue-liste {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Gescrollt: Ausklappliste hell wie die Kopfleiste */
+  .ist-gescrollt .ausklappmenue-liste {
+    background: var(--paper);
+    box-shadow: 0 12px 24px #1f130d26;
+  }
+
+  /* Menüpunkt „Home“: am Desktop ausgeblendet, um Platz zu sparen –
+     dort führt die Tasse links zur Startseite. Im Handy-Menü bleibt
+     „Home“ stehen. */
+  .kopfleiste nav .nav-home {
+    display: none;
+  }
+}
+
+.kopfleiste .ausklappmenue-liste a {
+  font-size: 14px;
+  align-self: flex-start;
+}
+
+.startbild-logo {
+  position: absolute;
+  inset: 110px 0 100px;
+  display: grid;
+  place-items: center;
+}
+
+.startbild-logo img {
+  width: clamp(290px,31vw,430px);
+}
+
+.startbild-weiter {
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: max-content;
+  font-size: 17px;
+  font-style: italic;
+}
+
+.startbild-weiter span:last-child {
+  font-size: 22px;
+  font-style: normal;
+  line-height: 1;
+}
+
+.navigation-button {
+  display: none;
+}
+
+/* ============================================================
+   4b. KAFFEEKARTE
+   ------------------------------------------------------------
+   Überschrift, links die Espressomaschine mit handschriftlichem
+   Gruß, rechts die Preisliste. Die Preise selbst stehen im HTML.
+   Im HTML: <section class="kaffeekarte-section" id="karte">
+   ============================================================ */
+
+.kaffeekarte-section {
+  padding-top: var(--abstand);
+}
+
+.kaffeekarte-section h2 {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.kaffeekarte {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+/* Die Illustration hat viel weißen Rand – deshalb leicht vergrößert */
+.espressomaschine-bild img {
+  width: 100%;
+  max-width: 520px;
+  margin: -40px auto -70px;
+}
+
+/* „Erst mal einen Kaffee.“ – schräg unter der Maschine */
+.espressomaschine-bild .handschrift {
+  text-align: center;
+  transform: rotate(-8deg);
+}
+
+/* „In deine Tasse kommt bei uns …“ – kursiv über der Tabelle */
+.preisliste-einleitung {
+  font-size: 23px;
+  font-style: italic;
+  margin-bottom: 36px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+/* Spaltenköpfe „Einfach“ und „Doppelt“ */
+thead th {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding: 0 0 12px;
+  text-align: right;
+}
+
+tbody th {
+  font-weight: 400;
+  text-align: left;
+  padding: 9px 12px 9px 0;
+}
+
+tbody td {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  padding: 9px 0 9px 20px;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--line);
+}
+
+/* „Auch auf der Karte: …“ – dezente Zeile unter der Tabelle */
+.preisliste-hinweis {
+  font-size: 17px;
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 22px;
+}
+
+/* ============================================================
+   4c. SPEISEN: BAGELS, KUCHEN, SUPPEN
+   ------------------------------------------------------------
+   Drei Illustrationen nebeneinander mit kurzem Text, darunter
+   „Und außerdem?“ und der Link zum Kartenüberblick.
+   Im HTML: <section class="speisen-section">
+   ============================================================ */
+
+.speisen-section {
+  padding-block: var(--abstand);
+  text-align: center;
+}
+
+.speisen-raster {
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  margin-top: 40px;
+}
+
+/* Feine senkrechte Trennlinie zwischen den drei Speisen.
+   position: relative für die Randnotiz (.randnotiz) */
+.speise {
+  position: relative;
+  padding: 10px 44px;
+}
+
+.speise + .speise {
+  border-left: 1px solid var(--line);
+}
+
+.speise img {
+  width: 100%;
+  max-width: 220px;
+  margin-inline: auto;
+}
+
+.speise h3 {
+  margin: -10px 0 12px;
+}
+
+/* Text darf die ganze Spaltenbreite nutzen */
+.speise p {
+  color: var(--muted);
+}
+
+.speisen-ausserdem {
+  max-width: 960px;
+  margin: 70px auto 0;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.speisen-ausserdem p {
+  color: var(--muted);
+}
+
+.speisen-ausserdem em {
+  color: var(--ink);
+}
+
+.speisen-ausserdem .textlink {
+  margin-top: 24px;
+}
+
+/* ============================================================
+   4d. FOTO-BEREICHE: UNSER KAFFEE & GESCHICHTE
+   ------------------------------------------------------------
+   Bereiche mit Foto über die ganze Breite und Text darauf.
+   Gemeinsame Regeln heißen .foto-…; was nur für einen der beiden
+   gilt, beginnt mit .kaffee-section bzw. .geschichte-section.
+   ============================================================ */
+
+.foto-section {
+  position: relative;
+  isolation: isolate;
+  color: var(--cream);
+  background: #312319;
+}
+
+.section-foto, .foto-abdunklung {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.foto-abdunklung {
+  z-index: -1;
+  background: linear-gradient(90deg,rgba(41,25,14,.96),rgba(41,25,14,.85) 32%,rgba(41,25,14,.48) 59%,rgba(41,25,14,.08));
+}
+
+.foto-inhalt {
+  padding-block: 105px;
+  display: flex;
+  align-items: center;
+}
+
+.foto-text {
+  max-width: 560px;
+}
+
+.foto-text h2 {
+  margin-bottom: 30px;
+}
+
+.foto-text>p:not(.dachzeile) {
+  color: #f0e5d6;
+  max-width: 500px;
+}
+
+.kaffee-section .section-foto {
+  object-position: 60% 50%;
+}
+
+.kaffee-section .foto-inhalt {
+  min-height: 720px;
+}
+
+.geschichte-section .foto-abdunklung {
+  background: linear-gradient(90deg,rgba(40,24,13,.95),rgba(40,24,13,.87) 36%,rgba(40,24,13,.4) 68%,rgba(40,24,13,.2));
+}
+
+.geschichte-section .foto-inhalt {
+  min-height: 705px;
+}
+
+.geschichte-section .foto-text {
+  max-width: 620px;
+}
+
+.geschichte-section .section-foto {
+  object-position: 70% 50%;
+}
+
+/* ============================================================
+   4e. ESPRESSOBARS
+   ------------------------------------------------------------
+   Zwei quadratische Kacheln: Foto mit dunklem Verlauf, darauf
+   Logo, Standort und Link – alles in heller Schrift.
+   Die ganze Kachel ist anklickbar.
+   Im HTML: <section class="espressobars-section">
+   ============================================================ */
+
+/* position: relative für den Genießer (.figur-geniesser) */
+.espressobars-section {
+  position: relative;
+  padding-block: var(--abstand);
+}
+
+.espressobars-section h2 {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.espressobars-raster {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.espressobar-kachel {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 50px 40px;
+  text-align: center;
+  color: var(--cream);
+  background: #312319;
+}
+
+/* Foto füllt die ganze Kachel */
+.espressobar-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+  transition: transform .6s;
+}
+
+.espressobar-kachel:hover .espressobar-foto {
+  transform: scale(1.03);
+}
+
+/* Fokusrahmen innen: außen wäre er cremefarben auf hellem Papier
+   und damit unsichtbar */
+.espressobar-kachel:focus-visible {
+  outline-offset: -14px;
+}
+
+/* Dunkler Verlauf von unten, damit die Schrift gut lesbar ist */
+.espressobar-kachel:after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg,rgba(37,23,14,.25),rgba(37,23,14,.45) 45%,rgba(37,23,14,.88));
+}
+
+/* Logo groß – darf viel Platz in der Kachel einnehmen */
+.espressobar-logo {
+  width: 62%;
+  max-width: 320px;
+  margin-bottom: 26px;
+}
+
+.espressobar-standort {
+  font-size: 34px;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.espressobar-link {
+  font-size: 17px;
+  font-style: italic;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
+}
+
+/* ============================================================
+   4f. KAFFEEFAHRRAD
+   ------------------------------------------------------------
+   Links die Illustration, rechts Text und Anfrage-Link.
+   Im HTML: <section class="kaffeefahrrad-section">
+   ============================================================ */
+
+/* Dunkler, warmer Braunton über die ganze Breite, Text in Weiß */
+.kaffeefahrrad-section {
+  /* heller Hintergrund wie die übrige Seite, Zeichnung in schwarzen Linien.
+     Für den dunklen Banner: background: #3b2819; color: #fff; und im HTML
+     die weiße Zeichnung (…-illustration-weiss.webp) einsetzen. */
+  background: var(--paper);
+  padding-block: 50px;
+  /* kein Abstand nach unten: das Geschichte-Foto schließt direkt an */
+}
+
+.kaffeefahrrad-inhalt {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.kaffeefahrrad-bild {
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+.kaffeefahrrad-text h2 {
+  margin-bottom: 28px;
+}
+
+.kaffeefahrrad-text p {
+  color: var(--muted);
+  max-width: 480px;
+}
+
+.kaffeefahrrad-text .textlink {
+  margin-top: 30px;
+}
+
+/* ============================================================
+   4g. BESUCH & FUSSBEREICH
+   ------------------------------------------------------------
+   Adressen, Öffnungszeiten und Anfahrt der beiden Espressobars,
+   danach ganz unten der Fußbereich mit Logo und E-Mail-Adresse.
+   ============================================================ */
+
+.besuch-section {
+  padding-block: var(--abstand);
+}
+
+.besuch-ueberschrift {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 70px;
+}
+
+.besuch-ueberschrift h2 {
+  margin-bottom: 20px;
+}
+
+.besuch-ueberschrift p {
+  color: var(--muted);
+}
+
+/* Die Tüte Passenger Blend über der Überschrift */
+.kaffeebohnen-zeichnung {
+  width: 120px; /* neues Bild ist quadratisch mit transparentem Rand, daher etwas breiter */
+  margin: 0 auto 26px;
+  rotate: -7deg; /* „rotate“ statt „transform“, damit das Wackeln die Schräglage nicht überschreibt */
+}
+
+.adressen-raster {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.adresse {
+  border-top: 1px solid var(--ink);
+  padding-top: 28px;
+  scroll-margin-top: 35px;
+}
+
+.adresse address {
+  font-style: normal;
+}
+
+/* Zwischenüberschriften „Öffnungszeiten“ und „Anreise“
+   Startseite: h4, weil der Standortname darüber (Dachzeile) die h3
+   ist. Auf den Unterseiten bleiben es h3. */
+.adresse h3:not(.dachzeile),
+.adresse h4 {
+  font-size: 22px;
+  font-style: italic;
+  margin: 26px 0 8px;
+}
+
+.oeffnungszeiten {
+  margin: 0;
+  max-width: 320px;
+}
+
+.oeffnungszeiten>div {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.oeffnungszeiten dd {
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.anfahrt {
+  color: var(--muted);
+  max-width: 440px;
+}
+
+.adresse .textlink {
+  margin-top: 20px;
+}
+
+.fussbereich {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.fussbereich-oben {
+  padding-block: 55px 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+}
+
+.fussbereich-logo {
+  width: 135px;
+}
+
+.fussbereich .handschrift {
+  font-size: 46px;
+  margin-bottom: 6px;
+}
+
+/* E-Mail- und Instagram-Link: feine Linie darunter */
+.email-link,
+.instagram-link {
+  border-bottom: 1px solid #8d7b6b;
+  padding-bottom: 3px;
+}
+
+.instagram-link {
+  margin-left: 26px;
+}
+
+/* Footer unten: alles mittig untereinander.
+   Oben der Partner-Dank (darf umbrechen, max. ca. 2 Zeilen breit),
+   darunter Impressum · Datenschutz · Cococrema in einer Reihe. */
+.fussbereich-unten {
+  border-top: 1px solid #6d5948;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding-block: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: #ccb9a4;
+}
+
+.fussbereich-partner {
+  max-width: 640px;
+}
+
+.fussbereich-rechtliches {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px;
+}
+
+.fussbereich-partner a,
+.fussbereich-rechtliches a {
+  border-bottom: 1px solid #6d5948;
+  padding-bottom: 1px;
+}
+
+.fussbereich-partner a:hover,
+.fussbereich-rechtliches a:hover {
+  color: var(--cream);
+}
+
+/* Credit „Website: Cococrema“: bewusst leiser – ohne Unterstrich,
+   etwas blasser, beim Drüberfahren hell. Deckkraft .75 statt früher
+   .6, damit die kleine Schrift noch genug Kontrast hat (4,8:1). */
+.fussbereich-rechtliches a.fussbereich-credit {
+  border-bottom: 0;
+  opacity: .75;
+  transition: opacity .2s;
+}
+
+.fussbereich-rechtliches a.fussbereich-credit:hover {
+  opacity: 1;
+}
+
+/* ============================================================
+   5. ANPASSUNGEN FÜR VERSCHIEDENE BILDSCHIRMGRÖSSEN
+   ------------------------------------------------------------
+   Ab hier stehen nur Änderungen gegenüber den Regeln oben.
+   Die Blöcke gelten jeweils nur bis zu einer bestimmten
+   Bildschirmbreite. Wer z. B. am Handy etwas ändern will,
+   schaut in den Block „bis 600px“.
+   ============================================================ */
+
+/* ---------- Tablet quer & kleine Laptops (bis 1100px) ---------- */
+
+@media (max-width:1100px) {
+  :root {
+    --abstand: 100px;
+  }
+
+  .inhaltsbreite {
+    width: calc(100% - 80px);
+  }
+
+  .kopfleiste nav {
+    gap: 22px;
+  }
+
+  .standorte-links, .kopfleiste nav a {
+    font-size: 13px;
+    letter-spacing: .12em;
+  }
+
+  .kaffeekarte, .kaffeefahrrad-inhalt {
+    gap: 40px;
+  }
+
+  .speisen-raster, .adressen-raster {
+    gap: 40px;
+  }
+
+  .startbild-logo img {
+    width: 360px;
+  }
+}
+
+/* ---------- Tablet hochkant (bis 800px) ----------
+   Ab hier wird die Navigation zum aufklappbaren Menü und
+   die meisten Bereiche stehen untereinander statt nebeneinander. */
+
+@media (max-width:800px) {
+  :root {
+    --abstand: 80px;
+  }
+
+  .inhaltsbreite {
+    width: calc(100% - 48px);
+  }
+
+  .kopfleiste {
+    padding: 24px;
+  }
+
+  .startbild {
+    min-height: 620px;
+    height: 86svh;
+    max-height: 850px;
+  }
+
+  .startbild-logo img {
+    width: 300px;
+  }
+
+  .navigation-button {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    background: transparent;
+    border: 0;
+    color: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    min-height: 44px;
+    padding: 7px 0 7px 14px;
+  }
+
+  /* Die üblichen drei Striche („Burger“): oberer und unterer Strich
+     sind ::before/::after, der mittlere ist das Element selbst.
+     Offen wird daraus ein X. */
+  .navigation-icon {
+    display: block; /* sonst ist der <span> „inline“ und der mittlere Strich unsichtbar */
+    position: relative;
+    width: 26px;
+    height: 2px;
+    background: currentColor;
+    transition: background .2s;
+  }
+
+  .navigation-icon::before,
+  .navigation-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transition: transform .25s ease;
+  }
+
+  .navigation-icon::before {
+    transform: translateY(-8px);
+  }
+
+  .navigation-icon::after {
+    transform: translateY(8px);
+  }
+
+  .navigation-button:has(+ nav:popover-open) .navigation-icon {
+    background: transparent;
+  }
+
+  .navigation-button:has(+ nav:popover-open) .navigation-icon::before {
+    transform: rotate(45deg);
+  }
+
+  .navigation-button:has(+ nav:popover-open) .navigation-icon::after {
+    transform: rotate(-45deg);
+  }
+
+  .kopfleiste nav {
+    display: none;
+    position: fixed;
+    inset: 86px 16px auto;
+    width: auto;
+    height: auto;
+    /* Handy quer / niedrige Bildschirme: Menü scrollt in sich, statt
+       unten abgeschnitten zu werden */
+    max-height: calc(100svh - 102px);
+    overflow-y: auto;
+    padding: 27px;
+    background: var(--ink);
+    color: var(--cream); /* Handy-Menü bleibt immer dunkel mit heller Schrift */
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 12px 20px #1f130d33;
+  }
+
+  .kopfleiste nav:popover-open {
+    display: flex;
+  }
+
+  .kopfleiste nav a {
+    padding: 10px 0;
+    font-size: 17px;
+  }
+
+  /* Handy: Unterpunkte immer sichtbar, eingerückt unter „Espressobars“ */
+  .ausklappmenue-liste {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: none;
+    box-shadow: none;
+    padding: 0 0 0 18px;
+    margin: 0;
+    gap: 0;
+    min-width: 0;
+  }
+
+  .ausklapp-pfeil {
+    display: none;
+  }
+
+  .kaffeekarte, .kaffeefahrrad-inhalt {
+    grid-template-columns: 1fr;
+  }
+
+  .espressomaschine-bild img {
+    max-width: 400px;
+  }
+
+  .speisen-raster {
+    grid-template-columns: 1fr;
+  }
+
+  /* Untereinander: Trennlinie waagerecht statt senkrecht */
+  .speise {
+    padding: 40px 0;
+  }
+
+  .speise + .speise {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .speise img {
+    max-width: 200px;
+  }
+
+  .espressobars-raster {
+    grid-template-columns: 1fr;
+  }
+
+  .espressobar-kachel {
+    aspect-ratio: 4 / 3;
+  }
+
+  .kaffeefahrrad-bild {
+    max-width: 400px;
+  }
+
+  .foto-abdunklung {
+    background: linear-gradient(90deg,rgba(41,25,14,.95),rgba(41,25,14,.8) 53%,rgba(41,25,14,.32));
+  }
+}
+
+/* ---------- Handy (bis 600px) ---------- */
+
+@media (max-width:600px) {
+  :root {
+    --abstand: 64px;
+    /* Kopfleiste ist hier ca. 80px hoch (gescrollt) – mit 90px bleibt
+       eine angesprungene Überschrift sichtbar. (Früher 24px: dann lag
+       die Überschrift unter der Kopfleiste.) */
+    scroll-padding-top: 90px;
+  }
+
+  body {
+    font-size: 18px;
+  }
+
+  .inhaltsbreite {
+    width: calc(100% - 36px);
+  }
+
+  .kopfleiste {
+    padding: 20px 18px;
+  }
+
+  .startbild {
+    min-height: 570px;
+    height: 88svh;
+  }
+
+  .startbild-abdunklung {
+    background: linear-gradient(180deg,rgba(40,24,13,.75),rgba(40,24,13,0) 160px),
+    linear-gradient(180deg,#28190e8c,#28190e47 45%,#28190e9c);
+  }
+
+  .startbild-logo img {
+    width: 260px;
+    max-width: 72vw;
+  }
+
+  /* Standorte stehen am Handy untereinander */
+  .standorte-links {
+    flex-direction: column;
+    font-size: 12px;
+    letter-spacing: .1em;
+  }
+
+  .standorte-links span {
+    display: none;
+  }
+
+  .kaffeekarte-section h2 {
+    margin-bottom: 40px;
+  }
+
+  .handschrift {
+    font-size: 36px;
+  }
+
+  .preisliste-einleitung {
+    font-size: 20px;
+  }
+
+  table {
+    font-size: 18px;
+  }
+
+  tbody td {
+    padding-left: 12px;
+  }
+
+  thead th {
+    font-size: 11px;
+    letter-spacing: .12em;
+  }
+
+  .espressobar-kachel {
+    aspect-ratio: 1;
+    padding: 36px 24px;
+  }
+
+  .espressobar-logo {
+    width: 58%;
+  }
+
+  .espressobar-standort {
+    font-size: 30px;
+  }
+
+  .espressobar-link {
+    font-size: 16px;
+  }
+
+  .kaffee-section .foto-inhalt {
+    min-height: 700px;
+    align-items: flex-end;
+    padding-block: 100px 60px;
+  }
+
+  .kaffee-section .section-foto {
+    object-position: 66% 50%;
+  }
+
+  .kaffee-section .foto-abdunklung {
+    background: linear-gradient(180deg,#29190e20,#29190e8c 26%,#29190ef0 62%,#29190ef5);
+  }
+
+  .geschichte-section .foto-inhalt {
+    padding-block: 70px;
+    min-height: 0;
+  }
+
+  .geschichte-section .foto-abdunklung {
+    background: linear-gradient(90deg,#28180df2,#28180dd9 50%,#28180db0);
+  }
+
+  .adressen-raster {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  /* Handy: Logo groß und mittig, darunter der Gruß –
+     die E-Mail wird hier ausgeblendet, Instagram bleibt */
+  .fussbereich-oben {
+    padding-block: 50px 40px;
+    flex-direction: column;
+    text-align: center;
+    gap: 22px;
+  }
+
+  .fussbereich-logo {
+    width: 130px;
+    margin-inline: auto;
+  }
+
+  .fussbereich .handschrift {
+    font-size: 34px;
+    margin-bottom: 0;
+  }
+
+  .fussbereich-unten {
+    font-size: 12px;
+  }
+}
+
+/* ============================================================
+   6. REDUZIERTE BEWEGUNG
+   ------------------------------------------------------------
+   Wer in den Systemeinstellungen „Bewegung reduzieren“ aktiviert
+   hat, bekommt keine Animationen und kein sanftes Scrollen.
+   Alle Regeln dafür stehen gesammelt hier.
+   Außerdem prüft script.js dieselbe Einstellung und setzt dann
+   gar nicht erst Einblenden, Wackeln, Ritter-Ritt, Schwein- und
+   Tassen-Flug in Gang – alles ist einfach sofort an seinem Platz.
+   ============================================================ */
+
+@media (prefers-reduced-motion:reduce) {
+  :root {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    transition: none !important;
+  }
+
+  /* „!important“, weil die Animationen selbst weiter unten in der
+     Datei stehen und diese Regeln sonst überschreiben würden */
+
+  /* Laufband steht still (der Text bleibt lesbar) */
+  .laufband-text {
+    animation: none !important;
+  }
+
+  /* Das Schwein in „Komm vorbei.“ fliegt nicht davon, bleibt sitzen */
+  .figur-schwein.schwein-fliegt-davon,
+  .figur-schwein.schwein-kommt-zurueck,
+  .figur-schwein.schwein-wackelt {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
+   7. VERSPIELTE DETAILS
+   ------------------------------------------------------------
+   Alles, was der Seite Charakter gibt: Papierzettel, Stempel,
+   Randnotizen, Laufband, Einblenden und Wackeln beim Scrollen.
+   Jeder Block lässt sich einzeln löschen, ohne dass etwas kaputtgeht.
+   ============================================================ */
+
+/* ---------- Preisliste als Papierzettel ----------
+   Leicht schief, mit zwei Klebestreifen oben. Unten Platz für
+   den Buddha, der am Zettel sitzt. */
+.preisliste {
+  position: relative;
+  background: #fff;
+  padding: 44px 44px 34px;
+  margin-bottom: 40px;
+  transform: rotate(.8deg);
+  box-shadow: 0 1px 2px #38291f14, 0 14px 30px -12px #38291f33;
+}
+
+.preisliste::before,
+.preisliste::after {
+  content: '';
+  position: absolute;
+  top: -14px;
+  width: 110px;
+  height: 28px;
+  background: #e9dfc8b3;
+  box-shadow: 0 1px 2px #38291f1a;
+}
+
+.preisliste::before {
+  left: 28px;
+  transform: rotate(-6deg);
+}
+
+.preisliste::after {
+  right: 28px;
+  transform: rotate(5deg);
+}
+
+/* ---------- Stempel „Seit 2015 · Berlin“ ----------
+   Rund, leicht verblasst, schräg über der Ecke des Zettels. */
+.stempel {
+  position: absolute;
+  top: -46px;
+  right: -40px;
+  width: 104px;
+  height: 104px;
+  border: 2px solid var(--markise);
+  border-radius: 50%;
+  outline: 1px solid var(--markise);
+  outline-offset: -8px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  color: var(--markise);
+  font-family: var(--schreibmaschine);
+  font-size: 26px;
+  line-height: 1;
+  transform: rotate(-14deg);
+  opacity: .78;
+  mix-blend-mode: multiply;
+}
+
+.stempel span {
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-block: 5px;
+}
+
+/* ---------- Randnotizen in Handschrift ----------
+   Groß genug (ab 28px), dass das Original-Rosa als Textfarbe reicht */
+.randnotiz {
+  position: absolute;
+  top: 0;
+  right: 40px;
+  font-family: var(--hand);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--markise);
+  transform: rotate(-10deg);
+}
+
+/* ---------- Laufband ----------
+   Der Text steht im HTML zweimal hintereinander; nach der halben
+   Strecke (-50%) sieht es genauso aus wie am Anfang – so läuft das
+   Band nahtlos endlos. */
+.laufband {
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--cream);
+  padding-block: 16px;
+  font-family: var(--schreibmaschine);
+  font-size: 20px;
+  white-space: nowrap;
+}
+
+.laufband-text {
+  display: inline-flex;
+  animation: laufband 60s linear infinite;
+}
+
+.laufband-text span {
+  padding-right: .5em;
+}
+
+@keyframes laufband {
+  to { transform: translateX(-50%); }
+}
+
+/* ---------- Links: Pfeil und Unterstrich beim Drüberfahren rosa ----------
+   Dunklere Variante, weil der Linktext klein ist */
+.textlink:hover {
+  color: var(--markise-text);
+}
+
+/* ---------- Einblenden beim Scrollen (siehe script.js) ----------
+   script.js setzt „blendet-ein“ auf Überschriften, Kacheln usw. und
+   „ist-sichtbar“, sobald sie ins Bild kommen. Ohne JavaScript bekommt
+   nichts die Klasse – dann ist einfach alles sofort da.
+   Bewegt wird mit „translate“ (nicht „transform“), damit es sich nicht
+   mit Schräglagen oder dem Wackeln in die Quere kommt. */
+.blendet-ein {
+  opacity: 0;
+  translate: 0 24px;
+  transition: opacity .8s ease, translate .8s ease;
+}
+
+.blendet-ein.ist-sichtbar {
+  opacity: 1;
+  translate: none;
+}
+
+/* Handy: Zettel etwas schmaler, Stempel kleiner */
+@media (max-width:800px) {
+  .preisliste {
+    padding: 36px 22px 26px;
+    transform: rotate(.5deg);
+  }
+
+  .stempel {
+    width: 84px;
+    height: 84px;
+    top: -40px;
+    right: -6px;
+    font-size: 21px;
+  }
+}
+
+/* ---------- Wackeln beim Reinscrollen (siehe script.js) ----------
+   „Schwerfälliges Pendeln“: Die Illustration wird erst langsam und
+   mühsam nach links gedrückt (als bräuchte es Kraft), dann losgelassen –
+   sie schnellt zurück, schwingt über die Mitte hinaus und pendelt sich
+   in fünf immer kleineren Schwüngen auf die Ruhelage ein.
+   Tempo: die 1.9s. Stärke: --wackel-staerke (1 = volle Grad-Zahlen
+   aus den Keyframes). Allgemein etwas zurückgenommen (.65), der
+   Genießer auf der Startseite noch sanfter. Welche Figuren wackeln,
+   entscheidet script.js (Klasse „wackelt“, danach wieder entfernt). */
+:root {
+  --wackel-staerke: .65;
+}
+
+.figur-geniesser img {
+  --wackel-staerke: .35;
+}
+
+.wackelt {
+  animation: wackeln 1.9s both; /* ohne Verzögerung, damit die Figur gleich beim Auftauchen in Bewegung ist */
+}
+
+/* Drehpunkt unten, wie ein Stehaufmännchen. Steht bewusst NICHT in
+   .wackelt, sondern dauerhaft auf den Figuren: Manche haben eine feste
+   Schräglage (rotate) – würde der Drehpunkt am Ende mit der Klasse
+   wieder verschwinden, „rutscht“ die Figur sichtbar zurück. */
+.speise img,
+.figur-geniesser img,
+.figur-buddha img,
+.figur-kiwi img,
+.karten-vignette,
+.kaffeebohnen-zeichnung,
+.schloss-figur,
+.fahrrad-figur,
+.anfrage-figur {
+  transform-origin: 50% 90%;
+}
+
+@keyframes wackeln {
+  /* langsam anspannen: zäher Start, wird schwerer */
+  0%   { transform: rotate(0);        animation-timing-function: cubic-bezier(.45,0,.75,.6); }
+  /* kurz halten – hier wird losgelassen */
+  36%  { transform: rotate(calc(var(--wackel-staerke) * -9deg));    animation-timing-function: linear; }
+  40%  { transform: rotate(calc(var(--wackel-staerke) * -9deg));    animation-timing-function: cubic-bezier(.2,.9,.3,1); }
+  /* zurückschnellen und überschwingen, dann ausschwingen */
+  50%  { transform: rotate(calc(var(--wackel-staerke) * 6deg));     animation-timing-function: ease-in-out; }
+  61%  { transform: rotate(calc(var(--wackel-staerke) * -3.6deg));  animation-timing-function: ease-in-out; }
+  72%  { transform: rotate(calc(var(--wackel-staerke) * 2deg));     animation-timing-function: ease-in-out; }
+  82%  { transform: rotate(calc(var(--wackel-staerke) * -1deg));    animation-timing-function: ease-in-out; }
+  91%  { transform: rotate(calc(var(--wackel-staerke) * .4deg));    animation-timing-function: ease-out; }
+  100% { transform: rotate(0); }
+}
+
+/* ============================================================
+   8. FIGUREN AUS DER BAR
+   Buddha, Ritter, Genießer, Kiwi und Schwein hängen als Motive
+   in der Espressobar – hier tauchen sie als kleine Fundstücke auf.
+   Schräglage über „rotate“ (nicht „transform“), damit sich das
+   Wackeln (.wackelt nutzt transform) und die Schräglage nicht stören.
+   ============================================================ */
+.figur {
+  pointer-events: none;
+}
+
+.figur img {
+  rotate: -6deg;
+}
+
+.figur .randnotiz {
+  position: static;
+  white-space: nowrap;
+}
+
+/* Buddha: sitzt unten links an der Preisliste, ganz ruhig */
+.figur-buddha {
+  position: absolute;
+  left: -70px;
+  bottom: -60px;
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.figur-buddha img {
+  width: 144px;
+  rotate: 4deg;
+}
+
+/* Ritter: reitet oben auf dem Laufband entlang.
+   will-change: script.js verschiebt ihn bei jedem Scrollschritt –
+   so bekommt er eine eigene Ebene und das Scrollen bleibt flüssig.
+   (Gilt genauso für Schwein und Tasse weiter unten.) */
+.ritter-bahn {
+  height: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.figur-ritter {
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+  width: 140px;
+  will-change: transform;
+}
+
+/* Genießer: groß, sitzt oben rechts und ragt ins Kaffee-Foto darüber */
+.figur-geniesser {
+  position: absolute;
+  top: -428px;
+  right: 2%;
+  z-index: 2;
+}
+
+.figur-geniesser img {
+  width: 576px;
+  rotate: 3deg;
+}
+
+/* Kiwi: steht klein unter den Adressen, die Frage darunter */
+.figur-kiwi {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+}
+
+.figur-kiwi img {
+  width: 130px;
+}
+
+.figur-kiwi .randnotiz {
+  font-size: 44px;
+  margin-top: 6px;
+  transform: rotate(-4deg);
+}
+
+/* Schwein: ganz groß im Foto „Wie alles anfing.“ – gespiegelt, damit
+   es nach links fliegt. Es schwebt beim Scrollen vom rechten Rand
+   Richtung Mitte (script.js setzt dafür transform: translateX).
+   Es hängt zu einem Drittel unten in die nächste Section hinein.
+   Die Section schneidet nur seitlich ab (rechts übersteht), nach
+   unten darf das Schwein rausragen. */
+.geschichte-section {
+  overflow-x: clip;
+  z-index: 2;
+}
+
+.geschichte-section .foto-inhalt {
+  position: relative;
+  z-index: 1;
+}
+
+.figur-schwein {
+  position: absolute;
+  right: 4%;
+  bottom: -227px; /* ein Drittel der Höhe (680 px) */
+  width: 680px;
+  max-width: none;
+  scale: -1 1;
+  rotate: 8deg;
+  cursor: pointer; /* Drüberfahren/Antippen lässt es davonfliegen (script.js) */
+  will-change: transform;
+}
+
+/* Handy: Figuren kleiner und im Textfluss statt am Rand */
+@media (max-width:800px) {
+  /* Handy: Buddha rechts unten unter dem Zettel, damit er nicht im Text sitzt */
+  .figur-buddha {
+    left: auto;
+    right: -6px;
+    bottom: -92px; /* 15 % sitzen noch auf dem Preiszettel */
+  }
+
+  .figur-buddha img {
+    width: 108px;
+  }
+
+  /* Handy: unter dem Kaffee-Text Platz schaffen – dort sitzt der
+     Genießer, hauptsächlich im Foto, nur die Füße ragen nach unten raus */
+  .kaffee-section .foto-inhalt {
+    padding-bottom: 170px;
+  }
+
+  .figur-geniesser {
+    top: -154px; /* 80 % im Foto, 20 % hängen unten raus */
+    right: 0;
+  }
+
+  /* Nichts darf seitlich über den Bildschirm ragen (sonst wackelt
+     am Handy die ganze Seite seitlich) */
+  .kaffee-section,
+  .espressobars-section {
+    overflow-x: clip;
+  }
+
+  .figur-geniesser img {
+    width: 192px;
+  }
+
+  /* Handy: unter dem Geschichtstext Platz schaffen, damit das
+     Schwein dort fliegt und keinen Text verdeckt */
+  .geschichte-section .foto-inhalt {
+    padding-bottom: 240px;
+  }
+
+  .figur-schwein {
+    width: 320px;
+    right: -20px;
+    bottom: -107px; /* ein Drittel der Höhe (320 px) */
+    opacity: .9;
+  }
+
+  .figur-ritter {
+    width: 100px;
+    bottom: -10px;
+  }
+
+  /* Handy: „Findest du mich im Café?“ nur am Desktop */
+  .figur-kiwi .randnotiz {
+    display: none;
+  }
+}
+
+/* ============================================================
+   9a. UNTERSEITE DANZIGER STRASSE (cafe-danziger-strasse.html)
+   ------------------------------------------------------------
+   Nur was es auf der Startseite nicht gibt: Standortname im
+   Startbild, editoriale Einleitung, Bildkacheln, die große
+   Menükarte und „Komm vorbei.“ auf dem Foto.
+   Diese Bausteine nutzen auch die übrigen Unterseiten.
+   Schwein und Fußbereich kommen aus den Regeln weiter oben.
+   ============================================================ */
+
+/* ---------- Startbild: Logo ist hier die <h1>, darunter der Standort ---------- */
+h1.startbild-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.startbild-standort {
+  font-family: var(--schreibmaschine);
+  font-size: 16px;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+}
+
+/* ---------- Einleitung: editorial in zwei Spalten ----------
+   Oben eine feine Linie. Links die große Überschrift mit dem Ritter
+   darunter, rechts der Text: erst ein größerer Vorspann mit
+   rosa Initiale, dann der zweite Absatz und der Link zur Karte. */
+.danziger-einleitung {
+  display: grid;
+  grid-template-columns: 5fr 6fr;
+  gap: 110px;
+  padding-block: var(--abstand);
+}
+
+.einleitung-kopf {
+  border-top: 1px solid var(--ink);
+  padding-top: 26px;
+}
+
+.einleitung-kopf h2 {
+  font-size: clamp(36px,4.2vw,60px);
+  line-height: 1.08;
+}
+
+/* Ritter: steht ruhig unter der Überschrift, leicht schief */
+.einleitung-ritter {
+  width: 170px;
+  margin-top: 46px;
+  rotate: -5deg;
+  will-change: transform; /* reitet beim Scrollen nach links, siehe script.js */
+}
+
+/* Danziger Straße: Ritter gespiegelt – schaut nach rechts und reitet
+   beim Scrollen auch nach rechts (Richtung in script.js).
+   „scale“ statt „transform“, weil script.js das transform fürs Reiten
+   setzt; die Schräglage spiegelt sich mit. */
+.ritter-nach-rechts {
+  scale: -1 1;
+  rotate: 5deg;
+}
+
+.einleitung-spalte {
+  border-top: 1px solid var(--line);
+  padding-top: 26px;
+}
+
+/* Vorspann: größer und dunkler, mit großer rosa Initiale
+   (so groß, dass das Original-Rosa reicht) */
+.einleitung-vorspann {
+  font-size: clamp(23px,2vw,28px);
+  line-height: 1.45;
+  margin-bottom: 26px;
+}
+
+.einleitung-vorspann::first-letter {
+  float: left;
+  font-size: 4.1em;
+  line-height: .82;
+  /* rechts mehr Luft: das kursive U ragt oben nach rechts über
+     seine Box hinaus und stieß sonst an die erste Zeile */
+  padding: .06em .2em 0 0;
+  color: var(--markise);
+  font-style: italic;
+}
+
+.einleitung-spalte p:not(.einleitung-vorspann) {
+  color: var(--muted);
+}
+
+.einleitung-spalte .textlink {
+  margin-top: 30px;
+}
+
+/* ---------- Bildkacheln: Mosaik über die ganze Breite ----------
+   12-spaltiges Raster, drei Zeilen, 25 px Abstand.
+   kachel-1 (Terrasse) groß links über zwei Zeilen, rechts daneben
+   zwei Querformate, unten ein schmales und ein breites Bild.
+   Fährt man drüber, zoomt das Foto leicht im Rahmen. */
+.bildkacheln {
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  grid-auto-rows: clamp(220px,22vw,380px);
+  gap: 25px;
+  padding-inline: 25px;
+}
+
+.kachel {
+  margin: 0;
+  overflow: hidden;
+}
+
+.kachel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale .6s cubic-bezier(.2,.7,.2,1);
+}
+
+.kachel:hover img {
+  scale: 1.05;
+}
+
+.kachel-1 { grid-column: 1 / 8; grid-row: 1 / 3; }
+.kachel-2 { grid-column: 8 / 13; grid-row: 1; }
+.kachel-3 { grid-column: 8 / 13; grid-row: 2; }
+.kachel-4 { grid-column: 1 / 6; grid-row: 3; }
+.kachel-5 { grid-column: 6 / 13; grid-row: 3; }
+
+/* Vierte Reihe (Danziger): höher als die anderen, weil hier zwei
+   Hochformate stehen. Barista nur 3 Spalten breit (Foto hat nur
+   480 px, so bleibt es scharf), Rosenstrauch 4, Terrasse 5 Spalten */
+.bildkacheln:has(.kachel-6) {
+  grid-template-rows: repeat(3, clamp(220px,22vw,380px)) clamp(320px,32vw,560px);
+}
+.kachel-6 { grid-column: 1 / 4; grid-row: 4; }
+.kachel-7 { grid-column: 4 / 8; grid-row: 4; }
+.kachel-8 { grid-column: 8 / 13; grid-row: 4; }
+
+/* ---------- Die Menükarte ----------
+   Eine große, luftige Karte wie gedruckt: heller Karton mit feinem
+   Doppelrahmen, oben der Titel, darunter zwei Spalten (Getränke |
+   Essen) mit feiner Mittellinie. Jede Rubrik hat dieselbe Ordnung:
+   kleine Zeichnung, rosa kursive Überschrift, Liste mit Punktlinie. */
+.menuekarte-section {
+  padding-block: var(--abstand);
+}
+
+.menuekarte {
+  width: min(1180px,calc(100% - 112px));
+  margin-inline: auto;
+  background: #fffdf9;
+  border: 1px solid var(--line);
+  outline: 1px solid var(--line);
+  outline-offset: -12px; /* zweite Linie innen = Doppelrahmen */
+  padding: 100px clamp(40px,7vw,110px) 110px;
+  box-shadow: 0 30px 60px -40px #38291f40;
+}
+
+.menuekarte-kopf {
+  text-align: center;
+  margin-bottom: 90px;
+}
+
+/* Kleine Raute unter dem Titel, wie ein Schmuckzeichen */
+.menuekarte-kopf h2::after {
+  content: '◆';
+  display: block;
+  font-size: 11px;
+  color: var(--markise);
+  margin-top: 22px;
+}
+
+.menuekarte-spalten {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: clamp(50px,8vw,120px);
+  /* feine Mittellinie zwischen den Spalten */
+  background: linear-gradient(var(--line),var(--line)) center / 1px 100% no-repeat;
+}
+
+.menuekarte-spalte {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+
+/* Eine Rubrik: alles mittig bis auf die Liste */
+.karten-block {
+  text-align: center;
+}
+
+.karten-vignette {
+  display: block;
+  width: 110px;
+  margin: 0 auto 6px;
+  rotate: -4deg;
+}
+
+.karten-block h3 {
+  font-style: italic;
+  font-size: 34px;
+  color: var(--markise);
+  margin-bottom: 20px;
+}
+
+.karten-einleitung,
+.karten-hinweis {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 18px;
+  max-width: 400px;
+  margin: 0 auto 14px;
+}
+
+.karten-hinweis {
+  margin-top: 18px;
+}
+
+/* Kiwi mit seiner Frage daneben (Handschrift) */
+.karten-vignette-notiz {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-left: 120px; /* gleicht die Notiz aus, damit der Kiwi mittig bleibt */
+}
+
+.karten-vignette-notiz .karten-vignette {
+  margin: 0;
+}
+
+.karten-randnotiz {
+  font-family: var(--hand);
+  font-size: 26px;
+  line-height: 1;
+  color: var(--markise);
+  width: 120px;
+  text-align: left;
+  rotate: -8deg;
+}
+
+/* Kuchen und Suppen nebeneinander am Ende der rechten Spalte */
+.karten-paar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.karten-paar h3 {
+  font-size: 26px;
+}
+
+.karten-paar .karten-einleitung {
+  font-size: 17px;
+}
+
+/* ---------- Die Zeilen der Karte ----------
+   Gericht | Punktlinie | Preis, darunter kursiv die Zutaten. */
+.karten-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+.karten-liste li {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 10px;
+  padding-block: 8px;
+}
+
+.karten-liste li::after {
+  content: '';
+  grid-row: 1;
+  grid-column: 2;
+  align-self: end;
+  margin-bottom: .45em;
+  border-bottom: 1px dotted var(--line);
+}
+
+.gericht {
+  grid-row: 1;
+  grid-column: 1;
+  font-size: 21px;
+}
+
+.preis {
+  grid-row: 1;
+  grid-column: 3;
+  font-family: var(--schreibmaschine);
+  font-size: 16px;
+  white-space: nowrap;
+  align-self: end;
+}
+
+.zutaten {
+  grid-column: 1 / -1;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--muted);
+  max-width: 85%;
+}
+
+/* Kaffee: zwei Preisspalten (Einfach | Doppelt) mit fester Breite,
+   damit die Preise genau unter den Spaltenköpfen stehen */
+.karten-liste-zwei-preise li {
+  grid-template-columns: auto 1fr 64px 64px;
+}
+
+.karten-liste-zwei-preise .preis {
+  text-align: right;
+}
+
+.karten-liste-zwei-preise .preis-doppelt {
+  grid-column: 4;
+}
+
+.karten-spaltenkoepfe {
+  display: grid;
+  grid-template-columns: 64px 64px;
+  justify-content: end;
+  column-gap: 10px;
+  font-family: var(--schreibmaschine);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: right;
+  margin-bottom: 2px;
+}
+
+/* ---------- Komm vorbei: Adresse auf dem Foto, Schwein fliegt rein ---------- */
+.besuch-foto-section {
+  overflow-x: clip;
+  z-index: 2;
+}
+
+/* Der Textbereich liegt über die ganze Breite auf dem Foto und würde
+   die Maus abfangen, bevor sie das Schwein erreicht. Darum lässt er
+   Mausbewegungen durch; nur der eigentliche Text (mit Links) bleibt
+   anklickbar. */
+.besuch-foto-section .foto-inhalt {
+  position: relative;
+  z-index: 1;
+  min-height: 760px;
+  pointer-events: none;
+}
+
+.besuch-foto-section .foto-text {
+  pointer-events: auto;
+}
+
+.besuch-foto-section .section-foto {
+  object-position: 65% 50%;
+}
+
+.besuch-foto-section address {
+  font-style: normal;
+  font-size: 22px;
+}
+
+.besuch-foto-section h3 {
+  font-size: 22px;
+  font-style: italic;
+  margin: 26px 0 8px;
+}
+
+.besuch-foto-section .oeffnungszeiten {
+  max-width: 360px;
+  color: #f0e5d6;
+}
+
+.besuch-foto-section .textlink {
+  margin-top: 26px;
+}
+
+/* Desktop: Das Schwein sitzt ganz im Foto „Komm vorbei.“
+   (rechts unten, schließt mit der Unterkante ab). Hier reagiert es
+   auf die Maus (Davonfliegen, siehe weiter unten). */
+.besuch-foto-section .figur-schwein {
+  width: 657px;
+  right: calc(6% + 50px);
+  bottom: 0;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+/* ---------- Tablet & Handy ---------- */
+@media (max-width:800px) {
+  /* Einleitung untereinander, Ritter kleiner */
+  .danziger-einleitung {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .einleitung-ritter {
+    width: 150px;
+    margin-top: 30px;
+  }
+
+  /* Bildkacheln: zwei Spalten, Terrasse oben über die ganze Breite,
+     etwas kleinerer Abstand */
+  .bildkacheln {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 44vw;
+    gap: 12px;
+    padding-inline: 12px;
+  }
+
+  .kachel-1 { grid-column: 1 / -1; grid-row: auto; }
+  .kachel-2, .kachel-3, .kachel-4, .kachel-5,
+  .kachel-6, .kachel-7 { grid-column: auto; grid-row: auto; }
+  /* Handy: Barista und Rosen nebeneinander, Terrasse darunter breit */
+  .bildkacheln:has(.kachel-6) { grid-template-rows: none; }
+  .kachel-8 { grid-column: 1 / -1; grid-row: auto; }
+
+  /* Menükarte: eine Spalte, schmalerer Rand */
+  .menuekarte {
+    width: calc(100% - 24px);
+    padding: 70px 26px 80px;
+  }
+
+  .menuekarte-kopf {
+    margin-bottom: 60px;
+  }
+
+  .menuekarte-spalten {
+    grid-template-columns: 1fr;
+    row-gap: 80px;
+    background: none;
+  }
+
+  .menuekarte-spalte {
+    gap: 80px;
+  }
+
+  .karten-paar {
+    grid-template-columns: 1fr;
+    gap: 80px;
+  }
+
+  .karten-paar h3 {
+    font-size: 30px;
+  }
+
+  /* Handy: Illustrationen rund 125 % größer als zuerst */
+  .karten-vignette {
+    width: 120px;
+  }
+
+  /* Handy: Kiwi-Notiz ausgeblendet, daher kein Ausgleich mehr nötig –
+     der Kiwi steht von selbst mittig */
+  .karten-vignette-notiz {
+    margin-left: 0;
+  }
+
+  .karten-randnotiz {
+    display: none;
+  }
+
+  .besuch-foto-section .foto-inhalt {
+    min-height: 0;
+    padding-bottom: 300px;
+  }
+
+  .besuch-foto-section .foto-abdunklung {
+    background: linear-gradient(90deg,#28180df2,#28180dd9 50%,#28180db0);
+  }
+
+  .besuch-foto-section .figur-schwein {
+    width: 375px;
+    bottom: -50px;
+    right: auto;
+    left: calc(50% - 187px); /* mittig: halbe Breite (375 px) nach links */
+  }
+
+  /* Header Danziger Straße: Straße in einer Zeile, darunter
+     „Prenzlauer Berg“ kursiv und ohne Großbuchstaben abgesetzt.
+     Der Rahmen um beide Zeilen ist eine Spalte, in der jede Zeile für
+     sich mittig steht – sonst stehen sie auf manchen Handys (Safari)
+     linksbündig untereinander. */
+  .startbild-standort {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .standort-strasse {
+    display: block;
+    white-space: nowrap;
+    /* mittig über der (oft breiteren) Zeile darunter, z. B.
+       „KOMMODE“ über „– Bebelplatz –“ */
+    text-align: center;
+    /* letter-spacing hängt auch hinter den letzten Buchstaben
+       Leerraum an – den gleichen wir aus, sonst steht das Wort
+       (z. B. „Kommode“) nicht genau mittig */
+    margin-right: -.3em;
+  }
+
+  .standort-trenner {
+    display: none;
+  }
+
+  .standort-viertel {
+    display: block;
+    margin-top: 8px;
+    font-style: italic;
+    text-transform: none;
+    letter-spacing: .05em;
+    text-align: center;
+  }
+
+  /* Gedankenstriche davor und dahinter: – Prenzlauer Berg – */
+  .standort-viertel::before {
+    content: "– ";
+  }
+
+  .standort-viertel::after {
+    content: " –";
+  }
+}
+
+
+/* ============================================================
+   9b. UNTERSEITE KOMMODE (cafe-kommode.html)
+   ------------------------------------------------------------
+   Fast alles kommt aus den Bausteinen der Danziger Seite
+   (Einleitung, Bildkacheln, Menükarte, Foto-Bereiche, Schwein).
+   Hier steht nur, was die Kommode zusätzlich braucht.
+   ============================================================ */
+
+/* Kaffeekarte: Text unter dem Titel, mittig und etwas größer */
+.kommode-karten-text {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 20px;
+}
+
+/* „Ein Café in der Kommode.“: Foyer-Foto mit Text links,
+   ähnlich hoch wie die übrigen Foto-Bereiche */
+.kommode-foyer-section .foto-inhalt {
+  min-height: 640px;
+}
+
+.kommode-foyer-section .section-foto {
+  object-position: 50% 60%;
+}
+
+/* „Noch ein Schloss für die Bib?“: ohne Linie über der Spalte rechts
+   zusätzlich eine Zwischenüberschrift und die Leihbedingungen */
+.kommode-schloss {
+  padding-top: 0; /* die Foto-Section darüber gibt schon Luft */
+  margin-top: var(--abstand);
+}
+
+/* Kiwi unter der Überschrift, leicht schief (wackelt per script.js) */
+.schloss-figur {
+  width: 150px;
+  margin-top: 40px;
+  rotate: 6deg;
+}
+
+.kommode-schloss h3 {
+  font-style: italic;
+  font-size: 26px;
+  color: var(--markise);
+  margin: 30px 0 10px;
+}
+
+.schloss-preise {
+  max-width: 420px;
+  margin-top: 20px;
+}
+
+@media (max-width:800px) {
+  .kommode-foyer-section .foto-inhalt {
+    min-height: 0;
+  }
+
+  .schloss-figur {
+    width: 120px;
+    margin-top: 24px;
+  }
+}
+
+/* ---------- Kommode: Angebot in vier Spalten ----------
+   Wie „Und noch etwas dazu?“ auf der Startseite, aber mit vier
+   Speisen (Pott Kaffee, Bagels, Kuchen, Suppen). Darum etwas
+   schmalere Abstände; Überschrift und Kaffee-Text mittig.
+   Unter 1100 px zwei Spalten, am Handy (siehe .speisen-raster
+   im Handy-Teil) untereinander. */
+.kommode-angebot {
+  text-align: center;
+}
+
+.kommode-angebot .kommode-karten-text {
+  margin: 28px auto 0;
+  color: var(--muted);
+}
+
+.kommode-angebot .speisen-raster {
+  grid-template-columns: repeat(4,minmax(0,1fr));
+}
+
+.kommode-angebot .speise {
+  padding: 10px 28px;
+}
+
+@media (max-width: 1100px) and (min-width: 801px) {
+  .kommode-angebot .speisen-raster {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    row-gap: 40px;
+  }
+  /* in der zweiten Zeile keine Linie am linken Rand */
+  .kommode-angebot .speise:nth-child(3) {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .kommode-angebot .speisen-raster {
+    grid-template-columns: 1fr;
+  }
+  .kommode-angebot .speise {
+    padding: 40px 0;
+  }
+}
+
+/* Preis im Pott-Kaffee-Titel nicht auseinanderreißen („1,50 €.“) */
+.ohne-umbruch {
+  white-space: nowrap;
+}
+
+/* ============================================================
+   9c. UNTERSEITE KAFFEEFAHRRAD (kaffeefahrrad-mieten.html)
+   ------------------------------------------------------------
+   Bewusst schlank: Einleitung mit dem gezeichneten Rad, Karte,
+   ein Foto und das Anfrageformular. Alles andere kommt aus den
+   Bausteinen der Danziger Seite.
+   ============================================================ */
+
+/* Das Rad unter der Überschrift, leicht schief (wackelt beim
+   Reinscrollen, siehe script.js). Die Klasse nutzt auch catering.html
+   für den Pott Kaffee. */
+.fahrrad-figur {
+  width: 300px;
+  margin-top: 30px;
+  rotate: -3deg;
+}
+
+/* Espressomaschine und Kaffeefahrrad in der Karte: breit gezeichnet,
+   brauchen mehr Platz – beide gleich groß, damit die Überschriften
+   daneben auf einer Höhe stehen */
+.karten-vignette[src*="espressomaschine"],
+.karten-vignette.fahrrad-vignette {
+  width: 190px;
+  rotate: 0deg;
+}
+
+/* Foto „Wie funktioniert's?“: Bildausschnitt etwas nach links,
+   damit der Barista am Rad gut im Bild bleibt */
+.fahrrad-foto-section .section-foto {
+  object-position: 35% 50%;
+}
+
+/* ---------- Anfrageformular ----------
+   Links Überschrift + Becher, rechts die Felder. Felder nur mit
+   feiner Linie unten (wie Schreibpapier), Beschriftung in der
+   Schreibmaschinenschrift wie die Dachzeilen. */
+.anfrage-einleitung {
+  font-size: clamp(21px,1.8vw,25px);
+  font-style: italic;
+  color: var(--muted);
+  margin-top: 22px;
+}
+
+.anfrage-figur {
+  width: 150px;
+  margin-top: 40px;
+  rotate: 6deg;
+}
+
+.anfrage-formular {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.formular-feld {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formular-feld label {
+  font-family: var(--schreibmaschine);
+  font-size: 13px;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.formular-feld input,
+.formular-feld textarea {
+  font: inherit;
+  font-size: 19px;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: 8px 0;
+  width: 100%;
+}
+
+/* Textfeld mit ganz feinem Rahmen, damit man sieht, wo man schreibt */
+.formular-feld textarea {
+  border: 1px solid var(--line);
+  padding: 10px 12px;
+  resize: vertical;
+}
+
+/* Fokus: Die Linie wird rosa UND doppelt so dick (per Schatten, damit
+   nichts verrutscht). Nur die Farbe zu ändern, wäre für manche Menschen
+   nicht zu erkennen. Der Browser-Rahmen (outline) entfällt dafür. */
+.formular-feld input:focus,
+.formular-feld textarea:focus {
+  outline: none;
+  border-color: var(--markise-text);
+}
+
+.formular-feld input:focus {
+  box-shadow: 0 1px 0 var(--markise-text);
+}
+
+.formular-feld textarea:focus {
+  box-shadow: 0 0 0 1px var(--markise-text);
+}
+
+.formular-hinweis {
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.formular-hinweis a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* Senden-Knopf: dunkles Kaffeebraun, Schrift wie die Dachzeilen */
+.formular-knopf {
+  align-self: flex-start;
+  font-family: var(--schreibmaschine);
+  font-size: 14px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: var(--ink);
+  padding: 16px 34px;
+  transition: background .2s;
+}
+
+/* Dunkleres Rosa, damit die helle Schrift darauf gut lesbar bleibt */
+.formular-knopf:hover,
+.formular-knopf:focus-visible {
+  background: var(--markise-text);
+}
+
+/* Fokusrahmen in Kaffeebraun (die Schrift ist hell, ein heller
+   Rahmen wäre auf dem Papier unsichtbar) */
+.formular-knopf:focus-visible {
+  outline-color: var(--ink);
+}
+
+/* Fehlermeldungen des Formulars (kommen aus PHP, oben in
+   kaffeefahrrad-mieten.html): klein, in Markisenfarbe, direkt unter dem Feld */
+.formular-fehler {
+  font-size: 15px;
+  color: var(--markise-text);
+}
+
+/* Sammelhinweis oben im Formular („Bitte prüf die markierten Felder.“) */
+.formular-fehler-allgemein {
+  font-size: 17px;
+  border-left: 2px solid var(--markise-text);
+  padding-left: 12px;
+}
+
+/* Fehlerhaftes Feld: Linie in Markisenfarbe */
+.formular-feld [aria-invalid="true"] {
+  border-color: var(--markise-text);
+}
+
+/* Honigtopf-Feld gegen Spam-Bots: für Menschen unsichtbar, aber nicht
+   mit display:none (das erkennen manche Bots und lassen es dann leer) */
+.honigtopf {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Danke-Meldung nach dem Absenden (ersetzt das Formular) */
+.formular-danke-titel {
+  font-size: 30px;
+  font-style: italic;
+  color: var(--markise);
+  margin-bottom: 12px;
+}
+
+@media (max-width: 800px) {
+  .fahrrad-figur {
+    width: 220px;
+  }
+
+  .anfrage-figur {
+    width: 110px;
+    margin-top: 24px;
+  }
+
+  .formular-knopf {
+    align-self: stretch;
+  }
+}
+
+/* ============================================================
+   9d. UNTERSEITE KONTAKT (kontakt.html)
+   Bewusst schlicht: Startbild wie die anderen Unterseiten, darunter
+   ein ruhiger, mittiger Block mit Einladung und E-Mail-Adresse.
+   ============================================================ */
+
+/* Das Foto ist innen sehr dunkel und draußen hell – Ausschnitt so,
+   dass Fenster und Markise gut im Bild sind */
+.kontakt-startbild .startbild-foto {
+  object-position: 50% 40%;
+}
+
+/* Ganze Bildschirmhöhe, damit alles auf einen Blick zu sehen ist */
+.kontakt-startbild {
+  height: 100svh;
+  min-height: 620px;
+  max-height: none;
+}
+
+/* Etwas stärker abdunkeln als auf den anderen Seiten, weil hier
+   längerer Text auf dem Foto steht */
+.kontakt-startbild .startbild-abdunklung {
+  background: linear-gradient(180deg,rgba(40,24,13,.75),rgba(40,24,13,0) 160px),
+    rgba(30,18,10,.55);
+}
+
+/* Die „Bühne“: Logo, Einladung und Adresse untereinander, mittig */
+.kontakt-buehne {
+  position: absolute;
+  inset: 100px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Logo hier nicht absolut positioniert (wie sonst im Startbild),
+   sondern ganz normal im Fluss der Bühne, und kleiner */
+.kontakt-buehne .startbild-logo {
+  position: static;
+  margin-bottom: 44px;
+}
+
+.kontakt-buehne .startbild-logo img {
+  width: clamp(170px, 17vw, 240px);
+}
+
+.kontakt-einladung {
+  max-width: 680px;
+  font-size: 26px;
+  font-style: italic;
+  line-height: 1.45;
+  margin-bottom: 28px;
+}
+
+/* Die Adresse: groß, cremefarben mit feiner Linie, beim Drüberfahren
+   in Markisenfarbe. Ohne JavaScript steht hier (at)/(punkt). */
+.kontakt-adresse {
+  font-size: 30px;
+}
+
+.kontakt-adresse a {
+  color: var(--cream);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 4px;
+  transition: color .2s;
+}
+
+.kontakt-adresse a:hover,
+.kontakt-adresse a:focus-visible {
+  color: var(--markise);
+}
+
+@media (max-width: 800px) {
+  .kontakt-buehne .startbild-logo {
+    margin-bottom: 30px;
+  }
+
+  .kontakt-einladung {
+    font-size: 21px;
+  }
+
+  .kontakt-adresse {
+    font-size: 22px;
+  }
+}
+
+/* ============================================================
+   9e. UNTERSEITE CATERING (catering.html)
+   Fast alles kommt aus vorhandenen Bausteinen (Startbild mit großem
+   Thema, Einleitung, Bildkacheln, Foto-Bereich). Hier nur die
+   E-Mail-Adresse im Foto-Bereich; die Bildkacheln stehen weiter
+   unten bei „Catering: zwei Bildkacheln“.
+   ============================================================ */
+
+/* E-Mail-Adresse im Foto-Bereich: etwas kleiner als auf kontakt.html */
+.catering-adresse {
+  font-size: 24px;
+  margin-top: 18px;
+}
+
+@media (max-width: 800px) {
+  .catering-adresse {
+    font-size: 19px;
+  }
+}
+
+/* Kaffeefahrrad: dieselbe Adresse, aber auf hellem Grund
+   → dunkle Schrift statt Creme, beim Drüberfahren Markisenfarbe */
+.fahrrad-adresse a {
+  color: var(--ink);
+}
+
+.fahrrad-adresse a:hover,
+.fahrrad-adresse a:focus-visible {
+  color: var(--markise-text);
+}
+
+/* ============================================================
+   KOMMODE: TASSE VON OBEN (statt des Schweins)
+   Cappuccino mit Latte Art, von oben fotografiert (freigestellt).
+   Liegt rechts unten auf dem Foto „Auf einen Kaffee in die
+   Kommode?“ und ragt zu einem Drittel in den Fußbereich.
+   Beim Scrollen schiebt sie sich an ihren Platz (script.js).
+   ============================================================ */
+.figur-tasse-oben {
+  position: absolute;
+  right: -40px; /* Desktop: groß, nur leicht angeschnitten am rechten Rand */
+  bottom: -40px; /* ragt nur knapp in den Fußbereich, damit „Komm vorbei!“ frei bleibt */
+  z-index: 2; /* über dem Fußbereich */
+  width: 860px;
+  max-width: none;
+  pointer-events: none;
+  /* eigene Ebene: der große weiche Schatten muss so beim Scrollen
+     nicht jedes Mal neu berechnet werden */
+  will-change: transform;
+  /* weicher, rundum gleicher Schatten ohne Versatz */
+  filter: drop-shadow(0 0 40px rgba(0,0,0,.5));
+}
+
+@media (max-width: 800px) {
+  /* Handy: unter dem Text Platz schaffen, Tasse kleiner */
+  .besuch-foto-section:has(.figur-tasse-oben) .foto-inhalt {
+    padding-bottom: 300px;
+  }
+
+  /* 160 % der früheren Größe (240 px); rutscht rechts über den Rand
+     (die Section schneidet seitlich ab: overflow-x: clip, also kein
+     seitliches Wackeln) und sitzt eher oben im Foto als unten im
+     Fußbereich */
+  .figur-tasse-oben {
+    width: 384px;
+    right: -130px;
+    bottom: -20px;
+  }
+}
+
+/* ============================================================
+   STARTBILD MIT GROSSEM THEMA (Catering, später evtl. Kaffeefahrrad)
+   Umgedreht: Das Logo wird klein, darunter steht das Thema der
+   Seite groß in der Garamond – damit man sofort sieht, worum es geht.
+   Fett gibt es die Garamond hier nicht (nur normal/kursiv geladen),
+   darum wirkt das Wort über die Größe.
+   ============================================================ */
+.startbild-thema {
+  gap: 22px;
+}
+
+.startbild-thema img {
+  width: clamp(170px, 16vw, 240px); /* Logo groß, Wort darunter kleiner */
+}
+
+.startbild-thema .startbild-standort {
+  font-family: var(--serif);
+  /* in Großbuchstaben, etwas kleiner und leicht gesperrt,
+     damit das Wort nicht zu wuchtig wirkt */
+  font-size: clamp(34px, 4.8vw, 76px);
+  line-height: 1;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+/* Den Ausgleich fürs breite Sperren (margin-right: -.3em) braucht das
+   große Wort nicht */
+.startbild-thema .standort-strasse {
+  margin-right: -.08em; /* gleicht die Sperrung hinter dem letzten Buchstaben aus */
+}
+
+/* Langes Wort („KAFFEEFAHRRAD“, 13 Buchstaben): am Handy an die
+   Bildschirmbreite gekoppelt, damit es in eine Zeile passt */
+@media (max-width: 800px) {
+  .startbild-thema-lang .startbild-standort {
+    font-size: 6.2vw;
+  }
+}
+
+/* Startbild mit großem Thema: stärker abdunkeln, damit das Wort gut
+   lesbar ist – oben Verlauf für die Kopfleiste, in der Mitte (hinter
+   Logo und Wort) ein weicher brauner Schein, rundum leicht braun */
+.startbild:has(.startbild-thema) .startbild-abdunklung {
+  background:
+    linear-gradient(180deg, rgba(40,24,13,.7), rgba(40,24,13,0) 180px),
+    radial-gradient(ellipse 65% 50% at 50% 55%, rgba(45,27,15,.75), rgba(45,27,15,0)),
+    rgba(45,27,15,.55);
+}
+
+/* ============================================================
+   BILDKACHELN KOMMODE
+   Oben wie gehabt: Theke groß links, Latte Art rechts (hier über
+   beide oberen Zeilen). Darunter eine Reihe mit drei echten
+   Quadraten – die Fotos liegen nur quadratisch vor und werden so
+   nicht beschnitten (aspect-ratio statt fester Zeilenhöhe).
+   ============================================================ */
+/* Obere Reihe: nur eine Zeile (statt zwei) – Theke breit (6 Spalten),
+   Latte Art (3) und das Hochformat (3). Die Höhe ist so gewählt, dass
+   das Hochformat ungefähr 3:4 bleibt; dadurch wird die ganze Collage
+   niedriger als vorher. */
+.bildkacheln-kommode {
+  grid-template-rows: clamp(260px,29vw,520px) auto;
+}
+
+.bildkacheln-kommode .kachel-1 { grid-column: 1 / 7; grid-row: 1; }
+.bildkacheln-kommode .kachel-2 { grid-column: 7 / 10; grid-row: 1; }
+.kachel-hochkant { grid-column: 10 / 13; grid-row: 1; }
+
+/* Untere Reihe: zwei Quadrate (je 3 Spalten) bestimmen die Höhe,
+   rechts füllt das HU-Querformat die restlichen 6 Spalten */
+.kachel-quadrat {
+  grid-column: span 3;
+  grid-row: 2;
+  aspect-ratio: 1;
+}
+
+.kachel-quer {
+  grid-column: 7 / 13;
+  grid-row: 2;
+  /* „contain: size“: das Querformat bringt keine eigene Höhe mit, sondern
+     übernimmt die Höhe der Quadrate; oben und unten wird per object-fit
+     beschnitten, so bleibt die Reihe bündig */
+  contain: size;
+}
+
+@media (max-width: 800px) {
+  /* Handy: Theke oben breit, darunter im Zweierraster
+     Latte Art + Hochformat, dann die drei Quadrate */
+  .bildkacheln-kommode {
+    grid-template-rows: none;
+  }
+
+  .bildkacheln-kommode .kachel-2,
+  .kachel-hochkant,
+  .kachel-quadrat {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .bildkacheln-kommode .kachel-1 {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  /* Handy: die zwei Quadrate nebeneinander, das HU-Querformat
+     darunter über die ganze Breite */
+  .kachel-quer {
+    grid-column: 1 / -1;
+    grid-row: auto;
+    /* Handy: wieder eigene Höhe, leicht gestutztes Querformat */
+    contain: none;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* ---------- Danziger: Schwein wackelt und fliegt davon ----------
+   Fährt man mit der Maus über das Schwein im Foto „Komm vorbei.“
+   (am Handy: antippen), wackelt es kurz und fliegt dann nach links
+   oben aus dem Bild. Nach ein paar Sekunden schwebt es wieder an
+   seinen Platz zurück. Die Klassen setzt script.js.
+   Wir bewegen nur „translate“ und „rotate“ – „transform“ gehört
+   weiter dem Scroll-Einflug aus script.js, beides addiert sich.
+   Bei „Bewegung reduzieren“ bleibt es sitzen (siehe Abschnitt 6). */
+.figur-schwein.schwein-fliegt-davon {
+  animation: schwein-davonfliegen 2.4s linear forwards;
+  pointer-events: none; /* im Flug nicht noch einmal auslösen */
+}
+
+/* Rückkehr: langsam vom rechten Bildrand zurück an den Platz schweben */
+.figur-schwein.schwein-kommt-zurueck {
+  animation: schwein-zurueckkommen 4s cubic-bezier(.2,.6,.3,1);
+}
+
+@keyframes schwein-davonfliegen {
+  /* Das Schwein ist gespiegelt (Schnauze links): Ein positiver
+     Drehwinkel dreht es im Uhrzeigersinn, die Schnauze geht nach oben.
+     1) wackeln (Grundneigung 8°, leicht hin und her) */
+  0%   { rotate: 8deg;  translate: 0 0; animation-timing-function: ease-in-out; }
+  6%   { rotate: 2deg; }
+  12%  { rotate: 14deg; }
+  18%  { rotate: 2deg; }
+  24%  { rotate: 12deg; }
+  30%  { rotate: 8deg; }
+  /* 2) kurz innehalten … */
+  38%  { rotate: 8deg; }
+  /* 3) … Schnauze ca. 10° höher, nach oben peilen … */
+  46%  { rotate: 18deg; }
+  54%  { rotate: 18deg; translate: 0 0; }
+  /* 4) … kurz zurücksetzen, Schwung holen … */
+  62%  { rotate: 14deg; translate: 14px 10px; animation-timing-function: cubic-bezier(.5,0,.9,.4); }
+  /* 5) … und schnell im 40°-Winkel nach links oben aus dem Bild
+     (gleiche Einheit vw für beide Richtungen, damit der Winkel stimmt:
+     tan 40° ≈ 0,84 → 110vw nach links, 92vw nach oben) */
+  100% { rotate: 22deg; translate: -110vw -92vw; }
+}
+
+@keyframes schwein-zurueckkommen {
+  /* startet ganz rechts außerhalb des Bildes (wie beim Scroll-Einflug) */
+  0%   { translate: 100vw 0; rotate: 8deg; }
+  100% { translate: 0 0; rotate: 8deg; }
+}
+
+/* Handy: kleiner Wink – das Schwein wackelt einmal kurz von selbst,
+   damit man merkt, dass man es antippen kann (setzt script.js) */
+.figur-schwein.schwein-wackelt {
+  animation: schwein-wink .9s ease-in-out;
+}
+
+@keyframes schwein-wink {
+  0%, 100% { rotate: 8deg; }
+  20% { rotate: 2deg; }
+  40% { rotate: 14deg; }
+  60% { rotate: 3deg; }
+  80% { rotate: 12deg; }
+}
+
+/* ---------- Catering: zwei Bildkacheln nebeneinander ----------
+   Linkes Foto etwas schmaler (fast quadratisches Format), rechtes
+   breiter (Querformat). Beide gleich hoch.
+   Die Einleitung darüber ist unten knapper, damit die Bilder gleich
+   anschließen und man sieht, dass die Seite weitergeht. */
+.catering-einleitung {
+  padding-bottom: 40px;
+}
+
+.bildkacheln-catering {
+  grid-auto-rows: clamp(260px,30vw,520px);
+  margin-bottom: var(--abstand);
+}
+
+.bildkacheln-catering .kachel:first-child { grid-column: 1 / 6; }
+.bildkacheln-catering .kachel:last-child  { grid-column: 6 / 13; }
+
+/* Handy: untereinander, volle Breite, flacher */
+@media (max-width:800px) {
+  .catering-einleitung {
+    padding-bottom: 30px;
+  }
+
+  /* Abstand nach unten (var(--abstand)) bleibt wie am Desktop */
+  .bildkacheln-catering {
+    grid-auto-rows: auto;
+  }
+
+  .bildkacheln-catering .kachel:first-child,
+  .bildkacheln-catering .kachel:last-child {
+    grid-column: 1 / -1;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- Kaffeefahrrad & Catering: Anfrage-Knopf im Startbild ----------
+   Statt des kleinen kursiven Hinweises ein richtiger Knopf – im Stil
+   des Formular-Knopfs („Anfrage senden“): Schreibmaschinenschrift in
+   Großbuchstaben, hier aber umgekehrt hell auf dem dunklen Foto
+   (cremefarbener Grund, dunkle Schrift). Der Pfeil bleibt darunter. */
+.startbild-knopf {
+  bottom: 40px;
+  gap: 12px;
+}
+
+.startbild-knopf span:first-child {
+  font-family: var(--schreibmaschine);
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: var(--cream);
+  padding: 16px 34px;
+  transition: background .2s, color .2s;
+}
+
+.startbild-knopf:hover span:first-child {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.startbild-knopf span:last-child {
+  color: var(--cream);
+}
+
+/* Instagram-Link im Fußbereich, Tablet & Handy: Die E-Mail ist dort
+   (bis 600px) ausgeblendet, Instagram steht allein unter
+   „Bis zum nächsten Kaffee.“ */
+@media (max-width:800px) {
+  .instagram-link {
+    margin-left: 0;
+    display: inline-block;
+    margin-top: 10px;
+  }
+}
+
+/* ============================================================
+   9f. RECHTSTEXTE: impressum.html und datenschutz.html
+   Schlichte, gut lesbare Textspalte unter der festen Kopfleiste.
+   ============================================================ */
+.rechtstext {
+  max-width: 760px;
+  padding-block: 150px var(--abstand);
+}
+
+.rechtstext h1 {
+  font-size: clamp(38px,5vw,64px);
+  margin-bottom: 40px;
+}
+
+.rechtstext h2 {
+  font-size: 22px;
+  margin: 38px 0 10px;
+}
+
+.rechtstext p {
+  margin-bottom: 14px;
+}
+
+.rechtstext a {
+  border-bottom: 1px solid currentColor;
+}
+
+@media (max-width:800px) {
+  .rechtstext {
+    padding-top: 110px;
+  }
+}
+
+/* Rechtstexte: Zwischenüberschriften sofort zeigen, ohne Einblenden.
+   script.js gibt allen h2 in <main> die Klasse „blendet-ein“; die
+   Bewegung läuft über „translate“ – darum hier translate: none (mit
+   „transform: none“ blieben die Überschriften 24px nach unten versetzt). */
+.rechtstext h2.blendet-ein {
+  opacity: 1;
+  translate: none;
+  transition: none;
+}
+
+/* Impressum: Website-Credit – Studioname groß in Handschrift (ist
+   selbst der Link), darunter klein in Schreibmaschine
+   „Brand & Website Studio · Name“ */
+.impressum-credit {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.impressum-credit-name {
+  font-family: var(--hand);
+  font-size: 38px;
+  line-height: 1;
+}
+
+.impressum-credit-zusatz {
+  font-family: var(--schreibmaschine);
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #7a6656;
+}
+
+/* ============================================================
+   KAFFEEFAHRRAD: weniger Luft zwischen Einleitung und Kaffeekarte
+   Beide Abschnitte hatten oben und unten den vollen Abstand –
+   zusammen fast 300px Leerraum. Die Karte startet deshalb ohne
+   eigenen oberen Abstand direkt nach der Einleitung.
+   (Erkannt am gezeichneten Rad .fahrrad-figur, auf das direkt die
+   Karte folgt – auf der Catering-Seite folgen erst die Bildkacheln,
+   dort greift die Regel nicht.)
+   ============================================================ */
+.danziger-einleitung:has(.fahrrad-figur) + .menuekarte-section {
+  padding-top: 0;
+}
+
+/* ===== NOTBREMSE GEGEN ABGESCHNITTENEN TEXT (NUR HANDY) =====
+   Nur ein Wort, das allein breiter als der Bildschirm ist (z. B. die
+   E-Mail-Adresse oder ein sehr langes Wort auf einem ganz schmalen
+   Handy), darf innerhalb des Wortes umbrechen. Alle anderen Wörter
+   bleiben ganz. Am Desktop bricht nie ein Wort. */
+@media (max-width: 800px) {
+  body {
+    overflow-wrap: break-word;
+  }
+}

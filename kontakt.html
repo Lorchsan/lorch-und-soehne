@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kontakt zu Lorch &amp; Söhne in Berlin: Fragen zu unseren Cafés, Catering oder dem Kaffeefahrrad – schreib uns eine E-Mail.">
+  <meta name="theme-color" content="#35271e">
+  <title>Kontakt · Lorch & Söhne – Cafés in Berlin</title>
+  <!-- Hauptadresse dieser Seite: so weiß Google, dass Testkopien nicht das Original sind -->
+  <link rel="canonical" href="https://lorchundsoehne.de/kontakt.html">
+  <!-- Startbild vorladen: Handy bekommt die kleine Hochformat-Version (-mobil), Desktop die große -->
+  <link rel="preload" href="assets/bilder/lorch-und-soehne-danziger-strasse-fensterbar-markise-mobil.webp" as="image" fetchpriority="high" media="(max-width: 800px)">
+  <link rel="preload" href="assets/bilder/lorch-und-soehne-danziger-strasse-fensterbar-markise.webp" as="image" fetchpriority="high" media="(min-width: 801px)">
+  <link rel="preload" href="assets/fonts/ebgaramond-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Favicon: braune Tasse (assets/logos, 64 px); fürs iPhone weiterhin die Logo-Tasse -->
+  <link rel="icon" type="image/webp" href="assets/bilder/lorch-und-soehne-favicon-whole-cup.webp">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css?v=76">
+  <script src="script.js?v=70" defer></script>
+</head>
+<body>
+  <!--
+    LORCH & SÖHNE – UNTERSEITE KONTAKT
+    Bewusst kurz: Ein bildschirmfüllendes Foto (Blick aus dem dunklen
+    Gastraum durchs Fenster unter die Markise, Danziger Straße), darauf
+    mittig Logo, Einladung und E-Mail-Adresse → Fußbereich.
+    Eigene Regeln in style.css im Block „UNTERSEITE KONTAKT“.
+
+    SPAMSCHUTZ DER E-MAIL-ADRESSE
+    Die Adresse steht nirgends vollständig im HTML. Sie liegt in zwei
+    rückwärts geschriebenen Teilen in data-Attributen
+    (data-name / data-domain) und wird erst von script.js im Browser
+    zusammengesetzt und als klickbarer mailto-Link eingefügt.
+    Einfache Bots, die das HTML nach „…@….de“ durchsuchen, finden
+    so nichts. Ohne JavaScript steht dort „christoph.lorch (at)
+    posteo (punkt) de“ – für Menschen lesbar, für Bots schwerer.
+  -->
+
+  <a class="sprunglink" href="#inhalt">Zum Inhalt</a>
+
+  <!-- ===== STARTBILD & NAVIGATION ===== -->
+  <!-- Ein <div> statt <header>, weil <main> hier im Startbild liegt -->
+  <div class="startbild kontakt-startbild" id="anfang">
+    <!-- Bis 800 px Breite lädt der Browser den hochformatigen Ausschnitt (-mobil, viel kleiner) -->
+    <picture>
+      <source media="(max-width: 800px)" srcset="assets/bilder/lorch-und-soehne-danziger-strasse-fensterbar-markise-mobil.webp">
+      <img class="startbild-foto" src="assets/bilder/lorch-und-soehne-danziger-strasse-fensterbar-markise.webp" width="1920" height="1280" alt="Blick aus dem dunklen Gastraum durch das große Fenster: Fensterbar mit Hockern, darüber die rot-weiß gestreifte Markise" fetchpriority="high">
+    </picture>
+    <div class="startbild-abdunklung"></div>
+    <div class="kopfleiste">
+      <div class="standorte-links">
+        <a class="home-tasse" href="index.html" aria-label="Lorch & Söhne – Startseite"><img class="logo-hell" src="assets/bilder/lorch-und-soehne-logo-tasse.webp" width="360" height="420" alt=""></a>
+      </div>
+      <button class="navigation-button" type="button" popovertarget="navigation">
+        <span class="sr-only">Menü</span><span class="navigation-icon" aria-hidden="true"></span>
+      </button>
+      <nav id="navigation" popover aria-label="Hauptnavigation">
+        <a class="nav-home" href="index.html">Home</a>
+        <div class="ausklappmenue">
+          <a href="index.html#espressobars">Cafés <span class="ausklapp-pfeil" aria-hidden="true">▾</span></a>
+          <div class="ausklappmenue-liste">
+            <a href="cafe-danziger-strasse.html">Danziger Straße</a>
+            <a href="cafe-kommode.html">Kommode</a>
+            <!-- zusätzlich zum eigenen Menüpunkt: das Rad als „drittes Café“ -->
+            <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+          </div>
+        </div>
+        <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+        <a href="catering.html">Catering</a>
+        <a href="index.html#danziger">Anfahrt</a>
+        <a href="kontakt.html" aria-current="page">Kontakt</a>
+      </nav>
+    </div>
+    <!-- ===== KONTAKT direkt auf dem Foto =====
+         Logo (Hauptüberschrift), Einladung und Adresse stehen hell und
+         mittig auf dem Bild – alles auf einen Blick, ohne Scrollen.
+         script.js braucht das Logo-Bild in .startbild-logo für die
+         mitlaufende Kopfleiste. -->
+    <main id="inhalt" class="kontakt-buehne">
+      <h1 class="startbild-logo">
+        <img src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" class="logo-hell">
+        <span class="startbild-standort"><span class="standort-strasse">Kontakt</span></span>
+      </h1>
+      <p class="kontakt-einladung">Du möchtest ein Catering buchen, hast eine Anfrage, interessierst dich für das Kaffeefahrrad? Schreib gern hier:</p>
+      <!-- Wird von script.js zum mailto-Link (siehe Kommentar oben) -->
+      <p class="kontakt-adresse email-geschuetzt" data-name="hcrol.hpotsirhc" data-domain="ed.oetsop">E-Mail schreiben</p>
+    </main>
+  </div>
+
+  <!-- ===== ANFAHRT: BEIDE CAFÉS =====
+       Gleicher Baustein wie auf der Startseite („Lust auf einen Kaffee?“).
+       Adressen und Öffnungszeiten kommen aus inhalte.yml
+       (python3 aktualisieren.py). -->
+  <section class="besuch-section inhaltsbreite" aria-labelledby="besuch-titel">
+    <div class="besuch-ueberschrift">
+      <h2 id="besuch-titel">So findest du uns</h2>
+    </div>
+      <div class="adressen-raster">
+        <article class="adresse">
+          <h3 class="dachzeile">Danziger Straße · Prenzlauer Berg</h3>
+          <address><!--i:danziger.adresse.strasse-->Danziger Straße 25<!--/i--><br><!--i:danziger.adresse.plz_ort-->10435 Berlin<!--/i--></address>
+          <h4>Öffnungszeiten</h4>
+          <dl class="oeffnungszeiten">
+            <!-- INHALT danziger.oeffnungszeiten kurz ANFANG -->
+            <div>
+              <dt>Mo–Fr</dt>
+              <dd>08:00–17:00 Uhr</dd>
+            </div>
+            <div>
+              <dt>Sa–So</dt>
+              <dd>09:00–17:00 Uhr</dd>
+            </div>
+            <!-- INHALT ENDE -->
+          </dl>
+          <h4>Anreise</h4>
+          <p class="anfahrt">Tram M10, Haltestelle Husemannstraße. Alternativ U2 bis Eberswalder Straße, von dort ein kurzer Spaziergang.</p>
+          <a class="textlink" data-route="danziger" href="https://www.google.com/maps/dir/?api=1&amp;destination=Danziger+Stra%C3%9Fe+25%2C+10435+Berlin" target="_blank" rel="noopener noreferrer">Route planen <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="adresse">
+          <h3 class="dachzeile">Kommode · Bebelplatz</h3>
+          <address><!--i:kommode.adresse.gebaeude-->Alte Bibliothek der Humboldt-Universität<!--/i--><br><!--i:kommode.adresse.strasse-->Bebelplatz 2<!--/i-->, <!--i:kommode.adresse.plz_ort-->10117 Berlin<!--/i--></address>
+          <h4>Öffnungszeiten</h4>
+          <dl class="oeffnungszeiten">
+            <!-- INHALT kommode.oeffnungszeiten kurz ANFANG -->
+            <div>
+              <dt>Mo–Fr</dt>
+              <dd>08:00–18:00 Uhr</dd>
+            </div>
+            <div>
+              <dt>Sa–So</dt>
+              <dd>geschlossen</dd>
+            </div>
+            <!-- INHALT ENDE -->
+          </dl>
+          <h4>Anreise</h4>
+          <p class="anfahrt">U5 oder U6 bis Unter den Linden. Von dort zu Fuß zum Bebelplatz und zur Alten Bibliothek.</p>
+          <a class="textlink" data-route="kommode" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lorch+%26+S%C3%B6hne+Kommode%2C+Bebelplatz+2%2C+10117+Berlin" target="_blank" rel="noopener noreferrer">Route planen <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+  </section>
+
+
+  <!-- ===== FUSSBEREICH (wie auf der Startseite) ===== -->
+  <footer class="fussbereich">
+    <div class="inhaltsbreite fussbereich-oben">
+      <a href="index.html" aria-label="Lorch & Söhne – zur Startseite"><img class="logo-hell fussbereich-logo" src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" loading="lazy"></a>
+      <div>
+        <p class="handschrift">Bis zum nächsten Kaffee.</p>
+        <!-- Keine E-Mail-Adresse im Footer (steht nur auf der Kontaktseite) -->
+        <a class="email-link" href="kontakt.html">Kontakt</a>
+        <!-- Instagram-Profil, öffnet in neuem Tab -->
+        <a class="instagram-link" href="https://www.instagram.com/lorch_und_soehne/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="inhaltsbreite fussbereich-unten">
+      <!-- Dank an die Partner (Kaffeebohnen und Bagels), Links öffnen in neuem Tab -->
+      <p class="fussbereich-partner">Ohne unsere Partner <a href="https://www.passenger-coffee.de/" target="_blank" rel="noopener">PASSENGER Coffee</a> und <a href="https://www.salomon-bagels.de/" target="_blank" rel="noopener">Salomon Bagels</a> wären wir nur halb so wach und halb so satt. Danke, dass wir mit euch unseren Gästen jeden Tag so viel Gutes tun können!</p>
+      <!-- Pflichtseiten -->
+      <nav class="fussbereich-rechtliches" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a class="fussbereich-credit" href="https://cococrema.de/" target="_blank" rel="noopener">Website: Cococrema</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Kaffeefahrrad mieten in Berlin: mobile Espressobar mit Barista und Siebträger für Events, Messen und Feiern – Espresso, Cappuccino, Latte Macchiato und Matcha Latte.">
+  <meta name="theme-color" content="#35271e">
+  <title>Lorch &amp; Söhne Kaffeefahrrad zum Mieten – mit Barista</title>
+  <!-- Hauptadresse dieser Seite: so weiß Google, dass Testkopien nicht das Original sind -->
+  <link rel="canonical" href="https://lorchundsoehne.de/kaffeefahrrad-mieten.html">
+  <!-- Startbild vorladen: Handy bekommt die kleine Hochformat-Version (-mobil), Desktop die große -->
+  <link rel="preload" href="assets/bilder/kaffeefahrrad/lorch-und-soehne-kaffeefahrrad-kulturbrauerei-mobil.webp" as="image" fetchpriority="high" media="(max-width: 800px)">
+  <link rel="preload" href="assets/bilder/kaffeefahrrad/lorch-und-soehne-kaffeefahrrad-kulturbrauerei.webp" as="image" fetchpriority="high" media="(min-width: 801px)">
+  <link rel="preload" href="assets/fonts/ebgaramond-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Favicon: braune Tasse (assets/logos, 64 px); fürs iPhone weiterhin die Logo-Tasse -->
+  <link rel="icon" type="image/webp" href="assets/bilder/lorch-und-soehne-favicon-whole-cup.webp">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css?v=76">
+  <script src="script.js?v=70" defer></script>
+</head>
+<body>
+  <!--
+    Aufbau (von oben nach unten) – bewusst schlank, nur zwei Fotos:
+    Startbild → Einleitung mit dem Rad → Kaffeekarte (Karte mit
+    Doppelrahmen) → Foto „Wie funktioniert's?“ → Anfrage per
+    E-Mail (#anfrage) → Fußbereich.
+    Bausteine wie auf den anderen Unterseiten; was nur hier vorkommt,
+    steht in style.css im Block „UNTERSEITE KAFFEEFAHRRAD“.
+    Fotos und Becher liegen in assets/bilder/kaffeefahrrad/.
+  -->
+
+  <a class="sprunglink" href="#inhalt">Zum Inhalt</a>
+
+  <!-- ===== STARTBILD & NAVIGATION =====
+       Das Kaffeefahrrad vor der Backsteinwand (Kulturbrauerei). -->
+  <header class="startbild" id="anfang">
+    <!-- Bis 800 px Breite lädt der Browser den hochformatigen Ausschnitt (-mobil, viel kleiner) -->
+    <picture>
+      <source media="(max-width: 800px)" srcset="assets/bilder/kaffeefahrrad/lorch-und-soehne-kaffeefahrrad-kulturbrauerei-mobil.webp">
+      <img class="startbild-foto" src="assets/bilder/kaffeefahrrad/lorch-und-soehne-kaffeefahrrad-kulturbrauerei.webp" width="1920" height="1080" alt="Das Lorch & Söhne Kaffeefahrrad mit Sonnendach, WEGA-Hebelmaschine und Kaffeemühle vor einer Backsteinfassade" fetchpriority="high">
+    </picture>
+    <div class="startbild-abdunklung"></div>
+    <div class="kopfleiste">
+      <div class="standorte-links">
+        <a class="home-tasse" href="index.html" aria-label="Lorch & Söhne – Startseite"><img class="logo-hell" src="assets/bilder/lorch-und-soehne-logo-tasse.webp" width="360" height="420" alt=""></a>
+      </div>
+      <button class="navigation-button" type="button" popovertarget="navigation">
+        <span class="sr-only">Menü</span><span class="navigation-icon" aria-hidden="true"></span>
+      </button>
+      <nav id="navigation" popover aria-label="Hauptnavigation">
+        <a class="nav-home" href="index.html">Home</a>
+        <div class="ausklappmenue">
+          <a href="index.html#espressobars">Cafés <span class="ausklapp-pfeil" aria-hidden="true">▾</span></a>
+          <div class="ausklappmenue-liste">
+            <a href="cafe-danziger-strasse.html">Danziger Straße</a>
+            <a href="cafe-kommode.html">Kommode</a>
+            <!-- zusätzlich zum eigenen Menüpunkt: das Rad als „drittes Café“ -->
+            <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+          </div>
+        </div>
+        <a href="kaffeefahrrad-mieten.html" aria-current="page">Kaffeefahrrad</a>
+        <a href="catering.html">Catering</a>
+        <!-- Das Rad hat keine feste Adresse: „Anfahrt“ führt zu den
+             Adressen der Cafés auf der Startseite -->
+        <a href="index.html#danziger">Anfahrt</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+    <!-- Das Logo ist die Hauptüberschrift, darunter „Kaffeefahrrad“ -->
+    <h1 class="startbild-logo startbild-thema startbild-thema-lang">
+      <img src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" class="logo-hell">
+      <span class="startbild-standort"><span class="standort-strasse">Kaffeefahrrad<span class="sr-only"> zum Mieten mit Barista</span></span></span>
+    </h1>
+    <a class="startbild-weiter startbild-knopf" href="#anfrage">
+      <span>Kaffeefahrrad anfragen</span><span aria-hidden="true">↓</span>
+    </a>
+  </header>
+
+  <main id="inhalt">
+
+    <!-- ===== EINLEITUNG (editorial, wie Danziger Straße) =====
+         Links Überschrift mit dem gezeichneten Rad (wackelt beim
+         Reinscrollen), rechts der Text. -->
+    <section class="danziger-einleitung inhaltsbreite" aria-labelledby="einleitung-titel">
+      <div class="einleitung-kopf">
+        <h2 id="einleitung-titel">Lorch & Söhne auf dem Fahrrad.</h2>
+        <img class="fahrrad-figur" src="assets/bilder/lorch-und-soehne-kaffeefahrrad-illustration.webp" width="800" height="800" alt="Gezeichnetes Kaffeefahrrad mit Sonnendach und Espressomaschine" loading="lazy">
+      </div>
+      <div class="einleitung-spalte">
+        <p class="einleitung-vorspann">Unseren guten Kaffee gibt es auch vom Kaffeefahrrad. Mit frisch gemahlenen Bohnen von Passenger Coffee und einer professionellen Espressomaschine bereiten unsere Baristas die Kaffeespezialitäten direkt vor Ort zu.</p>
+        <p>Eine kleine Espressobar auf Rädern, die dorthin kommt, wo du sie brauchst.</p>
+        <a class="textlink" href="#anfrage">Kaffeefahrrad anfragen <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <!-- ===== KAFFEEKARTE =====
+         Dieselbe Karte mit Doppelrahmen wie auf der Danziger Seite.
+         Links „Frisch zubereitet vor Ort“ (mit der Espressomaschine),
+         rechts „Kaffee für deine Veranstaltung.“ (mit dem Kaffeefahrrad). -->
+    <section class="menuekarte-section" id="karte" aria-labelledby="karte-titel">
+      <div class="menuekarte">
+        <header class="menuekarte-kopf">
+          <p class="dachzeile">Lorch & Söhne · Kaffeefahrrad</p>
+          <h2 id="karte-titel">Unsere Kaffeekarte</h2>
+        </header>
+
+        <div class="menuekarte-spalten">
+          <div class="menuekarte-spalte">
+            <div class="karten-block">
+              <img class="karten-vignette" src="assets/bilder/lorch-und-soehne-espressomaschine-illustration.webp" width="800" height="800" alt="Gezeichnete Espressomaschine mit zwei Handhebeln" loading="lazy">
+              <h3>Frisch zubereitet vor Ort</h3>
+              <p class="karten-einleitung">Espresso, Americano, Cappuccino, Flat White, Latte Macchiato, Matcha Latte und weitere Kaffeespezialitäten.</p>
+              <p class="karten-einleitung">Dazu Milchalternativen nach Absprache.</p>
+              <p class="karten-hinweis">Das genaue Getränkeangebot und die möglichen Extras stimmen wir für die Veranstaltung ab.</p>
+            </div>
+          </div>
+          <div class="menuekarte-spalte">
+            <div class="karten-block">
+              <img class="karten-vignette fahrrad-vignette" src="assets/bilder/kaffeefahrrad/lorch-und-soehne-kaffeefahrrad-event-illustration.webp" width="800" height="800" alt="Gezeichnetes Kaffeefahrrad im Einsatz bei einem Event" loading="lazy">
+              <h3>Kaffee für deine Veranstaltung.</h3>
+              <p class="karten-einleitung">Für Events, Messen oder deine Feier – das Kaffeefahrrad mit Barista lässt sich flexibel einsetzen und bringt frisch zubereiteten Kaffee mit unseren Passenger-Bohnen zu euch.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WIE FUNKTIONIERT'S? (Foto-Bereich) =====
+         Text auf dem Foto vom Barista am Rad in Mitte. -->
+    <section class="foto-section fahrrad-foto-section" aria-labelledby="ablauf-titel">
+      <img class="section-foto" src="assets/bilder/kaffeefahrrad/lorch-und-soehne-kaffeefahrrad-mitte-barista.webp" width="1920" height="1080" alt="Ein Barista bereitet am Kaffeefahrrad Kaffee zu, im Hintergrund ein belebter Platz mit Marktständen" loading="lazy">
+      <div class="foto-abdunklung"></div>
+      <div class="inhaltsbreite foto-inhalt">
+        <div class="foto-text">
+          <h2 id="ablauf-titel">Wie funktioniert's?</h2>
+          <p>Schreib uns, was du vorhast, wann und wo die Veranstaltung stattfindet und mit wie vielen Gästen du ungefähr rechnest.</p>
+          <p>Wir melden uns bei dir und besprechen die Möglichkeiten.</p>
+          <a class="textlink" href="#anfrage">Kaffeefahrrad anfragen <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ANFRAGEFORMULAR =====
+         Links Überschrift und kurzer Text mit dem To-go-Becher,
+         rechts die geschützte E-Mail-Adresse. -->
+    <section class="danziger-einleitung anfrage-section inhaltsbreite" id="anfrage" aria-labelledby="anfrage-titel">
+      <div class="einleitung-kopf">
+        <h2 id="anfrage-titel">Kaffeefahrrad anfragen</h2>
+        <p class="anfrage-einleitung">Du planst eine Veranstaltung? Schreib uns ein paar Zeilen.</p>
+        <img class="anfrage-figur" src="assets/bilder/kaffeefahrrad/lorch-und-soehne-kaffeefahrrad-to-go-becher-illustration.webp" width="600" height="600" alt="Gezeichneter Kaffeebecher zum Mitnehmen" loading="lazy">
+      </div>
+      <!-- Anfrage per E-Mail (wie auf der Catering-Seite): script.js
+           setzt die Adresse aus den rückwärts gespeicherten Teilen
+           zusammen. Ohne JavaScript führt der Link zur Kontaktseite. -->
+      <div class="einleitung-spalte">
+        <p>Schreib uns, wann und wo deine Veranstaltung stattfindet und mit wie vielen Gästen du ungefähr rechnest. Wir melden uns bei dir.</p>
+        <p class="kontakt-adresse catering-adresse fahrrad-adresse email-geschuetzt" data-name="hcrol.hpotsirhc" data-domain="ed.oetsop"><a href="kontakt.html">E-Mail schreiben</a></p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FUSSBEREICH (wie auf der Startseite) ===== -->
+  <footer class="fussbereich">
+    <div class="inhaltsbreite fussbereich-oben">
+      <a href="index.html" aria-label="Lorch & Söhne – zur Startseite"><img class="logo-hell fussbereich-logo" src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" loading="lazy"></a>
+      <div>
+        <p class="handschrift">Bis zum nächsten Kaffee.</p>
+        <!-- Keine E-Mail-Adresse im Footer (steht nur auf der Kontaktseite) -->
+        <a class="email-link" href="kontakt.html">Kontakt</a>
+        <!-- Instagram-Profil, öffnet in neuem Tab -->
+        <a class="instagram-link" href="https://www.instagram.com/lorch_und_soehne/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="inhaltsbreite fussbereich-unten">
+      <!-- Dank an die Partner (Kaffeebohnen und Bagels), Links öffnen in neuem Tab -->
+      <p class="fussbereich-partner">Ohne unsere Partner <a href="https://www.passenger-coffee.de/" target="_blank" rel="noopener">PASSENGER Coffee</a> und <a href="https://www.salomon-bagels.de/" target="_blank" rel="noopener">Salomon Bagels</a> wären wir nur halb so wach und halb so satt. Danke, dass wir mit euch unseren Gästen jeden Tag so viel Gutes tun können!</p>
+      <!-- Pflichtseiten -->
+      <nav class="fussbereich-rechtliches" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a class="fussbereich-credit" href="https://cococrema.de/" target="_blank" rel="noopener">Website: Cococrema</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Café &amp; Espressobar in Prenzlauer Berg, Danziger Str. 25: Espresso, Cappuccino, Latte Macchiato, Frühstück, getoastete Bagels, selbstgebackener Kuchen und Suppen.">
+  <meta name="theme-color" content="#35271e">
+  <title>Lorch &amp; Söhne – Café im Prenzlauer Berg, Danziger Straße</title>
+  <!-- Hauptadresse dieser Seite: so weiß Google, dass Testkopien nicht das Original sind -->
+  <link rel="canonical" href="https://lorchundsoehne.de/cafe-danziger-strasse.html">
+  <!-- Startbild vorladen: Handy bekommt die kleine Hochformat-Version (-mobil), Desktop die große -->
+  <link rel="preload" href="assets/bilder/lorch-und-soehne-danziger-strasse-theke-kreidetafel-mobil.webp" as="image" fetchpriority="high" media="(max-width: 800px)">
+  <link rel="preload" href="assets/bilder/lorch-und-soehne-danziger-strasse-theke-kreidetafel.webp" as="image" fetchpriority="high" media="(min-width: 801px)">
+  <link rel="preload" href="assets/fonts/ebgaramond-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Favicon: braune Tasse (assets/logos, 64 px); fürs iPhone weiterhin die Logo-Tasse -->
+  <link rel="icon" type="image/webp" href="assets/bilder/lorch-und-soehne-favicon-whole-cup.webp">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="style.css?v=76">
+  <script src="script.js?v=70" defer></script>
+</head>
+<body>
+  <!--
+    LORCH & SÖHNE – UNTERSEITE DANZIGER STRASSE
+    Aufbau (von oben nach unten):
+    Startbild → Einleitung → Bildkacheln → Menükarte (#karte, Getränke
+    und Essen auf einer Karte) → Komm vorbei (#besuch) → Fußbereich.
+    Startbild, Schwein und Fußbereich nutzen
+    dieselben Bausteine wie die Startseite (index.html). Was nur hier
+    vorkommt, steht in style.css im Block „UNTERSEITE DANZIGER STRASSE“.
+  -->
+
+  <a class="sprunglink" href="#inhalt">Zum Inhalt</a>
+
+  <!-- ===== STARTBILD & NAVIGATION =====
+       Blick von der Fensterbar auf die Danziger Straße.
+       Menü wie auf der Startseite, die Links führen dorthin zurück. -->
+  <header class="startbild startbild-danziger" id="anfang">
+    <!-- Bis 800 px Breite lädt der Browser den hochformatigen Ausschnitt (-mobil, viel kleiner) -->
+    <picture>
+      <source media="(max-width: 800px)" srcset="assets/bilder/lorch-und-soehne-danziger-strasse-theke-kreidetafel-mobil.webp">
+      <img class="startbild-foto" src="assets/bilder/lorch-und-soehne-danziger-strasse-theke-kreidetafel.webp" width="1920" height="1280" alt="Die Theke in der Danziger Straße: Kreidetafel mit Getränkepreisen, Espressomaschine, Blumen und Kuchenvitrine" fetchpriority="high">
+    </picture>
+    <div class="startbild-abdunklung"></div>
+    <div class="kopfleiste">
+      <div class="standorte-links">
+        <a class="home-tasse" href="index.html" aria-label="Lorch & Söhne – Startseite"><img class="logo-hell" src="assets/bilder/lorch-und-soehne-logo-tasse.webp" width="360" height="420" alt=""></a>
+      </div>
+      <button class="navigation-button" type="button" popovertarget="navigation">
+        <span class="sr-only">Menü</span><span class="navigation-icon" aria-hidden="true"></span>
+      </button>
+      <nav id="navigation" popover aria-label="Hauptnavigation">
+        <a class="nav-home" href="index.html">Home</a>
+        <div class="ausklappmenue">
+          <a href="index.html#espressobars">Cafés <span class="ausklapp-pfeil" aria-hidden="true">▾</span></a>
+          <div class="ausklappmenue-liste">
+            <a href="cafe-danziger-strasse.html" aria-current="page">Danziger Straße</a>
+            <a href="cafe-kommode.html">Kommode</a>
+            <!-- zusätzlich zum eigenen Menüpunkt: das Rad als „drittes Café“ -->
+            <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+          </div>
+        </div>
+        <a href="kaffeefahrrad-mieten.html">Kaffeefahrrad</a>
+        <a href="catering.html">Catering</a>
+        <!-- „Anfahrt“ springt hier zu „Komm vorbei.“ weiter unten -->
+        <a href="#besuch">Anfahrt</a>
+        <a href="kontakt.html">Kontakt</a>
+      </nav>
+    </div>
+    <!-- Das Logo ist hier die Hauptüberschrift der Seite -->
+    <h1 class="startbild-logo">
+      <img src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" class="logo-hell">
+      <span class="startbild-standort"><span class="standort-strasse"><span class="sr-only">Café &amp; Espressobar </span>Danziger Straße</span><span class="standort-trenner"> · </span><span class="standort-viertel">Prenzlauer Berg</span></span>
+    </h1>
+    <a class="startbild-weiter" href="#karte">
+      <span>Karte ansehen</span><span aria-hidden="true">↓</span>
+    </a>
+  </header>
+
+  <main id="inhalt">
+
+    <!-- ===== EINLEITUNG (editorial) =====
+         Links groß die Überschrift, darunter der Ritter als kleine Vignette.
+         Rechts der Text: erster Absatz als größerer Vorspann mit
+         Initiale, zweiter Absatz normal. Oben eine feine Linie. -->
+
+    <section class="danziger-einleitung inhaltsbreite" aria-labelledby="einleitung-titel">
+      <div class="einleitung-kopf">
+        <p class="dachzeile">Seit 2015 · Prenzlauer Berg</p>
+        <h2 id="einleitung-titel">Unser Café auf der Sonnenseite der Danziger Straße</h2>
+        <!-- Figur aus der Bar: der Ritter mit der Kaffeefahne, reitet beim Scrollen nach links (script.js) -->
+        <img class="einleitung-ritter ritter-nach-rechts" src="assets/bilder/lorch-und-soehne-ritter-illustration.webp" width="600" height="600" alt="Gezeichneter Ritter mit Kaffeefahne auf seinem Pferd" loading="lazy">
+      </div>
+      <div class="einleitung-spalte">
+        <p class="einleitung-vorspann">Seit 2015 bekommst du bei uns auf der Danziger Straße richtig guten Espresso und Cappuccino, Frühstück, frisch belegte und getoastete Bagels, selbstgebackenen Kuchen und hausgemachte Suppen.</p>
+        <p>Drinnen sitzt du auf Barhockern und kannst den Baristas bei der Arbeit an der Espressomaschine zusehen. Draußen stehen die Tische in der Sonne, im Sommer unter blühenden Rosen. Hier kannst du in Ruhe frühstücken – zum Beispiel mit unseren Frühstücksklassikern, dem Kleinen, Großen oder Süßen Lorch –, ein Buch lesen oder einfach dem Treiben auf der Danziger Straße zusehen.</p>
+        <p>Jeden Tag liegen bei uns die Süddeutsche, der Tagesspiegel und die Zeit für dich bereit. Laptops bleiben bei uns lieber in der Tasche, und Video Calls machst du besser woanders. Wenn es doch mal sein muss, frag uns einfach.</p>
+        <a class="textlink" href="#karte">Zur Karte <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <!-- ===== BILDKACHELN =====
+         Fotos über die ganze Breite als Mosaik in drei Zeilen,
+         25 px Abstand. Größe und Position jeder Kachel steht in
+         style.css (kachel-1 … kachel-5). Beim Drüberfahren zoomt das
+         Foto leicht. Foto tauschen: einfach das src ändern. -->
+
+    <section class="bildkacheln" aria-label="Eindrücke aus dem Café">
+      <figure class="kachel kachel-1"><img src="assets/bilder/lorch-und-soehne-danziger-strasse-terrasse-markise.webp" width="1600" height="1067" alt="Die Terrasse vor dem Café mit rosa-weiß gestreifter Markise, Tischen und Pflanzen" loading="lazy"></figure>
+      <figure class="kachel kachel-2"><img src="assets/bilder/lorch-und-soehne-danziger-strasse-espressomaschine-blueten.webp" width="1200" height="800" alt="Die Espressomaschine mit Handhebeln, davor Blüten" loading="lazy"></figure>
+      <figure class="kachel kachel-3"><img src="assets/bilder/lorch-und-soehne-danziger-strasse-croissants.webp" width="1200" height="800" alt="Croissants, Franzbrötchen und Cookies in der Vitrine mit Kreidetäfelchen" loading="lazy"></figure>
+      <figure class="kachel kachel-4"><img src="assets/bilder/lorch-und-soehne-danziger-strasse-fliegendes-schwein.webp" width="1200" height="800" alt="Ein fliegendes Schwein mit Flügeln hängt unter der Kreidetafel" loading="lazy"></figure>
+      <figure class="kachel kachel-5"><img src="assets/bilder/lorch-und-soehne-danziger-strasse-schaufenster-logo.webp" width="1200" height="800" alt="Das Lorch & Söhne Logo auf der Schaufensterscheibe" loading="lazy"></figure>
+      <!-- Vierte Reihe (höher, für Hochformate): Barista schmal links –
+           das Foto ist nur 480 px breit, deshalb bewusst die kleinste
+           Kachel –, daneben der Rosenstrauch, rechts die Terrasse -->
+      <figure class="kachel kachel-6"><img src="assets/bilder/danziger%20strasse/lorch-und-soehne-danziger-strasse-tulpen-theke-kiwi-barista.webp" width="480" height="640" alt="Barista hinter der Theke mit Tulpen und Kiwis in der Danziger Straße" loading="lazy"></figure>
+      <figure class="kachel kachel-7"><img src="assets/bilder/danziger%20strasse/rosenstrauch-lorch-und-soehne.webp" width="750" height="1000" alt="Ein blühender roter Rosenstrauch an der Hauswand neben der Terrasse" loading="lazy"></figure>
+      <figure class="kachel kachel-8"><img src="assets/bilder/danziger%20strasse/terasse-lorch-und-soehne-danziger-strasse.webp" width="900" height="900" alt="Gäste in der Sonne auf der Terrasse vor dem Café unter der roten Markise" loading="lazy"></figure>
+    </section>
+
+    <!-- ===== DIE MENÜKARTE =====
+         id="karte": Hierhin springt „Zum Kartenüberblick“ auf der Startseite.
+         Alles auf einer großen, luftigen Karte mit feinem Doppelrahmen:
+         links die Getränke, rechts das Essen.
+         Jede Rubrik (.karten-block) = kleine Zeichnung (optional),
+         Überschrift, ggf. ein Satz, dann die Liste.
+         Eine Zeile: <li> mit .gericht, .preis und (optional) .zutaten.
+         Kaffee hat zwei Preise: Einfach und Doppelt („—“ = gibt es so nicht).
+         Die Spaltenköpfe sind für Screenreader versteckt, dafür steht vor
+         jedem Preis unsichtbar „einfach:“ bzw. „doppelt:“ (.sr-only). -->
+
+    <section class="menuekarte-section" id="karte" aria-labelledby="karte-titel">
+      <div class="menuekarte">
+        <header class="menuekarte-kopf">
+          <p class="dachzeile">Lorch & Söhne · Danziger Straße</p>
+          <h2 id="karte-titel">Unsere Karte</h2>
+        </header>
+
+        <div class="menuekarte-spalten">
+          <!-- ===== Linke Spalte: Getränke ===== -->
+          <div class="menuekarte-spalte">
+            <div class="karten-block">
+              <img class="karten-vignette" src="assets/bilder/lorch-und-soehne-buddha-illustration.webp" width="600" height="600" alt="Gezeichneter Buddha-Kopf, eine der Figuren aus der Bar von Lorch &amp; Söhne" loading="lazy">
+              <h3><!--i:danziger.karte.kaffee.titel-->Kaffee<!--/i--></h3>
+              <p class="karten-spaltenkoepfe" aria-hidden="true"><span>Einfach</span><span>Doppelt</span></p>
+              <ul class="karten-liste karten-liste-zwei-preise">
+                <!-- INHALT danziger.karte.kaffee liste ANFANG -->
+                <li><span class="gericht">Americano</span><span class="preis"><span class="sr-only">einfach: </span>2,90 €</span><span class="preis preis-doppelt"><span class="sr-only">doppelt: </span>3,90 €</span></li>
+                <li><span class="gericht">Espresso</span><span class="preis"><span class="sr-only">einfach: </span>2,40 €</span><span class="preis preis-doppelt"><span class="sr-only">doppelt: </span>3,40 €</span></li>
+                <li><span class="gericht">Espresso Macchiato</span><span class="preis"><span class="sr-only">einfach: </span>3,10 €</span><span class="preis preis-doppelt"><span class="sr-only">doppelt: </span>4,10 €</span></li>
+                <li><span class="gericht">Latte Macchiato</span><span class="preis"><span class="sr-only">einfach: </span>4,10 €</span><span class="preis preis-doppelt"><span class="sr-only">doppelt: </span>5,10 €</span></li>
+                <li><span class="gericht">Milchkaffee</span><span class="preis"><span class="sr-only">einfach: </span>4,10 €</span><span class="preis preis-doppelt"><span class="sr-only">doppelt: </span>5,10 €</span></li>
+                <li><span class="gericht">Cappuccino</span><span class="preis"><span class="sr-only">einfach: </span>3,70 €</span><span class="preis preis-doppelt"><span class="sr-only">doppelt: </span>5,10 €</span></li>
+                <li><span class="gericht">Flat White</span><span class="preis"><span aria-hidden="true">—</span><span class="sr-only">einfach: gibt es nicht</span></span><span class="preis preis-doppelt"><span class="sr-only">doppelt: </span>4,70 €</span></li>
+                <li><span class="gericht">Cortado</span><span class="preis"><span class="sr-only">einfach: </span>3,30 €</span><span class="preis preis-doppelt"><span aria-hidden="true">—</span><span class="sr-only">doppelt: gibt es nicht</span></span></li>
+                <!-- INHALT ENDE -->
+              </ul>
+            </div>
+
+            <div class="karten-block">
+              <h3><!--i:danziger.karte.andere_getraenke.titel-->Andere Getränke<!--/i--></h3>
+              <ul class="karten-liste">
+                <!-- INHALT danziger.karte.andere_getraenke liste ANFANG -->
+                <li><span class="gericht">Matcha Latte</span><span class="preis">4,10 €</span></li>
+                <li><span class="gericht">Chai Latte</span><span class="preis">4,10 €</span></li>
+                <li><span class="gericht">Golden Milk</span><span class="preis">4,10 €</span></li>
+                <li><span class="gericht">Heiße Schokolade</span><span class="preis">4,10 €</span></li>
+                <li><span class="gericht">Heiße Ingwer-Zitrone</span><span class="preis">4,20 €</span></li>
+                <li><span class="gericht">Tee</span><span class="preis">3,10 €</span><span class="zutaten">Grün, Minze, Früchte u. a.</span></li>
+                <li><span class="gericht">Iced Latte</span><span class="preis">4,50 €</span></li>
+                <li><span class="gericht">Extra Shot</span><span class="preis">1,00 €</span></li>
+                <!-- INHALT ENDE -->
+              </ul>
+              <p class="karten-hinweis"><!--i:danziger.karte.andere_getraenke.hinweis-->Entkoffeiniert oder mit Hafer-, Soja- oder laktosefreier Milch: + 0,30 €.<!--/i--></p>
+            </div>
+
+            <!-- Säfte, mit dem Kiwi und seiner handschriftlichen Frage daneben -->
+            <div class="karten-block">
+              <div class="karten-vignette-notiz">
+                <img class="karten-vignette" src="assets/bilder/lorch-und-soehne-kiwi-illustration.webp" width="600" height="600" alt="Gezeichneter Kiwi-Vogel, der neugierig eine Tasse Kaffee beäugt" loading="lazy">
+                <p class="karten-randnotiz">Findest du mich im Café?</p>
+              </div>
+              <h3><!--i:danziger.karte.saefte.titel-->Frische Säfte<!--/i--></h3>
+              <ul class="karten-liste">
+                <!-- INHALT danziger.karte.saefte liste ANFANG -->
+                <li><span class="gericht">Kate</span><span class="preis">6,10 €</span><span class="zutaten">Orange, Karotte, Ingwer</span></li>
+                <li><span class="gericht">Lilo</span><span class="preis">6,10 €</span><span class="zutaten">Apfel, Orange, Kurkuma</span></li>
+                <li><span class="gericht">Tilda</span><span class="preis">6,10 €</span><span class="zutaten">Karotte, Apfel, Ingwer</span></li>
+                <li><span class="gericht">Conny</span><span class="preis">6,10 €</span><span class="zutaten">Gurke, Apfel, Sellerie, Ingwer</span></li>
+                <li><span class="gericht">Orange pur</span><span class="preis">5,80 €</span></li>
+                <!-- INHALT ENDE -->
+              </ul>
+            </div>
+          </div>
+
+          <!-- ===== Rechte Spalte: Essen ===== -->
+          <div class="menuekarte-spalte">
+            <div class="karten-block">
+              <img class="karten-vignette" src="assets/bilder/lorch-und-soehne-geniesser-illustration.webp" width="600" height="600" alt="Gezeichneter Genießer mit einer Tasse Kaffee" loading="lazy">
+              <h3><!--i:danziger.karte.fruehstueck.titel-->Frühstück<!--/i--></h3>
+              <ul class="karten-liste">
+                <!-- INHALT danziger.karte.fruehstueck liste ANFANG -->
+                <li><span class="gericht">Kleiner Lorch</span><span class="preis">8,80 €</span><span class="zutaten">Schinken (1), Käse (2), Paste (1), Butter, Brot und Brötchen</span></li>
+                <li><span class="gericht">Großer Lorch</span><span class="preis">11,80 €</span><span class="zutaten">Schinken (1), Käse (3), Paste (3), Butter, Brot und Brötchen</span></li>
+                <li><span class="gericht">Süßer Lorch</span><span class="preis">4,30 €</span><span class="zutaten">Croissant, Marmelade, Butter</span></li>
+                <li><span class="gericht">Eier im Glas</span><span class="preis">7,50 €</span><span class="zutaten">zwei Bio-Eier, Senf, Butter, Schnittlauch, Brot</span></li>
+                <li><span class="gericht">Bircher Müsli groß</span><span class="preis">6,80 €</span><span class="zutaten">Joghurt, frische Beeren, Nüsse</span></li>
+                <li><span class="gericht">Bircher Müsli klein</span><span class="preis">4,80 €</span><span class="zutaten">Joghurt, frische Beeren, Nüsse</span></li>
+                <!-- INHALT ENDE -->
+              </ul>
+            </div>
+
+            <div class="karten-block">
+              <img class="karten-vignette" src="assets/bilder/lorch-und-soehne-bagel-illustration.webp" width="600" height="600" alt="Gezeichneter belegter Bagel" loading="lazy">
+              <h3><!--i:danziger.karte.bagels.titel-->Bagels<!--/i--></h3>
+              <p class="karten-einleitung"><!--i:danziger.karte.bagels.einleitung-->Handgemachte Bagels von Salomon Bagels aus Berlin, bei uns frisch belegt und getoastet.<!--/i--></p>
+              <ul class="karten-liste">
+                <!-- INHALT danziger.karte.bagels liste ANFANG -->
+                <li><span class="gericht">Serrano</span><span class="preis">6,80 €</span><span class="zutaten">Frischkäse, Rucola, Gurke, Tomate</span></li>
+                <li><span class="gericht">Lachs</span><span class="preis">6,80 €</span><span class="zutaten">Frischkäse, Rucola, Schnittlauch</span></li>
+                <li><span class="gericht">Käse</span><span class="preis">6,40 €</span><span class="zutaten">Frischkäse, Rucola, Gurke, Tomate</span></li>
+                <li><span class="gericht">Vegi</span><span class="preis">6,40 €</span><span class="zutaten">Rucola, Gurke, Tomate, Rote Beete, Avocado, mit Hummus oder Frischkäse</span></li>
+                <li><span class="gericht">Italiano</span><span class="preis">6,40 €</span><span class="zutaten">Mozzarella, Frischkäse, Rucola, Tomate, Pesto</span></li>
+                <li><span class="gericht">Süß</span><span class="preis">4,80 €</span><span class="zutaten">Frischkäse, Marmelade</span></li>
+                <li><span class="gericht">Nur Frischkäse</span><span class="preis">4,00 €</span></li>
+                <!-- INHALT ENDE -->
+              </ul>
+            </div>
+
+            <!-- Kuchen und Suppen nebeneinander, nur kurzer Text -->
+            <div class="karten-paar">
+              <div class="karten-block">
+                <img class="karten-vignette" src="assets/bilder/lorch-und-soehne-kuchen-illustration.webp" width="600" height="600" alt="Gezeichnetes Stück Kuchen" loading="lazy">
+                <h3><!--i:danziger.karte.kuchen.titel-->Selbstgebackener Kuchen<!--/i--></h3>
+                <p class="karten-einleitung"><!--i:danziger.karte.kuchen.einleitung-->Was es gibt, wechselt. Frag einfach nach dem heutigen Kuchen.<!--/i--></p>
+              </div>
+              <div class="karten-block">
+                <img class="karten-vignette" src="assets/bilder/lorch-und-soehne-suppe-illustration.webp" width="600" height="600" alt="Gezeichnete Schale Suppe" loading="lazy">
+                <h3><!--i:danziger.karte.suppen.titel-->Hausgemachte Suppen<!--/i--></h3>
+                <!-- Preise wie auf der Tafel; die Sorten wechseln -->
+                <ul class="karten-liste">
+                  <!-- INHALT danziger.karte.suppen liste ANFANG -->
+                  <li><span class="gericht">Daal</span><span class="preis">8,80 €</span></li>
+                  <li><span class="gericht">Kartoffel</span><span class="preis">8,80 €</span></li>
+                  <li><span class="gericht">Huhn</span><span class="preis">9,50 €</span></li>
+                  <li><span class="gericht">Kleine Portion</span><span class="preis">6,00 €</span></li>
+                  <li><span class="gericht">+ Wiener</span><span class="preis">1,00 €</span></li>
+                  <!-- INHALT ENDE -->
+                </ul>
+                <p class="karten-hinweis"><!--i:danziger.karte.suppen.hinweis-->Allergene? Sprecht uns an!<!--/i--></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== KOMM VORBEI (Foto-Bereich) =====
+         Adresse, Öffnungszeiten und Anreise auf dem Terrassenfoto.
+         Das fliegende Schwein schwebt hier beim Scrollen ins Bild
+         (Bewegung steuert script.js, wie auf der Startseite). -->
+
+    <section class="foto-section besuch-foto-section" id="besuch" aria-labelledby="besuch-titel">
+      <img class="section-foto" src="assets/bilder/lorch-und-soehne-danziger-strasse-theke-espressomaschine.webp" width="1600" height="1067" alt="Die Theke mit Espressomaschine, Mühle und Kuchenvitrine" loading="lazy">
+      <div class="foto-abdunklung"></div>
+      <img class="figur-schwein" src="assets/bilder/lorch-und-soehne-schwein-illustration.webp" width="600" height="600" alt="Gezeichnetes fliegendes Schwein mit Flügeln" loading="lazy">
+      <div class="inhaltsbreite foto-inhalt">
+        <div class="foto-text">
+          <p class="dachzeile">Lorch & Söhne · Danziger Straße</p>
+          <h2 id="besuch-titel">Komm vorbei!</h2>
+          <address><!--i:danziger.adresse.strasse-->Danziger Straße 25<!--/i--><br><!--i:danziger.adresse.plz_ort-->10435 Berlin<!--/i--> · <!--i:danziger.adresse.stadtteil-->Prenzlauer Berg<!--/i--></address>
+          <h3>Öffnungszeiten</h3>
+          <dl class="oeffnungszeiten">
+            <!-- INHALT danziger.oeffnungszeiten lang ANFANG -->
+            <div>
+              <dt>Montag–Freitag</dt>
+              <dd>08:00–17:00 Uhr</dd>
+            </div>
+            <div>
+              <dt>Samstag–Sonntag</dt>
+              <dd>09:00–17:00 Uhr</dd>
+            </div>
+            <!-- INHALT ENDE -->
+          </dl>
+          <h3>Anreise</h3>
+          <p>Mit der Tram M10 bis Husemannstraße, von dort sind es nur wenige Schritte. Oder mit der U2 bis Eberswalder Straße und zu Fuß die Danziger Straße entlang.</p>
+          <a class="textlink" data-route="danziger" href="https://www.google.com/maps/dir/?api=1&amp;destination=Danziger+Stra%C3%9Fe+25%2C+10435+Berlin" target="_blank" rel="noopener noreferrer">Route planen <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FUSSBEREICH (wie auf der Startseite) ===== -->
+  <footer class="fussbereich">
+    <div class="inhaltsbreite fussbereich-oben">
+      <a href="index.html" aria-label="Lorch & Söhne – zur Startseite"><img class="logo-hell fussbereich-logo" src="assets/bilder/lorch-und-soehne-logo.webp" width="591" height="532" alt="Lorch & Söhne" loading="lazy"></a>
+      <div>
+        <p class="handschrift">Bis zum nächsten Kaffee.</p>
+        <!-- Keine E-Mail-Adresse im Footer (steht nur auf der Kontaktseite) -->
+        <a class="email-link" href="kontakt.html">Kontakt</a>
+        <!-- Instagram-Profil, öffnet in neuem Tab -->
+        <a class="instagram-link" href="https://www.instagram.com/lorch_und_soehne/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="inhaltsbreite fussbereich-unten">
+      <!-- Dank an die Partner (Kaffeebohnen und Bagels), Links öffnen in neuem Tab -->
+      <p class="fussbereich-partner">Ohne unsere Partner <a href="https://www.passenger-coffee.de/" target="_blank" rel="noopener">PASSENGER Coffee</a> und <a href="https://www.salomon-bagels.de/" target="_blank" rel="noopener">Salomon Bagels</a> wären wir nur halb so wach und halb so satt. Danke, dass wir mit euch unseren Gästen jeden Tag so viel Gutes tun können!</p>
+      <!-- Pflichtseiten -->
+      <nav class="fussbereich-rechtliches" aria-label="Rechtliches">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a class="fussbereich-credit" href="https://cococrema.de/" target="_blank" rel="noopener">Website: Cococrema</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

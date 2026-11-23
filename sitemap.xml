@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sitemap: Liste aller Seiten für Suchmaschinen. Neue Seiten (z. B. Impressum, Datenschutz) hier ergänzen und <lastmod> bei Änderungen anpassen. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://lorchundsoehne.de/</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://lorchundsoehne.de/cafe-danziger-strasse.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://lorchundsoehne.de/cafe-kommode.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://lorchundsoehne.de/kaffeefahrrad-mieten.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://lorchundsoehne.de/catering.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://lorchundsoehne.de/kontakt.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://lorchundsoehne.de/impressum.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+  <url>
+    <loc>https://lorchundsoehne.de/datenschutz.html</loc>
+    <lastmod>2026-11-20</lastmod>
+  </url>
+</urlset>
