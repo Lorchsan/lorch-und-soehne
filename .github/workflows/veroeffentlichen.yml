@@ -35,11 +35,9 @@ permissions:
   id-token: write           # Schritt 3 (Nachweis gegenüber GitHub Pages)
 
 jobs:
-  veroeffentlichen:
+  # Teil 1: Inhalte übernehmen und Website-Dateien zusammenstellen
+  zusammenstellen:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Dateien holen
         uses: actions/checkout@v7
@@ -91,6 +89,14 @@ jobs:
         with:
           path: _site
 
+  # Teil 2: veröffentlichen (startet erst, wenn Teil 1 fertig ist)
+  veroeffentlichen:
+    needs: zusammenstellen
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Veröffentlichen
         id: deployment
         uses: actions/deploy-pages@v5
