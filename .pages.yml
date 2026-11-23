@@ -1,0 +1,168 @@
+# =====================================================================
+#  PAGES CMS – FORMULAR-OBERFLÄCHE FÜR DIE INHALTE
+# =====================================================================
+#  Beschreibt, wie app.pagescms.org die Datei inhalte.yml als Formular
+#  anzeigt. Jedes Feld hier entspricht einer Zeile in inhalte.yml.
+#  Die „description“-Texte erscheinen als Hilfe unter den Feldern.
+#
+#  Preise sind bewusst Textfelder (nicht „number“), damit „2,90“ mit
+#  Komma und „–“ funktionieren. aktualisieren.py prüft und korrigiert.
+#
+#  Neue Angabe in inhalte.yml? → hier ein passendes Feld ergänzen,
+#  sonst ist sie im Formular unsichtbar (bleibt aber erhalten).
+#  Diese Datei wird NICHT auf die Website hochgeladen.
+# =====================================================================
+
+media: false
+
+content:
+  - name: inhalte
+    label: Inhalte der Website
+    type: file
+    path: inhalte.yml
+    fields:
+
+      # ----- KONTAKT -----
+      - name: kontakt
+        label: Kontakt
+        type: object
+        fields:
+          - name: email
+            label: E-Mail-Adresse
+            type: string
+            description: Erscheint auf Kontakt, Catering, Kaffeefahrrad, Impressum und Datenschutz. Wird automatisch vor Spam geschützt.
+
+      # ----- DANZIGER STRASSE -----
+      - name: danziger
+        label: Café Danziger Straße
+        type: object
+        fields:
+          - name: adresse
+            label: Adresse
+            type: object
+            description: Erscheint auf Startseite (Anfahrt), Danziger-Seite, Impressum, Datenschutz und für Google.
+            fields:
+              - { name: strasse, label: Straße und Hausnummer, type: string }
+              - { name: plz_ort, label: PLZ und Ort, type: string }
+              - { name: stadtteil, label: Stadtteil, type: string }
+
+          - name: oeffnungszeiten
+            label: Öffnungszeiten
+            type: object
+            list: true
+            description: "Zeiten immer so schreiben: 08:00–17:00 Uhr – oder: geschlossen"
+            fields:
+              - { name: tage, label: Tage, type: string, description: "z. B. Montag–Freitag" }
+              - { name: zeit, label: Zeit, type: string, description: "z. B. 08:00–17:00 Uhr" }
+
+          - name: karte
+            label: Speisekarte
+            type: object
+            description: "Erscheint auf der Danziger-Seite („Unsere Karte“). Reihenfolge hier = Reihenfolge auf der Website (Einträge lassen sich verschieben). Preise ohne €, mit Komma: 3,70"
+            fields:
+
+              - name: kaffee
+                label: Kaffee
+                type: object
+                description: "★ Erscheint ZWEIMAL: auf der Danziger-Karte UND in der Preistabelle auf der Startseite. „–“ = gibt es so nicht."
+                fields:
+                  - { name: titel, label: Überschrift, type: string }
+                  - name: eintraege
+                    label: Kaffees
+                    type: object
+                    list: true
+                    fields:
+                      - { name: name, label: Name, type: string }
+                      - { name: einfach, label: Preis einfach, type: string }
+                      - { name: doppelt, label: Preis doppelt, type: string }
+
+              - name: andere_getraenke
+                label: Andere Getränke
+                type: object
+                fields:
+                  - { name: titel, label: Überschrift, type: string }
+                  - &eintraege
+                    name: eintraege
+                    label: Einträge
+                    type: object
+                    list: true
+                    fields:
+                      - { name: name, label: Name, type: string }
+                      - { name: preis, label: Preis, type: string, description: "ohne €, z. B. 4,10" }
+                      - { name: zutaten, label: Zutaten, type: string, description: freiwillig – leer lassen, wenn keine }
+                  - { name: hinweis, label: Hinweis unter der Liste, type: string }
+
+              - name: saefte
+                label: Frische Säfte
+                type: object
+                fields:
+                  - { name: titel, label: Überschrift, type: string }
+                  - *eintraege
+
+              - name: fruehstueck
+                label: Frühstück
+                type: object
+                fields:
+                  - { name: titel, label: Überschrift, type: string }
+                  - *eintraege
+
+              - name: bagels
+                label: Bagels
+                type: object
+                fields:
+                  - { name: titel, label: Überschrift, type: string }
+                  - { name: einleitung, label: Satz unter der Überschrift, type: text }
+                  - *eintraege
+
+              - name: kuchen
+                label: Kuchen
+                type: object
+                description: Keine Preise, nur ein Satz.
+                fields:
+                  - { name: titel, label: Überschrift, type: string }
+                  - { name: einleitung, label: Satz unter der Überschrift, type: text }
+
+              - name: suppen
+                label: Suppen
+                type: object
+                fields:
+                  - { name: titel, label: Überschrift, type: string }
+                  - *eintraege
+                  - { name: hinweis, label: Hinweis unter der Liste, type: string }
+
+      # ----- KOMMODE -----
+      - name: kommode
+        label: Café Kommode (Bebelplatz)
+        type: object
+        fields:
+          - name: adresse
+            label: Adresse
+            type: object
+            description: Erscheint auf Startseite (Anfahrt), Kommode-Seite und für Google.
+            fields:
+              - { name: gebaeude, label: Gebäude, type: string }
+              - { name: strasse, label: Straße und Hausnummer, type: string }
+              - { name: plz_ort, label: PLZ und Ort, type: string }
+              - { name: stadtteil, label: Stadtteil, type: string }
+
+          - name: oeffnungszeiten
+            label: Öffnungszeiten
+            type: object
+            list: true
+            description: "Zeiten immer so schreiben: 08:00–18:00 Uhr – oder: geschlossen"
+            fields:
+              - { name: tage, label: Tage, type: string }
+              - { name: zeit, label: Zeit, type: string }
+
+          - name: pott_kaffee_preis
+            label: Preis Pott Kaffee (HU-Studierende)
+            type: string
+            description: "★ Erscheint an DREI Stellen auf der Kommode-Seite (Text, Überschrift, Google-Beschreibung). Ohne €, z. B. 1,50"
+
+          - name: schloss
+            label: Schloss für die Bibliothek
+            type: object
+            fields:
+              - { name: rueckgabe_bis, label: Rückgabe bis, type: string, description: "im Satz „… am selben Tag bis 18 Uhr …“" }
+              - { name: leihgebuehr, label: Leihgebühr, type: string, description: "genau so, wie es dasteht (mit €), z. B. 1,00 € pro Tag" }
+              - { name: pfand, label: Pfand, type: string, description: "ohne €, z. B. 10,00" }
