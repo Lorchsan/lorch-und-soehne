@@ -13,8 +13,6 @@
 #  Diese Datei wird NICHT auf die Website hochgeladen.
 # =====================================================================
 
-media: false
-
 content:
   - name: inhalte
     label: Inhalte der Website
