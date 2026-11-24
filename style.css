@@ -347,7 +347,7 @@ a:focus-visible, button:focus-visible {
 }
 .startbild > :not(picture) {
   opacity: 0;
-  transition: opacity .4s ease;
+  transition: opacity .2s ease;
   animation: startbild-notfall 0s 3s forwards;
 }
 .startbild.geladen > :not(picture) {
