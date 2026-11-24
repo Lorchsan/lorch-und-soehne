@@ -1,0 +1,24 @@
+# =====================================================================
+#  ORIGINAL-TEXTE (Stand November 2026) – NICHT im CMS bearbeiten
+# =====================================================================
+#  Sicherungskopie der Texte unter „texte“ in inhalte.yml.
+#  Zurückholen: github.com → Actions → „Website veröffentlichen“ →
+#  „Run workflow“ → Häkchen „Original-Texte wiederherstellen“ → Run.
+#  Diese Datei wird NICHT auf die Website hochgeladen.
+# =====================================================================
+texte:
+  startseite:
+    kaffee_1: 'In deiner Tasse steckt der Passenger Blend der Berliner Rösterei PASSENGER: 100 % Arabica aus Brasilien, Indien, Indonesien, Guatemala und Äthiopien. Frisch geröstet, kräftig und aromatisch.'
+    kaffee_2: Dazu kommen Noten von dunkler Schokolade und Mandel, eine angenehme Süße und wenig Säure.
+    geschichte_1: 'Nachdem Christoph 2014 sein Studium dann doch endlich beendet hatte – er nennt sich bis heute gern Langzeitstudent –, war klar: Ein Bürojob sollte es nicht werden. Also lieber etwas Eigenes machen.'
+    geschichte_2: Der passende Laden fand sich über Ebay Kleinanzeigen – auf der Danziger Straße, schräg gegenüber der Grundschule, auf die damals die beiden Söhne gingen. 2015 eröffnete dort das erste Lorch & Söhne. Den Namen hat Björn erfunden, ein Freund. Er erwähnt das bis heute gern ; )
+    geschichte_3: 'Seit Januar 2024 gibt es Lorch & Söhne auch in der Kommode am Bebelplatz, mitten in der Humboldt-Universität. Zwei ganz unterschiedliche Orte, an denen es vor allem um eines geht: guten Kaffee.'
+  kommode:
+    schloss_1: Wer in der juristischen Bibliothek lernen möchte, muss Jacken und größere Taschen im Garderobenschrank lassen.
+    schloss_2: Falls ihr kein eigenes Vorhängeschloss dabei habt, könnt ihr euch einfach eines bei uns im Café ausleihen.
+  catering:
+    einleitung_1: Tagung, Empfang oder Seminar an der Humboldt-Universität? Ob 20 oder 500 Leute – wir versorgen Sie mit Kaffee, Wasser und kleinen Snacks.
+    einleitung_2: Viel guter Kaffee und kleine Leckereien – damit alle mit Freude bis zum Schluss dabei sind.
+  kaffeefahrrad:
+    einleitung_1: Unseren guten Kaffee gibt es auch vom Kaffeefahrrad. Mit frisch gemahlenen Bohnen von Passenger Coffee und einer professionellen Espressomaschine bereiten unsere Baristas die Kaffeespezialitäten direkt vor Ort zu.
+    einleitung_2: Eine kleine Espressobar auf Rädern, die dorthin kommt, wo du sie brauchst.

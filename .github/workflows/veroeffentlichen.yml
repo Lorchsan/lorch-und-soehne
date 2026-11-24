@@ -23,6 +23,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:        # zusätzlich per Knopf unter „Actions“ startbar
+    inputs:
+      originaltexte:
+        description: "Original-Texte wiederherstellen (überschreibt die Texte unter „Einige Website-Texte“ mit originaltexte.yml)"
+        type: boolean
+        default: false
 
 # Nie zwei Veröffentlichungen gleichzeitig
 concurrency:
@@ -50,6 +55,19 @@ jobs:
       - name: PyYAML installieren
         run: pip install pyyaml
 
+      - name: Original-Texte wiederherstellen (nur wenn angehakt)
+        # Ersetzt NUR den Bereich „texte“ in inhalte.yml, Preise,
+        # Öffnungszeiten usw. bleiben unverändert.
+        if: ${{ inputs.originaltexte }}
+        run: |
+          python - <<'PY'
+          import yaml
+          daten = yaml.safe_load(open("inhalte.yml", encoding="utf-8"))
+          daten["texte"] = yaml.safe_load(open("originaltexte.yml", encoding="utf-8"))["texte"]
+          with open("inhalte.yml", "w", encoding="utf-8") as f:
+              yaml.safe_dump(daten, f, allow_unicode=True, sort_keys=False, width=10000)
+          PY
+
       - name: Inhalte prüfen und in die Seiten schreiben
         run: python aktualisieren.py
 
@@ -76,6 +94,7 @@ jobs:
             --exclude '.pages.yml' \
             --exclude '_site' \
             --exclude 'inhalte.yml' \
+            --exclude 'originaltexte.yml' \
             --exclude 'aktualisieren.py' \
             --exclude 'CLAUDE.md' \
             --exclude 'README.md' \
