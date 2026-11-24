@@ -316,3 +316,17 @@ document.querySelectorAll('.ausklappmenue').forEach(menue => {
     if (!menue.contains(event.target)) setzeOffen(false);
   });
 });
+
+// Startbild: Klasse „geladen“ setzen, sobald das Foto da ist –
+// dann blendet der Kopfbereich ein (siehe style.css „Startbild: erst hell“).
+// Ist das Foto schon im Browser-Speicher, passiert das sofort.
+const startbild = document.querySelector('.startbild');
+const startbildFoto = document.querySelector('.startbild-foto');
+if (startbild && startbildFoto) {
+  const zeigen = () => startbild.classList.add('geladen');
+  if (startbildFoto.complete) zeigen();
+  else {
+    startbildFoto.addEventListener('load', zeigen);
+    startbildFoto.addEventListener('error', zeigen);
+  }
+}

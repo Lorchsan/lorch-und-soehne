@@ -334,6 +334,29 @@ a:focus-visible, button:focus-visible {
   object-position: 50% 48%;
 }
 
+/* ---------- Startbild: erst hell, dann alles zusammen einblenden ----------
+   Solange das Foto lädt, ist der Kopfbereich papierhell (kein brauner
+   Kasten). Ist das Foto da, setzt script.js die Klasse „geladen“ –
+   dann blenden Foto, Verlauf, Logo und Menü gemeinsam weich ein.
+   Notfall: Läuft das Skript nicht, erscheint nach 3 s trotzdem alles. */
+.startbild {
+  background: var(--paper);
+}
+.startbild > * {
+  opacity: 0;
+  transition: opacity .4s ease;
+  animation: startbild-notfall 0s 3s forwards;
+}
+.startbild.geladen > * {
+  opacity: 1;
+}
+@keyframes startbild-notfall {
+  to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .startbild > * { transition: none; }
+}
+
 .startbild-abdunklung {
   z-index: -1;
   /* oberster Streifen: dunkelbrauner Verlauf nur hinter der Navigation, damit sie besser lesbar ist */
