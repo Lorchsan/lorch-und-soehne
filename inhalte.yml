@@ -15,7 +15,7 @@ danziger:
       titel: Kaffee
       eintraege:
         - name: Americano
-          einfach: 29,00
+          einfach: 2,90
           doppelt: 3,90
         - name: Espresso
           einfach: 2,40
