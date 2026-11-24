@@ -336,25 +336,28 @@ a:focus-visible, button:focus-visible {
 
 /* ---------- Startbild: erst hell, dann alles zusammen einblenden ----------
    Solange das Foto lädt, ist der Kopfbereich papierhell (kein brauner
-   Kasten). Ist das Foto da, setzt script.js die Klasse „geladen“ –
-   dann blenden Foto, Verlauf, Logo und Menü gemeinsam weich ein.
+   Kasten). Das Foto selbst wird NIE versteckt (sonst findet Google
+   das wichtigste Bild nicht → Fehler „NO_LCP“) – ein noch nicht
+   geladenes Foto ist ja ohnehin unsichtbar. Ist es da, setzt
+   script.js die Klasse „geladen“ – dann blenden Verlauf, Logo und
+   Menü weich dazu ein.
    Notfall: Läuft das Skript nicht, erscheint nach 3 s trotzdem alles. */
 .startbild {
   background: var(--paper);
 }
-.startbild > * {
+.startbild > :not(picture) {
   opacity: 0;
   transition: opacity .4s ease;
   animation: startbild-notfall 0s 3s forwards;
 }
-.startbild.geladen > * {
+.startbild.geladen > :not(picture) {
   opacity: 1;
 }
 @keyframes startbild-notfall {
   to { opacity: 1; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .startbild > * { transition: none; }
+  .startbild > :not(picture) { transition: none; }
 }
 
 .startbild-abdunklung {
