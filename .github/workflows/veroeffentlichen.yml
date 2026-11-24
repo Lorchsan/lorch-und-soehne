@@ -25,7 +25,7 @@ on:
   workflow_dispatch:        # zusätzlich per Knopf unter „Actions“ startbar
     inputs:
       originaltexte:
-        description: "Original-Texte wiederherstellen (überschreibt die Texte unter „Einige Website-Texte“ mit originaltexte.yml)"
+        description: "Originaltexte vom 24. November 2026 wiederherstellen? Häkchen setzen = alle Texte aus „Einige Website-Texte kannst du hier ändern“ kommen wieder so, wie sie am 24.11.2026 waren. Preise und Öffnungszeiten bleiben unverändert. Ohne Häkchen = Website wird nur neu veröffentlicht."
         type: boolean
         default: false
 

@@ -169,7 +169,7 @@ content:
       - name: texte
         label: "Einige Website-Texte kannst du hier ändern:"
         type: object
-        description: "Jedes Feld ist ein Absatz auf der Website. Nur Text, keine Links. Feld nicht leer lassen – sonst wird nicht veröffentlicht."
+        description: "Jedes Feld ist ein Absatz auf der Website. Nur Text, keine Links. Feld nicht leer lassen – sonst wird nicht veröffentlicht. Zurück zu den Originaltexten vom 24.11.2026: auf github.com → Actions → „Website veröffentlichen“ → „Run workflow“ → Häkchen setzen → Run workflow."
         fields:
           - name: startseite
             label: Startseite
