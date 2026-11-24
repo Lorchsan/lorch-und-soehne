@@ -3015,8 +3015,22 @@ h1.startbild-logo {
   margin-bottom: var(--abstand);
 }
 
-.bildkacheln-catering .kachel:first-child { grid-column: 1 / 6; }
-.bildkacheln-catering .kachel:last-child  { grid-column: 6 / 13; }
+/* Reihe 1: Saal | Snacks */
+.bildkacheln-catering .kachel:nth-child(1) { grid-column: 1 / 6; grid-row: 1; }
+.bildkacheln-catering .kachel:nth-child(2) { grid-column: 6 / 13; grid-row: 1; }
+
+/* Reihe 2: höher, weil hier zwei Hochformate stehen –
+   hochkant (3 Spalten) | breit (6) | hochkant (3) */
+.bildkacheln-catering {
+  grid-template-rows: clamp(260px,30vw,520px) clamp(340px,34vw,600px) clamp(260px,30vw,520px);
+}
+.bildkacheln-catering .kachel:nth-child(3) { grid-column: 1 / 4;  grid-row: 2; }
+.bildkacheln-catering .kachel:nth-child(4) { grid-column: 4 / 10; grid-row: 2; }
+.bildkacheln-catering .kachel:nth-child(5) { grid-column: 10 / 13; grid-row: 2; }
+
+/* Reihe 3: Tische (breit, 7) | runde Tafel (5) */
+.bildkacheln-catering .kachel:nth-child(6) { grid-column: 1 / 8;  grid-row: 3; }
+.bildkacheln-catering .kachel:nth-child(7) { grid-column: 8 / 13; grid-row: 3; }
 
 /* Handy: untereinander, volle Breite, flacher */
 @media (max-width:800px) {
@@ -3027,13 +3041,23 @@ h1.startbild-logo {
   /* Abstand nach unten (var(--abstand)) bleibt wie am Desktop */
   .bildkacheln-catering {
     grid-auto-rows: auto;
+    grid-template-rows: none;
   }
 
-  .bildkacheln-catering .kachel:first-child,
-  .bildkacheln-catering .kachel:last-child {
+  /* Querformate volle Breite, die zwei Hochformate nebeneinander */
+  .bildkacheln-catering .kachel:nth-child(n) {
     grid-column: 1 / -1;
+    grid-row: auto;
     aspect-ratio: 4 / 3;
   }
+  .bildkacheln-catering .kachel.kachel-catering-hoch {
+    grid-column: auto;
+    aspect-ratio: 3 / 4;
+  }
+  /* HU-Buffet unter die beiden Hochformate schieben */
+  .bildkacheln-catering .kachel-catering-breit { order: 1; }
+  .bildkacheln-catering .kachel-catering-links,
+  .bildkacheln-catering .kachel-catering-rechts { order: 2; }
 }
 
 /* ---------- Kaffeefahrrad & Catering: Anfrage-Knopf im Startbild ----------
