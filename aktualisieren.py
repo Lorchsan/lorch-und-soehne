@@ -13,6 +13,8 @@
 #   2. In jeder Seite nur die markierten Stellen ersetzen:
 #
 #      a) Einzelne Werte:   <!--i:danziger.adresse.strasse-->…<!--/i-->
+#         (auch die Absätze unter „texte“; Zeilenumbrüche werden
+#          zu Leerzeichen, damit ein Absatz ein Absatz bleibt)
 #      b) Ganze Blöcke:     <!-- INHALT danziger.oeffnungszeiten kurz ANFANG -->
 #                           …
 #                           <!-- INHALT ENDE -->
@@ -254,7 +256,7 @@ def seite_bearbeiten(inhalt, daten, zeiten, karte, datei):
     # a) Einzelne Werte
     inhalt = re.sub(
         r"<!--i:([\w.]+)-->.*?<!--/i-->",
-        lambda m: f"<!--i:{m[1]}-->{html.escape(holen(daten, m[1]), quote=False)}<!--/i-->",
+        lambda m: f"<!--i:{m[1]}-->{html.escape(' '.join(holen(daten, m[1]).split()), quote=False)}<!--/i-->",
         inhalt, flags=re.S,
     )
 

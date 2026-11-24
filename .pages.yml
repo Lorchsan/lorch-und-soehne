@@ -164,3 +164,37 @@ content:
               - { name: rueckgabe_bis, label: Rückgabe bis, type: string, description: "im Satz „… am selben Tag bis 18 Uhr …“" }
               - { name: leihgebuehr, label: Leihgebühr, type: string, description: "genau so, wie es dasteht (mit €), z. B. 1,00 € pro Tag" }
               - { name: pfand, label: Pfand, type: string, description: "ohne €, z. B. 10,00" }
+
+      # ----- TEXTE (einzelne Absätze; jeder Absatz = ein Feld) -----
+      - name: texte
+        label: "Einige Website-Texte kannst du hier ändern:"
+        type: object
+        description: "Jedes Feld ist ein Absatz auf der Website. Nur Text, keine Links. Feld nicht leer lassen – sonst wird nicht veröffentlicht."
+        fields:
+          - name: startseite
+            label: Startseite
+            type: object
+            fields:
+              - { name: kaffee_1, label: "Unser Kaffee (Passenger Blend) – Absatz 1", type: text }
+              - { name: kaffee_2, label: "Unser Kaffee (Passenger Blend) – Absatz 2", type: text }
+              - { name: geschichte_1, label: "Wie alles anfing – Absatz 1", type: text }
+              - { name: geschichte_2, label: "Wie alles anfing – Absatz 2", type: text }
+              - { name: geschichte_3, label: "Wie alles anfing – Absatz 3", type: text }
+          - name: kommode
+            label: Café Kommode
+            type: object
+            fields:
+              - { name: schloss_1, label: "Schloss für die Bib – Absatz 1 (groß)", type: text }
+              - { name: schloss_2, label: "Schloss für die Bib – Absatz 2", type: text }
+          - name: catering
+            label: Catering
+            type: object
+            fields:
+              - { name: einleitung_1, label: "Einleitung – Absatz 1 (groß)", type: text }
+              - { name: einleitung_2, label: "Einleitung – Absatz 2", type: text }
+          - name: kaffeefahrrad
+            label: Kaffeefahrrad
+            type: object
+            fields:
+              - { name: einleitung_1, label: "Einleitung – Absatz 1 (groß)", type: text }
+              - { name: einleitung_2, label: "Einleitung – Absatz 2", type: text }
