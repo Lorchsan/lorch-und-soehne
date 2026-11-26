@@ -149,7 +149,7 @@ kommode:
   oeffnungszeiten:
     - tage: Montag–Freitag
       zeit: 08:00–18:00 Uhr
-    - tage: Samstag–Sonntag
+    - tage: Samstag, Sonntag und Feiertage
       zeit: geschlossen
   pott_kaffee_preis: 1,50
   schloss:
