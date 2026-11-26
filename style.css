@@ -1780,6 +1780,11 @@ tbody tr {
   transform: rotate(-4deg);
 }
 
+/* Zeilenumbruch nur am Handy (siehe Handy-Bereich unten) */
+.umbruch-handy {
+  display: none;
+}
+
 /* Schwein: ganz groß im Foto „Wie alles anfing.“ – gespiegelt, damit
    es nach links fliegt. Es schwebt beim Scrollen vom rechten Rand
    Richtung Mitte (script.js setzt dafür transform: translateX).
@@ -1868,9 +1873,16 @@ tbody tr {
     bottom: -10px;
   }
 
-  /* Handy: „Findest du mich im Café?“ nur am Desktop */
+  /* Handy: „Findest du mich im Café?“ in zwei Zeilen unter dem Kiwi
+     (Umbruch über <br class="umbruch-handy"> im HTML) */
   .figur-kiwi .randnotiz {
-    display: none;
+    font-size: 36px;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .umbruch-handy {
+    display: inline;
   }
 }
 
