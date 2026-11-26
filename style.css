@@ -1821,15 +1821,22 @@ tbody tr {
     width: 108px;
   }
 
-  /* Handy: unter dem Kaffee-Text Platz schaffen – dort sitzt der
-     Genießer, hauptsächlich im Foto, nur die Füße ragen nach unten raus */
+  /* Handy: Der Genießer sitzt RECHTS NEBEN dem letzten Kaffee-Absatz
+     (nicht mehr darunter). Der Absatz ist dafür schmal (links), damit
+     sich beide nie überlappen – auch wenn der Text im CMS länger wird
+     (er wächst dann nach oben). Genießer: 80 % im Foto, Füße ragen
+     unten raus, ein Stück über den rechten Rand. */
   .kaffee-section .foto-inhalt {
-    padding-bottom: 170px;
+    padding-bottom: 60px;
+  }
+
+  .kaffee-section .foto-text p:last-child {
+    max-width: 52%;
   }
 
   .figur-geniesser {
-    top: -154px; /* 80 % im Foto, 20 % hängen unten raus */
-    right: 0;
+    top: -200px; /* 80 % von 250 px im Foto */
+    right: -24px;
   }
 
   /* Nichts darf seitlich über den Bildschirm ragen (sonst wackelt
@@ -1840,7 +1847,7 @@ tbody tr {
   }
 
   .figur-geniesser img {
-    width: 192px;
+    width: 250px; /* 130 % der früheren 192 px */
   }
 
   /* Handy: unter dem Geschichtstext Platz schaffen, damit das
