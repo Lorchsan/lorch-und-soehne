@@ -1726,7 +1726,7 @@ tbody tr {
 }
 
 .figur-buddha img {
-  width: 144px;
+  width: 187px; /* 130 % der früheren 144 px */
   rotate: 4deg;
 }
 
@@ -1819,11 +1819,11 @@ tbody tr {
   .figur-buddha {
     left: auto;
     right: -6px;
-    bottom: -92px; /* 15 % sitzen noch auf dem Preiszettel */
+    bottom: -84px; /* gut 40 % sitzen auf dem Preiszettel */
   }
 
   .figur-buddha img {
-    width: 108px;
+    width: 140px; /* 130 % der früheren 108 px */
   }
 
   /* Handy: Der Genießer sitzt RECHTS NEBEN dem letzten Kaffee-Absatz
