@@ -1718,7 +1718,7 @@ tbody tr {
 /* Buddha: sitzt unten links an der Preisliste, ganz ruhig */
 .figur-buddha {
   position: absolute;
-  left: -120px; /* weit links, damit er nicht über „Zur ganzen Karte“ sitzt */
+  left: -95px; /* links genug, damit er nicht über „Zur ganzen Karte“ sitzt */
   bottom: -60px;
   display: flex;
   align-items: flex-end;
