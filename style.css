@@ -657,6 +657,11 @@ tbody tr {
   margin-top: 22px;
 }
 
+/* Link „Zur ganzen Karte →“ unter dem Hinweis */
+.preisliste-link {
+  margin-top: 18px;
+}
+
 /* ============================================================
    4c. SPEISEN: BAGELS, KUCHEN, SUPPEN
    ------------------------------------------------------------
