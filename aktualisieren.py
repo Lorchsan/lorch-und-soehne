@@ -83,19 +83,32 @@ def holen(daten, schluessel):
 
 
 def tage_bereich(tage, wo):
-    """'Montag–Freitag' → Liste der Tage (für Google)."""
-    teile = [t.strip() for t in re.split(r"[–-]", tage)]
-    try:
-        idx = [TAGE.index(t) for t in teile]
-    except ValueError:
-        fehler.append(f"{wo}: Tage „{tage}“ nicht erkannt (z. B. Montag–Freitag oder Samstag)")
-        return []
-    if len(idx) == 1:
-        return [idx[0]]
-    if len(idx) == 2 and idx[0] <= idx[1]:
-        return list(range(idx[0], idx[1] + 1))
-    fehler.append(f"{wo}: Tage „{tage}“ nicht erkannt")
-    return []
+    """Tage-Angabe → Liste der Tage (für Google).
+
+    Erlaubt sind z. B.:  Montag–Freitag · Samstag · Samstag, Sonntag
+    Samstag und Sonntag · Montag–Freitag, Sonntag · … und Feiertage
+    „Feiertage“ wird angezeigt, für Google aber übersprungen.
+    """
+    stuecke = [t.strip() for t in re.split(r",|/|&|\bund\b|\bsowie\b", tage) if t.strip()]
+    ergebnis = []
+    for stueck in stuecke:
+        if stueck in ("Feiertag", "Feiertage", "Feiertags", "feiertags"):
+            continue
+        teile = [t.strip() for t in re.split(r"[–-]", stueck)]
+        try:
+            idx = [TAGE.index(t) for t in teile]
+        except ValueError:
+            idx = []
+        if len(idx) == 1:
+            ergebnis.append(idx[0])
+        elif len(idx) == 2 and idx[0] <= idx[1]:
+            ergebnis += range(idx[0], idx[1] + 1)
+        else:
+            fehler.append(f"{wo}: Tage „{tage}“ nicht erkannt (z. B. Montag–Freitag, Samstag oder Samstag, Sonntag und Feiertage)")
+            return []
+    if not ergebnis and wo:
+        fehler.append(f"{wo}: Tage „{tage}“ nicht erkannt (mindestens ein Wochentag nötig)")
+    return ergebnis
 
 
 RUBRIKEN = ["kaffee", "andere_getraenke", "saefte", "fruehstueck", "bagels", "kuchen", "suppen"]
