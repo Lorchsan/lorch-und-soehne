@@ -1718,7 +1718,7 @@ tbody tr {
 /* Buddha: sitzt unten links an der Preisliste, ganz ruhig */
 .figur-buddha {
   position: absolute;
-  left: -70px;
+  left: -120px; /* weit links, damit er nicht über „Zur ganzen Karte“ sitzt */
   bottom: -60px;
   display: flex;
   align-items: flex-end;
@@ -1727,7 +1727,7 @@ tbody tr {
 
 .figur-buddha img {
   width: 187px; /* 130 % der früheren 144 px */
-  rotate: 4deg;
+  rotate: -6deg; /* gegen den Uhrzeigersinn geneigt (Handy: siehe unten) */
 }
 
 /* Ritter: reitet oben auf dem Laufband entlang.
@@ -1824,6 +1824,7 @@ tbody tr {
 
   .figur-buddha img {
     width: 140px; /* 130 % der früheren 108 px */
+    rotate: 4deg; /* Handy behält die alte Neigung */
   }
 
   /* Handy: Der Genießer sitzt RECHTS NEBEN dem letzten Kaffee-Absatz
