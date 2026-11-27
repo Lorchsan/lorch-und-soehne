@@ -3244,8 +3244,9 @@ h1.startbild-logo {
 }
 
 /* ============================================================
-   STARTSEITE: STARTBILD FÜLLT DEN GANZEN BILDSCHIRM
-   (Klasse "startbild-vollbild" nur im Header von index.html)
+   STARTBILD FÜLLT DEN GANZEN BILDSCHIRM
+   (Klasse "startbild-vollbild" im Header von Startseite, Cafés,
+   Kaffeefahrrad und Catering)
    Steht ganz am Ende, damit es die Höhen aus allen Bildschirm-
    größen oben überschreibt. 100svh = sichtbare Höhe, auch am
    Handy, wo die Adressleiste ein- und ausfährt.
