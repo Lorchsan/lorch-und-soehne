@@ -3242,3 +3242,16 @@ h1.startbild-logo {
     overflow-wrap: break-word;
   }
 }
+
+/* ============================================================
+   STARTSEITE: STARTBILD FÜLLT DEN GANZEN BILDSCHIRM
+   (Klasse "startbild-vollbild" nur im Header von index.html)
+   Steht ganz am Ende, damit es die Höhen aus allen Bildschirm-
+   größen oben überschreibt. 100svh = sichtbare Höhe, auch am
+   Handy, wo die Adressleiste ein- und ausfährt.
+   ============================================================ */
+.startbild.startbild-vollbild {
+  height: 100svh;
+  min-height: 560px;
+  max-height: none;
+}
